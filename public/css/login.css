@@ -1,0 +1,111 @@
+/* Fondo con degradado moderno */
+body.contencolor {
+  background: linear-gradient(135deg, #0d6efd, #1a1a40);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Nunito", sans-serif;
+}
+
+/* Centrado de la card */
+.container.centrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tarjeta principal */
+.stilocard {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.stilocard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+/* Imagen de login */
+.bg-login-image {
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-login-image img {
+  max-width: 220px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.2));
+}
+
+/* Títulos */
+.letras3 {
+  font-weight: 700;
+  color: #1a1a40;
+}
+
+.letras4 {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Input personalizado */
+.form-control-user {
+  border-radius: 50px;
+  padding: 14px 20px;
+  border: 1px solid #ddd;
+  transition: 0.3s;
+}
+
+.form-control-user:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.5);
+}
+
+/* Botón */
+.botonS {
+  border-radius: 50px;
+  font-weight: bold;
+  padding: 12px;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
+  border: none;
+  transition: 0.3s;
+}
+
+.botonS:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #6610f2, #0d6efd);
+}
+
+/* Links */
+.letrasA {
+  color: #0d6efd !important;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.letrasA:hover {
+  color: #6610f2 !important;
+  text-decoration: underline;
+}
+
+/* Spinner */
+#loading-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* Icono mostrar/ocultar contraseña */
+.toggle-password {
+  font-size: 1.2rem;
+  color: #888;
+  transition: 0.3s;
+}
+
+.toggle-password:hover {
+  color: #0d6efd;
+}
