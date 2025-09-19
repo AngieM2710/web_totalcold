@@ -1,0 +1,279 @@
+/* ======================
+   VARIABLES JIRA STYLE
+   ====================== */
+:root {
+    --jira-blue: #0052CC !important;
+    --jira-gray-light: #F4F5F7 !important;
+    --jira-gray-border: #DFE1E6 !important;
+    --jira-text-primary: #172B4D !important;
+    --jira-text-secondary: #5E6C84 !important;
+    --jira-menu-hover: #EBECF0 !important;
+    --jira-card-bg: #FFFFFF !important;
+}
+
+/* ======================
+   ESTRUCTURA PRINCIPAL
+   ====================== */
+body {
+    background-color: var(--jira-gray-light) !important;
+    color: var(--jira-text-primary) !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+#wrapper {
+    display: flex !important;
+    min-height: 100vh !important;
+}
+
+/* ======================
+   SIDEBAR - ESTILO JIRA
+   ====================== */
+.bg-gradient-primary.sidebar {
+    background: #f3f4f6 !important;
+    background-image: none !important;
+    border-right: 1px solid var(--jira-gray-border) !important;
+    box-shadow: none !important;
+    transition: width 0.3s ease-in-out !important;
+}
+
+/* Logo y marca del sidebar */
+.sidebar-dark .sidebar-brand {
+    background: transparent !important;
+    padding: 1.5rem 1rem !important;
+    border-bottom: 1px solid var(--jira-gray-border) !important;
+}
+
+.sidebar-dark .sidebar-brand .sidebar-brand-text {
+    color: var(--jira-text-primary) !important;
+    font-weight: 600 !important;
+}
+
+.sidebar-divider {
+    border-top: 1px solid var(--jira-gray-border) !important;
+    margin: 1rem 0 !important;
+}
+
+/* Ítems del menú principal */
+.sidebar .nav-item {
+    margin: 0 !important;
+    border-radius: 0 !important; 
+}
+
+.sidebar .nav-link {
+    color: var(--jira-text-primary) !important;
+    padding: 0.85rem 1.5rem !important;
+    border-left: 3px solid transparent !important;
+    transition: all 0.2s ease !important;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--jira-menu-hover) !important;
+    color: var(--jira-blue) !important;
+    border-left-color: var(--jira-blue) !important;
+}
+
+.sidebar .nav-item.active .nav-link {
+    background-color: var(--jira-menu-hover) !important;
+    color: var(--jira-blue) !important;
+    border-left-color: var(--jira-blue) !important;
+    font-weight: 500 !important;
+}
+
+.sidebar .nav-link i {
+    color: var(--jira-text-secondary) !important;
+    width: 20px !important;
+    text-align: center !important;
+    margin-right: 1rem !important;
+    transition: color 0.2s ease !important;
+}
+
+.sidebar .nav-link:hover i,
+.sidebar .nav-item.active .nav-link i {
+    color: var(--jira-blue) !important;
+}
+
+/* Submenús - SOLUCIÓN A LA INDENTACIÓN */
+.sidebar .collapse .collapse-inner {
+    background: transparent !important;
+    border-left: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    border-radius: 0 !important;
+}
+
+.sidebar .collapse .collapse-inner a.collapse-item {
+    color: var(--jira-text-secondary) !important;
+    padding: 0.6rem 1rem 0.6rem 3.5rem !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    transition: all 0.2s ease !important;
+    font-size: 0.9rem !important;
+}
+
+.sidebar .collapse .collapse-inner a.collapse-item:hover,
+.sidebar .collapse .collapse-inner a.collapse-item.active {
+    background-color: var(--jira-menu-hover) !important;
+    color: var(--jira-blue) !important;
+}
+
+.sidebar .collapse .collapse-inner a.collapse-item i {
+    font-size: 0.9rem !important;
+    margin-right: 0.5rem !important;
+    width: 16px !important;
+}
+
+/* Botón de toggle */
+#sidebarToggle {
+    background-color: var(--jira-gray-border) !important;
+    color: var(--jira-text-primary) !important;
+    width: 25px !important;
+    height: 25px !important;
+}
+
+/* ======================
+   TOPBAR DENTRO DEL SIDEBAR - ESTILO JIRA
+   ====================== */
+.sidebar .navbar-nav {
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    justify-content: flex-end !important;
+}
+
+.sidebar .nav-item .nav-link {
+    padding: 0.5rem 1rem !important;
+}
+
+.sidebar .topbar {
+    background: var(--jira-card-bg) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid var(--jira-gray-border) !important;
+    padding: 0.5rem 1rem !important;
+    width: 100% !important;
+}
+
+.topbar .nav-link {
+    padding: 0 !important;
+}
+
+.topbar .navbar-nav .nav-link {
+    color: var(--jira-text-primary) !important;
+}
+
+.topbar .text-gray-600.small {
+    color: var(--jira-text-primary) !important;
+    font-weight: 500 !important;
+}
+
+.topbar .img-profile {
+    border: 2px solid var(--jira-gray-border) !important;
+    width: 32px !important;
+    height: 32px !important;
+}
+
+/* ======================
+   CONTENIDO PRINCIPAL
+   ====================== */
+#content-wrapper {
+    background-color: var(--jira-gray-light) !important;
+}
+
+.navbar{
+    background: #f3f4f6 !important;
+    background-image: none !important;
+    border-bottom: 1px solid var(--jira-gray-border) !important;
+    box-shadow: none !important;
+    transition: width 0.3s ease-in-out !important;
+}
+/* #content {
+    padding: 1.5rem !important;
+}
+ */
+/* ======================
+   RESPONSIVE
+   ====================== */
+@media (max-width: 768px) {
+    .sidebar {
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .topbar {
+        padding: 0.5rem !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+    }
+
+    #content {
+        padding: 1rem !important;
+    }
+
+    .topbar .text-gray-600.small {
+        display: none !important;
+    }
+}
+
+/* ======================
+   SCROLL PERSONALIZADO
+   ====================== */
+.sidebar::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: var(--jira-gray-light) !important;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--jira-gray-border) !important;
+    border-radius: 3px !important;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--jira-text-secondary) !important;
+}
+
+/* ======================
+   BOTÓN MENÚ MÓVIL
+   ====================== */
+#sidebarToggleTop {
+    color: var(--jira-text-primary) !important;
+    background-color: var(--jira-gray-light) !important;
+    border-radius: 3px !important;
+    padding: 0.5rem !important;
+}
+
+#sidebarToggleTop:hover {
+    background-color: var(--jira-menu-hover) !important;
+}
+
+/* ======================
+   ANIMACIONES SUAVES
+   ====================== */
+.sidebar .nav-link,
+.sidebar .collapse-item,
+.topbar .dropdown-item {
+    transition: all 0.2s ease !important;
+}
+
+/* ======================
+   ESTADO COLLAPSED
+   ====================== */
+.sidebar.toggled {
+    width: 6.5rem !important;
+}
+
+.sidebar.toggled .nav-item .nav-link span {
+    display: none !important;
+}
+
+.sidebar.toggled .sidebar-brand .sidebar-brand-text {
+    display: none !important;
+}
+
+.sidebar.toggled .sidebar-brand::after {
+    content: "TC" !important;
+    color: var(--jira-text-primary) !important;
+    font-weight: 600 !important;
+}
