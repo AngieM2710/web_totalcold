@@ -42,51 +42,142 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <hr class="sidebar-divider my-0">
 
             <?php 
-            if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
-                // Aquí se define $currentPage para que el menú activo funcione
-                $pagesUsuarios = ['usuario.php', 'personal.php', 'clientes.php'];
-                $pagesInformacion = ['categorias.php', 'productos.php', 'servicios.php'];
-                $pagesHorarios = ['dias.php', 'horas.php', 'horarios.php'];
-                $pagesDashboard = ['dashboard.php'];
+           if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1)
+            {
+            ?>
+            <?php
+            $principal =['escritorio.php'];
+            $pagesUsuarios = ['usuario.php', 'personal.php', 'clientes.php'];
+            $pagesInformacion = ['categorias.php', 'productos.php', 'servicios.php'];
+            $pagesHorarios = ['dias.php', 'horas.php', 'horarios.php'];
+            $pagesDashboard = ['dashboard.php'];
+            ?>
 
-                // Enlaces de escritorio sin colapso
-                ?>
-  <!--               <li class="nav-item <?= ($currentPage == 'escritorio.php') ? 'active' : '' ?>">
-                    <a class="nav-link" href="escritorio.php">
-                        <i class="fas fa-fw fa-desktop"></i>
-                        <span>Escritorio</span>
-                    </a>
-                </li>
-                <hr class="sidebar-divider d-none d-md-block"> -->
-
-                <li class="nav-item <?= in_array($currentPage, $pagesUsuarios) ? 'active' : '' ?>">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Personas</span>
-                    </a>
-                    <div id="collapseTwo" class="collapse <?= in_array($currentPage, $pagesUsuarios) ? 'show' : '' ?>" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item <?= ($currentPage == 'usuario.php') ? 'active' : '' ?>" href="usuarios.php"><i class="fa fa-user"></i> Usuarios</a>
-                            <a class="collapse-item <?= ($currentPage == 'personal.php') ? 'active' : '' ?>" href="personal.php"><i class="fa fa-person"></i> Personal</a>
-                            <a class="collapse-item <?= ($currentPage == 'clientes.php') ? 'active' : '' ?>" href="clientes.php"><i class="fa fa-person-circle-plus"></i> Clientes</a>
-                        </div>
+            <li class="nav-item menu <?= ($currentPage == $principal) ? 'active' : '' ?> ">
+            <div class="bg-white py-2 collapse-inner rounded  princ">
+                <a class="nav-link collapse-item " href="escritorio.php">
+                    <i class="fas fa-fw fa-desktop "></i>
+                    <span >Escritorio</span></a>
                     </div>
-                </li>
-                
-               <!--  <hr class="sidebar-divider d-none d-md-block"> -->
+            </li>
 
-                <li class="nav-item <?= in_array($currentPage, $pagesInformacion) ? 'active' : '' ?>">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInformacion" aria-expanded="true" aria-controls="collapseInformacion">
-                        <i class="fas fa-fw fa-info-circle"></i>
-                        <span>Información</span>
-                    </a>
-                    <div id="collapseInformacion" class="collapse <?= in_array($currentPage, $pagesInformacion) ? 'show' : '' ?>" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item <?= ($currentPage == 'categorias.php') ? 'active' : '' ?>" href="categorias.php"><i class="fa fa-list"></i> Categorias</a>
-                            <a class="collapse-item <?= ($currentPage == 'productos.php') ? 'active' : '' ?>" href="productos.php"><i class="fa fa-box"></i> Productos</a>
-                        </div>
+<!--                <li class="nav-item menu <?= in_array($currentPage, $principal) ? 'active' : '' ?> ">
+                 <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                <a class="nav-link  collapsed " href="escritorio.php" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-desktop"></i>
+                    <span>Escritorio</span></a>
+                </div>
+            </li> -->
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item menu <?= in_array($currentPage, $pagesUsuarios) ? 'active' : '' ?> ">
+                <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Personas</span></a>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                      <!--   <h6 class="collapse-header">Opciones:</h6> -->
+                        <a class="collapse-item primera" href="usuario.php"><i class="fa fa-user"></i> Usuarios</a>
+                        <a class="collapse-item" href="personal.php"><i class="fa fa-person"></i> Personal</a>
+                        <a class="collapse-item" href="clientes.php"><i class="fa fa-person-circle-plus"></i> Clientes</a>
                     </div>
-                </li>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item menu <?= in_array($currentPage, $pagesInformacion) ? 'active' : '' ?> ">
+                <a class="nav-link collapsed" href="#"  data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-desktop"></i>
+                    <span>Información</span></a>
+
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="py-2 collapse-inner rounded divtransparente">
+                        <!-- <h6 class="collapse-header">Opciones:</h6> -->
+                        <a class="collapse-item" href="categorias.php"><i class="fas fa-fw fa-desktop"></i>Categorías</a>
+                        <a class="collapse-item" href="productos.php"><i class="fas fa-fw fa-tags"></i> Productos</a>
+                        <a class="collapse-item" href="servicios.php"><i class="fas fa-fw fa-cut"></i> Servicios</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item menu  <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+                <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Horarios</span></a>
+
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                        <!-- <h6 class="collapse-header">Opciones:</h6> -->
+                        <a class="collapse-item" href="dias.php"><i class="fas fa-fw fa-calendar"></i>
+                        Días</a>
+                        <a class="collapse-item" href="horas.php"><i class="fas fa-fw fa-clock"></i> Horas</a>
+                        <a class="collapse-item" href="horarios.php"><i class="fas fa-fw fa-calendar"></i>
+                        Asignaciones</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item menu  <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+                <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapseReservas"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Reservas</span></a>
+
+                    <div id="collapseReservas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                    <a class="collapse-item" href="tarifas.php"><i class="fas fa-fw fa-dollar"></i> Tarifas</a>
+                        <a class="collapse-item" href="reservas.php"><i class="fas fa-fw fa-calendar"></i>
+                        Nueva reserva</a>
+                    </div>
+                </div>
+            </li>
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item menu  <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+                <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapseVentas"
+                aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                    <span>Ventas</span></a>
+
+                    <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                        <a class="collapse-item" href="ventas.php"><i class="fas fa-fw fa-shopping-cart"></i>
+                        Nueva venta</a>
+                        <a class="collapse-item" href="cotizaciones.php"><i class="fas fa-fw fa-credit-card"></i>
+                        Nueva cotización</a>
+                    </div>
+                </div>
+            </li>
+
+
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item menu  <?= in_array($currentPage, $pagesDashboard) ? 'active' : '' ?> ">
+                <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapseDashboard"
+                aria-expanded="true" aria-controls="collapseDashboard">
+                    <i class="fas fa-fw fa-pie-chart"></i>
+                    <span>Dashboard</span></a>
+
+                    <div id="collapseDashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                        <!-- <h6 class="collapse-header">Opciones:</h6> -->
+                        <a class="collapse-item" href="dashboard.php"><i class="fas fa-fw fa-line-chart"></i>
+                        Ver Panel</a>
+                    </div>
+                </div>
+            </li>
 
                 <?php
             } else if ($_SESSION['tecnico'] == 1) {
