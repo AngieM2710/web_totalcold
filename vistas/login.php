@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="../public/img/imagenes/logo.png?v=<?php echo time(); ?>">
+  <link rel="shortcut icon" href="../public/img/imagenes/logototalcold.png?v=<?php echo time(); ?>">
 
   <title>TOTAL COLD</title>
 
@@ -19,12 +19,15 @@
 </head> 
 
 <body>
+    <div id="bg">
+      <canvas id="canvasprueba"></canvas>
+    </div>
     <div class="login-container">
         <div class="login-card">
             <div class="row">
                 <div class="col-lg-6 d-none d-lg-block left-panel">
                     <div class="image-overlay">
-                        <img src="../public/img/imagenes/logo.png?v=<?php echo time(); ?>" class="logo-image" alt="Logo de TOTAL COLD">
+                        <img src="../public/img/imagenes/logototalcold.png?v=<?php echo time(); ?>" class="logo-image" alt="Logo de TOTAL COLD">
                         <h2 class="letras-slogan">Gestión Técnica Inteligente</h2>
                     </div>
                 </div>
@@ -39,15 +42,15 @@
                         <div class="form-group input-group-new">
                             <label for="emailusuario">Usuario o Email</label>
                             <input type="text" id="emailusuario" name="email" class="form-control form-control-user letras4" placeholder="Ingrese su Email">
-                            <div id="username-error" class="error-message">Usuario requerido</div>
+                            <!-- <div id="username-error" class="error-message">Usuario requerido</div> -->
                         </div>
                         <div class="form-group input-group-new" style="position: relative;">
                             <label for="clavea">Contraseña</label>
                             <input type="password" id="clavea" name="clavea" class="form-control form-control-user letras4" placeholder="Ingrese su contraseña">
                                 <i onclick="togglePassword('clavea')" class="fas fa-eye" 
-                                style="position: absolute; right: 15px; top: 72%; transform: translateY(-50%); cursor: pointer; color: #999999a0;"></i>
+                                style="position: absolute; right: 15px; top: 73%; transform: translateY(-50%); cursor: pointer; color: #999999a0;"></i>
 
-                            <div id="password-error" class="error-message">Contraseña requerida</div>
+                           <!--  <div id="password-error" class="error-message">Contraseña requerida</div> -->
                         </div>
 
                         <button type="submit" id="submit-btn" class="btn btn-primary btn-user btn-block letrasboton botonS" disabled>
@@ -56,9 +59,9 @@
                     </form>
 
                     <hr>
-                    <div class="text-center">
+<!--                     <div class="text-center">
                         <a class="small letrasA" href="registro.php">Crea tu cuenta</a>
-                    </div>
+                    </div> -->
                     <div class="text-center">
                         <a class="small letrasA" href="contraseña.php">¿Olvidaste la contraseña?</a>
                     </div>
@@ -79,6 +82,7 @@
     <script src="../public/vendor/jquery-easing/jquery.easing.min.js?v=<?php echo time(); ?>"></script>
     <script src="scripts/login.js?v=<?php echo time(); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="../public/js/demo/c2.js"></script>
     <script>
         function togglePassword(idInput) {
             const input = document.getElementById(idInput);

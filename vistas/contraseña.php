@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../files/logo/slogan1.png">
+    <link rel="shortcut icon" href="../public/img/imagenes/logototalcold.png?v=<?php echo time(); ?>">
     
     <title>Recuperar Contraseña</title>
 
@@ -15,17 +15,21 @@
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <link href="../public/css/contraseña.css" rel="stylesheet">
+    <link href="../public/css/login.css?v=<?php echo time(); ?>" rel="stylesheet">
+    <link href="../public/css/contraseña.css?v=<?php echo time(); ?>" rel="stylesheet">
+    
 </head>
 
 <body>
+    <div id="bg">
+      <canvas id="canvasprueba"></canvas>
+    </div>
     <div class="login-container">
         <div class="login-card">
             <div class="row">
                 <div class="col-lg-6 d-none d-lg-block left-panel">
                     <div class="image-overlay">
-                        <img src="../public/img/imagenes/logo.png" class="logo-image" alt="Logo de TOTAL COLD">
+                        <img src="../public/img/imagenes/logototalcold.png" class="logo-image" alt="Logo de TOTAL COLD">
                         <h2 class="letras-slogan">Gestión Técnica Inteligente</h2>
                     </div>
                 </div>
@@ -84,15 +88,15 @@
                             <div class="form-group input-group-new">
                                 <label for="clave1">Nueva Contraseña</label>
                                 <input type="password" class="form-control inpt" name="clave1" id="clave1" maxlength="64" placeholder="Nueva Clave" required>
-                                    <i class="fa fa-eye toggle-password-new" onclick="togglePassword('clave1')" 
-                                     style="position: absolute; right: 50px; top: 53%; transform: translateY(-50%); cursor: pointer;"></i>
+                                    <i class="fa fa-eye toggle-password-new2" onclick="togglePassword('clave1')" 
+                                     style="position: absolute; right: 60px; top: 53%; transform: translateY(-50%); cursor: pointer;"></i>
                                 <div id="clave-error" class="error-message">Clave debe tener mín 8 caracteres</div>
                             </div>
                             <div class="form-group input-group-new">
                                 <label for="clave2">Repita la Contraseña</label>
                                 <input type="password" class="form-control inpt" name="clave2" id="clave2" maxlength="64" placeholder="Repita la Clave" required>
-                                <i class="fa fa-eye toggle-password-new" onclick="togglePassword('clave2')" 
-                                     style="position: absolute; right: 50px; top: 71%; transform: translateY(-50%); cursor: pointer;"></i>
+                                <i class="fa fa-eye toggle-password-new2" onclick="togglePassword('clave2')" 
+                                     style="position: absolute; right: 60px; top: 71%; transform: translateY(-50%); cursor: pointer;"></i>
 
                              <!--    <span class="toggle-password-new" onclick="togglePassword('clave2')">👁️</span> -->
                                 <div id="clave-error1" class="error-message">Las contraseñas no coinciden</div>
@@ -119,6 +123,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="scripts/contrasena.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../public/js/demo/c2.js"></script>
+
     <script>
         function togglePassword(idInput) {
             const input = document.getElementById(idInput);

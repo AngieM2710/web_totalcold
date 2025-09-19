@@ -10,20 +10,39 @@
 
 body {
     font-family: 'Nunito', sans-serif !important;
-    background: linear-gradient(135deg, #E2E8F0, #D2DAE8) !important;
+    background: #ffffff !important; /* Un color sólido de respaldo */
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     min-height: 100vh !important;
     margin: 0 !important;
+    overflow: hidden !important; /* Evita barras de desplazamiento */
+    position: relative !important; /* Necesario para que el z-index del canvas funcione */
+}
+
+#bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#canvasprueba {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .login-container {
     width: 100% !important;
     max-width: 900px !important;
     padding: 20px !important;
+    z-index: 1 !important; /* Asegura que la tarjeta de login esté encima del fondo */
+    position: relative !important;
 }
-
 .login-card {
     background-color: var(--card-background-color) !important;
     border-radius: 15px !important;
@@ -62,7 +81,7 @@ body {
 }
 
 .logo-image {
-    width: 120px !important;
+    width: 200px !important;
     height: auto !important;
     margin-bottom: 20px !important;
 }
@@ -122,12 +141,6 @@ body {
     color: #999 !important;
 }
 
-.error-message {
-    color: #d9534f !important;
-    font-size: 0.8em !important;
-    margin-top: 5px !important;
-    display: none !important;
-}
 
 /* Sobrescribe los estilos de Bootstrap para los botones y campos */
 .btn-user {
@@ -172,4 +185,10 @@ body {
     .left-panel {
         display: none !important;
     }
+}
+ .error-message {
+    color: rgb(172, 172, 172); /* Aquí defines el color rojo */
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: none;
 }

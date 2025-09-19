@@ -1,13 +1,13 @@
 <?php 
 //Incluímos inicialmente la conexión a la base de datos
 
-use PHPMailer\PHPMailer\PHPMailer;
+/* use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require '../PHPMailer/src/PHPMailer.php';
 require '../PHPMailer/src//SMTP.php';
-require '../PHPMailer/src//Exception.php';
+require '../PHPMailer/src//Exception.php'; */
 
 require "../config/Conexion.php";
 if(strlen(session_id()) < 1)
