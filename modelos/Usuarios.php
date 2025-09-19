@@ -59,10 +59,27 @@ class Usuario
     }
 
     // Verificar login
-    public function verificar($correo){
+   /*  public function verificar($correo){
         // Solo selecciona el usuario; la verificación del password se hace en AJAX/controlador
         $sql = "SELECT * FROM usuarios WHERE correo='$correo' AND estado='1'";
         return ejecutarConsulta($sql);
+    } */
+
+    
+	public function verificar($correo)
+    {
+    	$sql="SELECT u.*, p.*, up.*
+		FROM usuarios u, permisos p, usuarios_permisos up 
+		WHERE up.id_usuario = u.id_usuarios and up.id_permiso = p.id_permiso and
+	    u.correo='$correo' and u.estado = '1'"; 
+    	return ejecutarConsulta($sql);  
     }
+
+    public function listarmarcados($id_usuarios)
+	{
+		$sql="SELECT * FROM usuarios_permisos WHERE id_usuario='$id_usuarios'";
+		return ejecutarConsulta($sql);
+	}
+
 }
 ?>
