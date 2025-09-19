@@ -44,7 +44,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <?php 
             if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
                 // Aquí se define $currentPage para que el menú activo funcione
-                $pagesUsuarios = ['usuarios.php', 'personal.php', 'clientes.php'];
+                $pagesUsuarios = ['usuario.php', 'personal.php', 'clientes.php'];
                 $pagesInformacion = ['categorias.php', 'productos.php', 'servicios.php'];
                 $pagesHorarios = ['dias.php', 'horas.php', 'horarios.php'];
                 $pagesDashboard = ['dashboard.php'];
