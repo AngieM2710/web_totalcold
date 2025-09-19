@@ -2,15 +2,15 @@
 ob_start();
 session_start();
 
-/* if (!isset($_SESSION["nombres"]))
+ if (!isset($_SESSION["nombre"]))
 {
   header("Location: login.php");
 } 
  else
-{  */
+{  
 require 'header.php';
-/*  if ($_SESSION['administrador']==1)
-{  */
+  if ($_SESSION['administrador']==1)
+{  
 ?>
         <div class="container-fluid">
         <h1 class="h3 mb-2 text-gray-800 letrastitulo">Registro de categorías</h1>
@@ -89,11 +89,11 @@ require 'header.php';
 
   <!--Fin-Contenido-->
 <?php
-/* }
+ }
 else
 {
 require 'noacceso.php';
-}  */
+}  
 require 'footer.php';
 ?>
 
@@ -102,6 +102,6 @@ require 'footer.php';
 
 
 <?php 
-/* } */
+ } 
 ob_end_flush();
 ?>

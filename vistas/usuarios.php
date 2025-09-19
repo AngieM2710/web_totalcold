@@ -1,12 +1,12 @@
 <?php
-//ob_start();
-//session_start();
+ob_start();
+session_start();
 
-// if (!isset($_SESSION["nombres"])) {
-  //  header("Location: login.php");
-//} else { 
+ if (!isset($_SESSION["nombre"])) {
+    header("Location: login.php");
+} else { 
     require 'header.php';
-    //if ($_SESSION['administrador'] == 1) {  
+    if ($_SESSION['administrador'] == 1) {  
 ?>
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800 letrastitulo">Gestión de usuarios</h1>
@@ -161,10 +161,10 @@ function resetearImagen() {
 </script>
 
 <?php 
-  /*   } else {
+    } else {
         require 'noacceso.php';
-    }  */
+    } 
     require 'footer.php';
-//}
+}
 ob_end_flush();
 ?>

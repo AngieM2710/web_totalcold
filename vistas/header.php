@@ -89,7 +89,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </li>
 
                 <?php
-            } else if ($_SESSION['cliente'] == 1) {
+            } else if ($_SESSION['tecnico'] == 1) {
                 // Lógica del menú para clientes
                 ?>
                 <li class="nav-item <?= ($currentPage == 'escritorio.php') ? 'active' : '' ?>">

@@ -128,6 +128,22 @@ switch ($_GET["op"]) {
             $_SESSION['correo'] = $fetch->correo;
             $_SESSION['imagen'] = $fetch->imagen;
             $_SESSION['estado'] = $fetch->estado;
+
+             //Obtenemos los permisos del usuario
+            $marcados = $usuarios->listarmarcados($fetch->id_usuarios);
+
+            //Declaramos el array para almacenar todos los permisos marcados
+            $valores = array();
+
+            //Almacenamos los permisos marcados en el array
+            while($per = $marcados->fetch_object())
+            {
+                array_push($valores, $per->id_permiso);
+            }
+
+            //Determinamos los accesos del usuario
+            in_array(1, $valores)?$_SESSION['administrador']=1:$_SESSION['administrador']=0;
+            in_array(2, $valores)?$_SESSION['tecnico']=1:$_SESSION['tecnico']=0;
         }
         echo json_encode($fetch);
         break;
