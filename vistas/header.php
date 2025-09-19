@@ -101,7 +101,7 @@ session_start();
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                       <!--   <h6 class="collapse-header">Opciones:</h6> -->
-                        <a class="collapse-item primera" href="usuario.php"><i class="fa fa-user"></i> Usuarios</a>
+                        <a class="collapse-item primera" href="usuarios.php"><i class="fa fa-user"></i> Usuarios</a>
                         <a class="collapse-item" href="personal.php"><i class="fa fa-person"></i> Personal</a>
                         <a class="collapse-item" href="clientes.php"><i class="fa fa-person-circle-plus"></i> Clientes</a>
                     </div>
