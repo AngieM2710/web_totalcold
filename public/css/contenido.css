@@ -1,0 +1,136 @@
+/* ====== ESTILO GLOBAL ====== */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f8fafc;
+  color: #333;
+}
+
+/* ====== TITULOS ====== */
+.letrastitulo {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #4a90e2; /* Azul corporativo */
+  padding-left: 10px;
+  margin-bottom: 21px !important;
+}
+
+/* ====== CARDS ====== */
+.contendorprinc {
+  border-radius: 15px;
+  /* border: 2px solid #e0e6ed; */
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden !important;
+    border: none !important;
+}
+
+.contendorprinc:hover {
+  transform: translateY(-2px);
+}
+
+/* ====== BOTONES ====== */
+.btn {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 0.5rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+/* Azul corporativo */
+.btn-primary, .btn-success {
+  background: #4a90e2;
+  border: none;
+}
+
+.btn-primary:hover, .btn-success:hover {
+  background: #357abd;
+}
+
+/* Rojo elegante */
+.btn-danger {
+  background: #e74c3c;
+  border: none;
+}
+
+.btn-danger:hover {
+  background: #c0392b;
+}
+
+/* Iconos dentro de botones */
+.btn .icon {
+  margin-right: 6px;
+}
+
+/* ====== FORMULARIO ====== */
+#formularioregistros {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e3e6ed;
+  margin-top: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+#formularioregistros label {
+  font-weight: 500;
+  color: #444;
+}
+
+#formularioregistros input {
+  border-radius: 6px;
+  border: 1px solid #ccd6e0;
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+}
+
+#formularioregistros input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 4px rgba(74,144,226,0.3);
+}
+
+/* ====== SWEET ALERT (coherente al login) ====== */
+.swal2-popup {
+  border-radius: 12px !important;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+.swal2-confirm {
+  background: #4a90e2 !important;
+  border-radius: 6px !important;
+}
+
+
+
+
+/** BUSCAR */
+.dataTables_filter {
+    width: 100% !important;
+}
+
+.dataTables_filter .input-group {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    max-width: 400px;
+    margin-left: auto; /* Lo alinea a la derecha */
+}
+
+.dataTables_filter input.form-control {
+    border-radius: 8px 0 0 8px !important;
+    height: 38px;
+    font-size: 0.875rem;
+    border: none;
+    background: #f8f9fc;
+
+ 
+}
+.col-sm-3{
+    padding-top: 3px;
+}
+.input-group-text{
+    background-color: #4e73df !important;
+    border-color: #4e73df !important;
+    color: #fff !important;
+    border-radius: 0px 10px 10px 0px !important;
+}
+
