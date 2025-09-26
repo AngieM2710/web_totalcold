@@ -1,0 +1,167 @@
+/* ======================
+   PALETA DE COLORES JIRA SOLO PARA EL MENÚ
+   ====================== */
+:root {
+    --primary-color: #4A90E2;
+    --secondary-color: #5b55cc;
+    --text-color-dark: #333333;
+    --text-color-light: #666666;
+    --background-color: #F0F2F5;
+    --card-background-color: #FFFFFF;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    --jira-blue: #0052CC;
+    --jira-blue-hover: #0747A6;
+    --jira-gray-light: #F4F5F7;
+    --jira-gray-border: #DFE1E6;
+    --jira-text-primary: #172B4D;
+    --jira-text-secondary: #5E6C84;
+    --jira-menu-hover: #EBECF0;
+    --jira-menu-search: #f8f9fc; 
+    --jira-menu-subsearch: #d1fae5;
+    --jira-card-bg: #FFFFFF;
+}
+
+/* ======================
+   SIDEBAR - Colores Jira (SOLO MENÚ)
+   ====================== */
+.bg-gradient-primary.sidebar {
+    background: #ffffff !important;
+    background-image: none !important;
+    border-right: 0px solid var(--jira-gray-border) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+    z-index: 1;
+}
+
+/* Logo del sidebar */
+.sidebar-dark .sidebar-brand {
+    background:linear-gradient(135deg, var(--secondary-color), var(--secondary-color)) !important;
+}
+
+.sidebar-dark .sidebar-brand .sidebar-brand-text {
+    color: #ffffff !important;
+}
+
+/* Items del menú principal */
+.sidebar-dark .nav-item .nav-link {
+    color: var(--jira-text-primary) !important;
+}
+
+.sidebar-dark .nav-item .nav-link i {
+    color: var(--jira-text-secondary) !important;
+}
+
+.sidebar-dark .nav-item .nav-link:hover {
+    background-color: var(--jira-menu-hover) !important;
+    color: var(--jira-blue) !important;
+}
+
+.sidebar-dark .nav-item .nav-link:hover i {
+    color: var(--jira-blue) !important;
+}
+
+.sidebar-dark .nav-item.active .nav-link {
+    /* background-color: var(--jira-menu-hover) !important; */
+    background-color: var(--jira-menu-search) !important;
+    
+    color: var(--jira-blue) !important;
+    border-left: 4px solid var(--jira-blue) !important;
+}
+.sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
+    color: var(--jira-blue) !important;
+}
+
+.sidebar-dark .nav-item.active .nav-link i {
+    color: var(--jira-blue) !important;
+}
+
+/* Submenús */
+.sidebar-dark .collapse .collapse-inner .collapse-item {
+    color: var(--jira-text-secondary) !important;
+}
+
+.sidebar-dark .collapse .collapse-inner .collapse-item:hover,
+.sidebar-dark .collapse .collapse-inner .collapse-item.active {
+    background-color: var(--jira-menu-subsearch) !important;
+    color: var(--jira-blue) !important;
+}
+
+/* Separadores */
+.sidebar-divider {
+    border-top: 1px solid var(--jira-gray-border) !important;
+}
+
+/* ======================
+   TOPBAR - Colores Jira (SOLO MENÚ)
+   ====================== */
+/* Topbar principal */
+.navbar-light.bg-white.topbar {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)) !important;
+    border-bottom: 0px solid var(--jira-gray-border) !important;
+}
+
+/* Texto del topbar */
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* Dropdown del usuario */
+.topbar .dropdown-menu {
+    border: 1px solid var(--jira-gray-border) !important;
+}
+
+/* Texto del usuario en topbar */
+.text-gray-600.small {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Botón menú móvil */
+#sidebarToggleTop {
+    color:  #fefefef4  !important;
+    background-color: #f7f9fa27 !important;
+    border: 1px solid #eaedf07f !important;
+     padding: 0px !important;
+}
+
+#sidebarToggleTop:hover {
+  /*   background-color: var(--jira-menu-hover) !important; */
+}
+
+/* ======================
+   BOTÓN TOGGLE SIDEBAR (desktop)
+   ====================== */
+#sidebarToggle {
+    background-color: var(--jira-gray-border) !important;
+}
+
+/* ======================
+   RESPONSIVE - Solo ajustes de color
+   ====================== */
+@media (max-width: 768px) {
+    /* Mantener colores en móvil */
+    .navbar-light.bg-white.topbar {
+        background-color: #0747A6 !important;
+    }
+    
+    .navbar-light .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+}
+
+/* .sidebar-brand-nuevo .sidebar-brand-n{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+} */
+    .tamimg{
+    filter: brightness(0) invert(1);
+    width: 45px;
+    height: 30px;
+    }

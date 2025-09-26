@@ -4,13 +4,12 @@ var tabla;
 function init(){
     mostrarform(false);
     listar();
-    imgtemp();
-
+    capturarimg();
     $("#formulario").on("submit", function(e){
         guardaryeditar(e);    
     });
 
-    $("#imagenmuestra").hide();
+   /*  $("#imagenmuestra").hide(); */
 }
 
 // Función limpiar formulario
@@ -22,7 +21,7 @@ function limpiar() {
     $("#password").val("");
     $("#telefono").val("");
     $("#estado").val("1");
-    $("#imagenmuestra").attr("src","img/default-user.png");
+   $("#imagenmuestra").attr("src","img/default-user.png");
     $("#imagen").val("");
     $("#imagenactual").val("");
 }
@@ -50,97 +49,152 @@ function cancelarform(){
 }
 
 // Listar usuarios
-function listar() {
-    tabla = $('#tbllistado').DataTable({
-        "lengthMenu": [[5, 10, 25, 75, 100], [5, 10, 25, 75, 100]],
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            url: '../ajax/usuarios.php?op=listar',
-            type: "GET",
-            dataType: "json",
-            error: function(e){ console.log(e.responseText); }
-        },
-        "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
+ function listar()
+{
+	tabla=$('#tbllistado').dataTable(
+	{
+		"lengthMenu": [[ 5, 10, 25, 75, 100],[5, 10, 25, 75, 100]], 
+		"aProcessing": true,
+	    "aServerSide": true,
+        "dom": '<"row"<"col-sm-9"l><"col-sm-3"f>>rtip', 
+		"ajax":
+				{
+					url: '../ajax/usuarios.php?op=listar',
+					type : "get",
+					dataType : "json",						
+					error: function(e){	console.log(e.responseText);}
+				},
+		"language": {
+            "lengthMenu": "Mostrar : _MENU_ registros",
             "search": "",
             "searchPlaceholder": "Buscar...",
             "paginate": {
                 "previous": "Anterior",
                 "next": "Siguiente"
-            }
+            },
         },
         "initComplete": function() {
+            // Reemplaza el campo de búsqueda con uno personalizado (icono a la derecha)
             $('.dataTables_filter').html(`
                 <div class="input-group">
                     <input type="search" id="customSearch" class="form-control" placeholder="Buscar...">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
                 </div>
             `);
 
+            // Vincula el campo de búsqueda personalizado con DataTables
             $('#customSearch').on('keyup', function() {
-                tabla.search(this.value).draw();
+                tabla.search(this.value).draw(); // Actualiza la búsqueda en DataTables
             });
         },
-        "destroy": true,
-        "iDisplayLength": 10,
-        "order": [[0, "desc"]]
+		"bDestroy": true,
+		"iDisplayLength": 10,
+	    "order": [[ 0, "desc" ]]
+	}).DataTable();
+} 
+
+
+// Reemplaza tu script actual por este más robusto
+function capturarimg(){
+    document.addEventListener('DOMContentLoaded', function() {
+        const imagenInput = document.getElementById("imagen");
+        const imagenMuestra = document.getElementById("imagenmuestra");
+        const fileName = document.getElementById("file-name");
+        
+        if (imagenInput && imagenMuestra) {
+            imagenInput.addEventListener("change", function(e) {
+                const file = e.target.files[0];
+                
+                if (file) {
+                    // Validar tipo de archivo
+                    const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+                    if (!validTypes.includes(file.type)) {
+                        Swal.fire('Error', 'Solo se permiten imágenes JPG, JPEG o PNG', 'error');
+                        this.value = '';
+                        return;
+                    }
+                    
+                    // Validar tamaño (max 2MB)
+                    if (file.size > 2 * 1024 * 1024) {
+                        Swal.fire('Error', 'La imagen no debe superar los 2MB', 'error');
+                        this.value = '';
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        imagenMuestra.src = event.target.result;
+                        fileName.textContent = file.name;
+                        fileName.style.color = '#28a745';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imagenMuestra.src = "img/default-user.png";
+                    fileName.textContent = 'Ningún archivo seleccionado';
+                    fileName.style.color = '#666';
+                }
+            });
+        }
     });
 }
-
 // Guardar y editar
-function guardaryeditar(e){
-    e.preventDefault();
-    $("#btnGuardar").prop("disabled",true);
+function guardaryeditar(e)
+{
+	e.preventDefault(); 
+	$("#btnGuardar").prop("disabled",true);
+	var formData = new FormData($("#formulario")[0]);
 
-    var formData = new FormData($("#formulario")[0]);
+	$.ajax({
+		url: "../ajax/usuarios.php?op=guardaryeditar",
+	    type: "POST",
+	    data: formData,
+	    contentType: false,
+	    processData: false,
 
-    // Si hay imagen nueva
-    if($("#imagen")[0].files.length > 0){
-        formData.append("imagen", $("#imagen")[0].files[0]);
-    } else {
-        formData.delete("imagen");
-    }
-
-    $.ajax({
-        url: "../ajax/usuarios.php?op=guardaryeditar",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(datos){
-            Swal.fire({
+	    success: function(datos)
+	    {                    
+			Swal.fire({
                 title: '<span style="font-size: 24px;">'+datos+'</span>',
                 icon: "success",
                 width: '600px',
                 customClass: {
                     popup: "mi-alerta-personalizada",
                     confirmButton: 'swal2-confirm'
+                },
+                didOpen: () => {
+                    const confirmButton = Swal.getConfirmButton();
+                    confirmButton.style.fontSize = '18px'; 
+                    confirmButton.style.padding = '10px 24px';
                 }
-            });
-            mostrarform(false);
-            tabla.ajax.reload();
-        }
-    });
+            });         
+	          mostrarform(false);
+	          tabla.ajax.reload();
+              	limpiar();
+	    }
 
-    limpiar();
+	});
+
 }
 
 // Mostrar usuario
 function mostrar(id_usuarios){
-    $('#imagen').val('');
+/*     $('#imagen').val('');
     $('#file-name').text('');
-    imagenSeleccionada = null;
+    imagenSeleccionada = null; */
 
     $.post("../ajax/usuarios.php?op=mostrar",{id_usuarios: id_usuarios}, function(data){
-        data = JSON.parse(data);        
+        data = JSON.parse(data);   
+        console.log(data);	     
         mostrarform(true);
 
         $("#id_usuarios").val(data.id_usuarios);
         $("#nombre").val(data.nombre);
         $("#apellido").val(data.apellido);
         $("#correo").val(data.correo);
-        $("#password").val("");
+        /* $("#password").val(""); */
+        $("#password").val(data.password);
         $("#telefono").val(data.telefono);
         $("#estado").val(data.estado);
         $("#imagenmuestra").show();
@@ -149,30 +203,6 @@ function mostrar(id_usuarios){
     });
 }
 
-// Vista previa de imagen
-function imgtemp(){
-    document.getElementById("imagen").addEventListener("change", function(e){
-        const file = e.target.files[0];
-        if(file){
-            if(file.type.startsWith("image/")){
-                const reader = new FileReader();
-                reader.onload = function(e){
-                    const preview = document.getElementById("imagenmuestra");
-                    preview.src = e.target.result;
-                    preview.style.display = "block";
-                };
-                reader.readAsDataURL(file);
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Archivo no válido',
-                    text: 'Por favor selecciona una imagen (JPG, PNG, GIF).'
-                });
-                e.target.value = '';
-            }
-        }
-    });
-}
 
 // Desactivar usuario
 function desactivar(id_usuarios){

@@ -4,7 +4,6 @@ var tabla;
 function init(){
     mostrarform(false);
     listar();
-    imgtemp();
 
     $("#formulario").on("submit", function(e){
         guardaryeditar(e);    
@@ -49,20 +48,21 @@ function cancelarform(){
     mostrarform(false);
 }
 
-// Listar usuarios
+// Listar clientes
 function listar() {
-    tabla = $('#tbllistado').DataTable({
+    tabla = $('#tbllistado').DataTable({   // <--- aquí
         "lengthMenu": [[5, 10, 25, 75, 100], [5, 10, 25, 75, 100]],
-        "processing": true,
-        "serverSide": true,
+        "aProcessing": true,
+        "aServerSide": true,
+        "dom": '<"row"<"col-sm-9"l><"col-sm-3"f>>rtip',
         "ajax": {
             url: '../ajax/clientes.php?op=listar',
-            type: "GET",
+            type: "get",
             dataType: "json",
             error: function(e){ console.log(e.responseText); }
         },
         "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
+            "lengthMenu": "Mostrar : _MENU_ registros",
             "search": "",
             "searchPlaceholder": "Buscar...",
             "paginate": {
@@ -79,13 +79,13 @@ function listar() {
             `);
 
             $('#customSearch').on('keyup', function() {
-                tabla.search(this.value).draw();
+                tabla.search(this.value).draw();  // ahora sí existe .search()
             });
         },
-        "destroy": true,
+        "bDestroy": true,
         "iDisplayLength": 10,
         "order": [[0, "desc"]]
-    }).DataTable();
+    });
 }
 
 init();
