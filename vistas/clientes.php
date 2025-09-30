@@ -60,62 +60,6 @@ if (!isset($_SESSION["nombre"])) {
                     </tfoot>
                 </table>
             </div>
-
-            <!-- Formulario -->
-<!--             <div class="panel-body" id="formularioregistros" style="display:none;">
-                <form name="formulario" id="formulario" method="POST" class="user" enctype="multipart/form-data">
-                    
-                    <h2 class="form-title">Información del Cliente</h2>
-
-                    <div class="form-row">
-                       
-                        <div class="col-lg-8 col-md-12">
-                            <input type="hidden" name="id_cliente" id="id_cliente">
-                             <input type="hidden" name="estado" id="estado">
-
-                            <div class="form-row">
-                                <div class="col-sm-6 form-group-new">
-                                    <label>Cédula(*):</label>
-                                    <input type="number" class="form-control" name="cedula" id="cedula" maxlength="10" placeholder="Ingrese la cédula" required>
-                                </div>
-                                <div class="col-sm-6 form-group-new">
-                                    <label>Nombre(*):</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" maxlength="100" placeholder="Ingrese el nombre" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-6 form-group-new">
-                                    <label>Apellido(*):</label>
-                                    <input type="text" class="form-control" name="apellido" id="apellido" maxlength="100" placeholder="Ingrese el apellido" required>
-                                </div>
-                                <div class="col-sm-6 form-group-new">
-                                    <label>Teléfono(*):</label>
-                                    <input type="number" class="form-control" name="telefono" id="telefono" maxlength="10" placeholder="Ingrese el teléfono" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="col-sm-6 form-group-new">
-                                    <label>Correo:</label>
-                                    <input type="email" class="form-control" name="correo" id="correo" placeholder="Ingrese el correo electrónico">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-buttons">
-                        <button type="submit" id="btnGuardar" class="btn btn-success btn-form">
-                            <i class="fas fa-save"></i> Guardar
-                        </button>
-
-                        <a id="btnCancelar" onclick="cancelarform()" class="btn btn-danger btn-form">
-                            <i class="fas fa-arrow-circle-left"></i> Cancelar
-                        </a>
-                    </div>
-                </form>
-            </div> -->
         </div>
     </div>
     
@@ -159,8 +103,9 @@ if (!isset($_SESSION["nombre"])) {
                                 </div>
                                 <div class="col-md-6">
                                 <label class="form-label">Teléfono(*)</label>
-                                <input type="number" class="form-control" name="telefono" id="telefono" 
-                                maxlength="10" placeholder="Ingrese el teléfono" required>
+                               <input type="number" class="form-control " name="telefono" id="telefono" maxlength="10" placeholder="Teléfono"
+                                      oninput="javascript: if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                      onchange="validarTelefono(this);" required>
                                 </div>
                                 <div class="col-md-6 form-group input-group-new">
                                 <label class="form-label">Correo</label>

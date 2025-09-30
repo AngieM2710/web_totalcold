@@ -125,12 +125,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Ventas</span></a>
 
-                <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+               <!--  <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="ventas.php"><i class="fas fa-fw fa-shopping-cart"></i> Nueva Venta</a>
                         <a class="collapse-item" href="cotizaciones.php"><i class="fas fa-fw fa-file-invoice-dollar"></i> Cotizaciones</a>
                     </div>
-                </div>
+                </div> -->
             </li>
 
             <!-- Nav Item - Dashboard -->

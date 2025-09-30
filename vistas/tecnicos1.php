@@ -106,7 +106,9 @@ session_start();
                                     <div class="form-row">
                                         <div class="col-sm-6 form-group-new">
                                             <label>Teléfono(*):</label>
-                                            <input type="number" class="form-control" name="telefono" id="telefono" maxlength="10" placeholder="Ingrese el teléfono" required>
+                                            <input type="number" class="form-control " name="telefono" id="telefono" maxlength="10" placeholder="Ingrese el teléfono"
+                                      oninput="javascript: if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                      onchange="validarTelefono(this);" required>
                                         </div>
                                         <div class="col-sm-6 form-group-new">
                                             <label>Correo:</label>

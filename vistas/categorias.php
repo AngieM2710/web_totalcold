@@ -21,7 +21,7 @@ if (!isset($_SESSION["nombre"])) {
               </h6>
 
               <!-- Botón agregar -->
-                <a href="#" onclick="agg('agregar')" 
+                <a href="#" onclick="abrirModal1('agregar')" 
                 class="btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
                 </a>

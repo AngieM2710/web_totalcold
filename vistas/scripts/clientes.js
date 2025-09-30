@@ -144,7 +144,7 @@ function limpiar(){
 function desactivar(id_cliente)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de desactivar la categoría?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de desactivar el cliente?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -170,7 +170,7 @@ function desactivar(id_cliente)
         if (result.isConfirmed) {
             $.post("../ajax/clientes.php?op=desactivar", {id_cliente: id_cliente}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Categoría desactivada!</span>',
+                    title: '<span style="font-size: 24px;">Cliente desactivado!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -187,7 +187,7 @@ function desactivar(id_cliente)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Categoría no se desactivó</span>',
+                title: '<span style="font-size: 24px;">Cliente no se desactivó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
@@ -208,7 +208,7 @@ function desactivar(id_cliente)
 function activar(id_cliente)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de activar la categoría?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de activar el cliente?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -234,7 +234,7 @@ function activar(id_cliente)
         if (result.isConfirmed) {
             $.post("../ajax/clientes.php?op=activar", {id_cliente: id_cliente}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Categoría activada!</span>',
+                    title: '<span style="font-size: 24px;">Cliente activado!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -251,7 +251,7 @@ function activar(id_cliente)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Categoría no se activó</span>',
+                title: '<span style="font-size: 24px;">Cliente no se activó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',

@@ -19,7 +19,7 @@ if (!isset($_SESSION["nombre"])) {
                 $this->SetFont('Arial','B',16);
                 $this->SetTextColor(3,43,90); // Color corporativo #032b5a
                 $this->Cell(50);
-                $this->Cell(90,10,'REPORTE DE EQUIPOS',0,1,'C'); 
+                $this->Cell(90,10,'REPORTE DE CLIENTES',0,1,'C'); 
                 $this->Ln(5);
                 // Línea separadora
                 $this->SetDrawColor(3,43,90);
@@ -48,20 +48,20 @@ if (!isset($_SESSION["nombre"])) {
         $pdf->SetFont('Arial','B',10);
 
         // Anchos ajustados a 190 mm
-        $w = array(45,45,50,25,25); // 45+45+50+25+25 = 190
+        $w = array(40,40,55,25,30); // 40+40+55+25+30 = 190
         $pdf->SetWidths($w);
         $pdf->SetAligns(array('C','C','C','C','C'));
 
-        $header = array('Código interno','Marca','Modelo','Capacidad','Estado');
+        $header = array('Nombre','Apellido','Correo','Teléfono','Estado');
         for($i=0;$i<count($header);$i++){
             $pdf->Cell($w[$i],8,utf8_decode($header[$i]),1,0,'C',true);
         }
         $pdf->Ln();
 
         // Conexión a datos
-        require_once "../modelos/Equipos.php";
-        $equipos = new Equipos();
-        $rspta = $equipos->listar();
+        require_once "../modelos/Clientes.php";
+        $usuario = new Clientes();
+        $rspta = $usuario->listar();
 
         // Contenido con alternancia de colores
         $pdf->SetTextColor(0,0,0);
@@ -69,7 +69,7 @@ if (!isset($_SESSION["nombre"])) {
         $fill = false;
 
         while($reg = $rspta->fetch_object()) {  
-            $estado_equipo = ($reg->estado_equipo == 1) ? 'Activo' : 'Inactivo';
+            $estado = ($reg->estado == 1) ? 'Activo' : 'Inactivo';
 
             // Alternar color de fila
             if ($fill) {
@@ -79,11 +79,11 @@ if (!isset($_SESSION["nombre"])) {
             }
 
             $pdf->Row(array(
-                utf8_decode($reg->codigo_interno),
-                utf8_decode($reg->marca),
-                utf8_decode($reg->modelo),
-                $reg->capacidad,
-                $estado_equipo
+                utf8_decode($reg->nombre),
+                utf8_decode($reg->apellido),
+                utf8_decode($reg->correo),
+                $reg->telefono,
+                $estado
             ), $fill);
 
             $fill = !$fill; // alternar

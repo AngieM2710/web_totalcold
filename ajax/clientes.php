@@ -52,7 +52,7 @@ switch ($_GET["op"]) {
         if (empty($id_cliente)) {
             // Registro
             $rspta = $clientes->insertar($cedula ,$nombre, $apellido, $telefono, $correo, $estado);
-            echo $rspta ? "Usuario registrado" : "No se pudo registrar el usuario";
+            echo $rspta ? "Cliente registrado" : "No se pudo registrar el cliente";
         } else {
             // Actualización
             $rspta = $clientes->editar(
@@ -64,7 +64,7 @@ switch ($_GET["op"]) {
                 $correo,
                 $estado
             );
-            echo $rspta ? "Usuario actualizado" : "No se pudo actualizar el usuario";
+            echo $rspta ? "Cliente actualizado" : "No se pudo actualizar el cliente";
         }
     break;
 
@@ -75,12 +75,12 @@ switch ($_GET["op"]) {
 
     case 'desactivar':
             $rspta=$clientes->desactivar($id_cliente);
-            echo $rspta ? "Categoría desactivada" : "Categoría no se puede desactivar";
+            echo $rspta ? "Cliente desactivado" : "Cliente no se puede desactivar";
     break;
 
     case 'activar':
             $rspta=$clientes->activar($id_cliente);
-            echo $rspta ? "Categoría activada" : "Categoría no se puede activar";
+            echo $rspta ? "Cliente activado" : "Cliente no se puede activar";
     break;
     
 /*     case 'buscar':

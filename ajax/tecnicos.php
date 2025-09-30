@@ -72,7 +72,7 @@ switch ($_GET["op"]){
         if (empty($id_usuarios)) {
             // Registro
             $rspta = $tecnicos->insertar($nombre, $apellido, $correo, $password_hash, $telefono, $imagen, $estado);
-            echo $rspta ? "Usuario registrado" : "No se pudo registrar el usuario";
+            echo $rspta ? "Técnico registrado" : "No se pudo registrar el técnico";
         } else {
             // Actualización
             $rspta = $tecnicos->editar(
@@ -86,7 +86,7 @@ switch ($_GET["op"]){
                 $estado
             );
             /* echo("rsouesta" $rspta); */
-            echo $rspta ? "Usuario actualizado" : "No se pudo actualizar el usuario";
+            echo $rspta ? "Técnico actualizado" : "No se pudo actualizar el técnico";
         }
     break;
 
@@ -97,12 +97,12 @@ switch ($_GET["op"]){
 
     case 'desactivar':
             $rspta=$tecnicos->desactivar($id_usuarios);
-            echo $rspta ? "Categoría desactivada" : "Categoría no se puede desactivar";
+            echo $rspta ? "Técnico desactivado" : "Técnico no se puede desactivar";
     break;
 
     case 'activar':
             $rspta=$tecnicos->activar($id_usuarios);
-            echo $rspta ? "Categoría activada" : "Categoría no se puede activar";
+            echo $rspta ? "Técnico activado" : "Técnico no se puede activar";
     break;
 
     case 'selectTenicos':
