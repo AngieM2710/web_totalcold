@@ -78,5 +78,19 @@ class Usuario
 		return ejecutarConsulta($sql);
 	}
 
+	public function totalTecnicos(){
+    	$sql = "SELECT
+					COUNT(*) AS total,
+					SUM(CASE WHEN estado = 1 THEN 1 ELSE 0 END) AS activos,
+					SUM(CASE WHEN estado = 0 THEN 1 ELSE 0 END) AS inactivos
+				FROM usuarios
+				WHERE id_usuarios IN (
+					SELECT DISTINCT id_usuario
+					FROM usuarios_permisos
+					WHERE id_permiso = 1
+				);
+		";
+    	return ejecutarConsultaSimpleFila($sql);
+	}
 }
 ?>

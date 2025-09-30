@@ -17,14 +17,14 @@ if (!isset($_SESSION["nombre"])) {
       <div class="card shadow mb-4 contendorprinc">
           <div class="card-header py-3 d-flex justify-content-between align-items-center">
               <h6 class="m-0 font-weight-bold text-primary">
-                  Lista de categorías
+                  Lista de Servicios
               </h6>
 
               <!-- Botón agregar -->
-              <a href="#" id="btnagregar" onclick="mostrarform(true)" 
-                  class="btn btn-sm btn-primary shadow-sm">
-                  <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
-              </a>
+                <a href="#" onclick="agg('agregar')" 
+                class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
+                </a>
           </div>
 
           <div class="card-body">
@@ -50,8 +50,8 @@ if (!isset($_SESSION["nombre"])) {
                   </table>
               </div>
 
-              <!-- Formulario (oculto por defecto con JS) -->
-              <div class="panel-body" id="formularioregistros" style="display:none;">
+
+<!--               <div class="panel-body" id="formularioregistros" style="display:none;">
                   <form name="formulario" id="formulario" method="POST" class="letragenera">
                       
                       <div class="form-row">
@@ -70,7 +70,6 @@ if (!isset($_SESSION["nombre"])) {
                           </div>
                       </div>
 
-                      <!-- Botones -->
                       <div class="form-group text-center mt-4">
                           <button type="submit" id="btnGuardar" class="btn btn-success btn-sm shadow-sm">
                               <i class="fas fa-save"></i> Guardar
@@ -82,9 +81,56 @@ if (!isset($_SESSION["nombre"])) {
                           </a>
                       </div>
                   </form>
-              </div>
+              </div> -->
           </div>
       </div>
+
+          <!-- Modal  -->
+    <div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content shadow-lg">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="modalTitle">Registro</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <!-- Formulario original -->
+                    <form name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id_servicios" id="id_servicios">
+                    
+                    <div class="form-row">
+
+                    <!-- Datos -->
+                    <div class="col-lg-12">
+                        <div class="row g-3">
+                            <div class="col-md-12 form-group input-group-new">
+                            <label class="form-label"> Descripción del servicio (*)</label>
+                                <input type="text" 
+                                        class="form-control shadow-sm" 
+                                        name="descripcion" 
+                                        id="descripcion" 
+                                        maxlength="100" 
+                                        placeholder="Categoría" 
+                                        required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+
+            <div class="modal-footer ">
+                <button type="submit" form="formulario" id="btnGuardar" class="btn btn-success botonS">
+                <i class="fas fa-save"></i> Guardar
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
   </div>
 <?php
   } else {

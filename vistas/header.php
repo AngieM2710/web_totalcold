@@ -34,7 +34,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="escritorio.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="usuarios.php">
                 <div class="sidebar-brand-icon">
                     <img src="../public/img/imagenes/lg.png" class="tamimg" alt="">
                 </div>
@@ -48,11 +48,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <?php
             $principal =['escritorio.php'];
             $pagesUsuarios = ['usuarios.php', 'tecnicos.php', 'clientes.php'];
-            $pagesInformacion = ['categorias.php', 'productos.php', 'servicios.php'];
-            $pagesHorarios = ['dias.php', 'horas.php', 'horarios.php'];
+            $pagesInformacion = ['servicios.php', 'productos.php'];
+            $pagesHorarios = ['agenda.php', 'horas.php', 'Agendar.php'];
             $pagesDashboard = ['dashboard.php'];
             ?>
-
+            
+            
             <!-- Nav Item - Personas -->
             <li class="nav-item menu <?= in_array($currentPage, $pagesUsuarios) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -69,22 +70,23 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </div>
             </li>
 
+            <hr class="sidebar-divider d-none d-md-block">
             <!-- Nav Item - Catálogo -->
             <li class="nav-item menu <?= in_array($currentPage, $pagesInformacion) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                 aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-boxes"></i>
-                    <span>Catálogo</span></a>
+                    <span>Gestión de Recursos</span></a>
 
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded divtransparente">
-                        <a class="collapse-item" href="categorias.php"><i class="fas fa-fw fa-layer-group"></i> Categorías</a>
-                        <a class="collapse-item" href="productos.php"><i class="fas fa-fw fa-wind"></i> Equipos/Aires</a>
-                        <a class="collapse-item" href="servicios.php"><i class="fas fa-fw fa-toolbox"></i> Servicios</a>
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                        <a class="collapse-item" href="categorias.php"><i class="fas fa-fw fa-layer-group"></i> Servicios</a>
+                        <a class="collapse-item" href="equipos.php"><i class="fas fa-fw fa-wind"></i> Equipos/Aires</a>
+                        <!-- <a class="collapse-item" href="servicios.php"><i class="fas fa-fw fa-toolbox"></i> Servicios</a> -->
                     </div>
                 </div>
             </li>
-
+<hr class="sidebar-divider d-none d-md-block">
             <!-- Nav Item - Agenda -->
             <li class="nav-item menu <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -93,38 +95,38 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <span>Agenda</span></a>
 
                 <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded divtransparente">
-                        <a class="collapse-item" href="dias.php"><i class="fas fa-fw fa-calendar-day"></i> Días Laborales</a>
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                        <a class="collapse-item" href="agenda.php"><i class="fas fa-fw fa-calendar-day"></i> Días Laborales</a>
                         <a class="collapse-item" href="horas.php"><i class="fas fa-fw fa-clock"></i> Horarios</a>
-                        <a class="collapse-item" href="horarios.php"><i class="fas fa-fw fa-user-clock"></i> Asignaciones</a>
+                        <a class="collapse-item" href="Agendar.php"><i class="fas fa-fw fa-user-clock"></i> Asignaciones</a>
                     </div>
                 </div>
             </li>
-
+<hr class="sidebar-divider d-none d-md-block">
             <!-- Nav Item - Servicios -->
-            <li class="nav-item menu <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+            <li class="nav-item menu <?= in_array($currentPage, ) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReservas"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-concierge-bell"></i>
                     <span>Servicios</span></a>
 
                 <div id="collapseReservas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded divtransparente">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="tarifas.php"><i class="fas fa-fw fa-dollar-sign"></i> Tarifas</a>
-                        <a class="collapse-item" href="reservas.php"><i class="fas fa-fw fa-calendar-plus"></i> Nuevo Servicio</a>
+                        <a class="collapse-item" href="Agendar.php"><i class="fas fa-fw fa-calendar-plus"></i> Nuevo Servicio</a>
                     </div>
                 </div>
             </li>
-
+<hr class="sidebar-divider d-none d-md-block">
             <!-- Nav Item - Ventas -->
-            <li class="nav-item menu <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+            <li class="nav-item menu <?= in_array($currentPage, ) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Ventas</span></a>
 
                 <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded divtransparente">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="ventas.php"><i class="fas fa-fw fa-shopping-cart"></i> Nueva Venta</a>
                         <a class="collapse-item" href="cotizaciones.php"><i class="fas fa-fw fa-file-invoice-dollar"></i> Cotizaciones</a>
                     </div>
@@ -139,7 +141,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <span>Reportes</span></a>
 
                 <div id="collapseDashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="py-2 collapse-inner rounded divtransparente">
+                    <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="dashboard.php"><i class="fas fa-fw fa-analytics"></i> Panel General</a>
                     </div>
                 </div>

@@ -105,6 +105,12 @@ switch ($_GET["op"]){
             echo $rspta ? "Categoría activada" : "Categoría no se puede activar";
     break;
 
+    case 'selectTenicos':
+        $rspta = $tecnicos->listar();
+        while ($reg = $rspta->fetch_object()){
+            echo '<option value="'.$reg->id_usuarios.'">'.$reg->nombre.' '.$reg->apellido.'</option>';
+        }
+    break;
 }
 ob_end_flush();
 ?>

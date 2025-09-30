@@ -2,7 +2,7 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
-	mostrarform(false);
+	/* mostrarform(false); */
 	listar();
     capturarimg();
 	$("#formulario").on("submit",function(e){
@@ -24,24 +24,16 @@ function limpiar()
     $("#imagenactual").val("");
 }
 
-function mostrarform(flag)
-{
-	if (flag)
-	{
-		$("#listadoregistros").hide();
-		$("#formularioregistros").show();
-		$("#btnGuardar").prop("disabled",false);
-		$("#btnagregar").hide();
-		$("#btnreporte").hide();
-	}
-	else
-	{
-		$("#listadoregistros").show();
-		$("#formularioregistros").hide();
-		$("#btnagregar").show();
-		$("#btnreporte").show();
-	}
+function abrirModal(tipo) {
+  limpiar();
+  if (tipo === "agregar") {
+    $("#modalTitle").text("Registro de Técnico");
+    var modal = new bootstrap.Modal(document.getElementById("tecnicoModal"));
+    modal.show();
+  }
 }
+
+
 
 //Función Listar
  function listar()
@@ -90,8 +82,6 @@ function mostrarform(flag)
 	}).DataTable();
 } 
 
-
-
 function guardaryeditar(e)
 {
 	e.preventDefault(); 
@@ -120,17 +110,22 @@ function guardaryeditar(e)
                     confirmButton.style.fontSize = '18px'; 
                     confirmButton.style.padding = '10px 24px';
                 }
-            });         
-	          mostrarform(false);
-	          tabla.ajax.reload();
-              limpiar();
-	    }
+            });
 
+            // Cerrar el modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById("tecnicoModal"));
+            if (modal) {
+                modal.hide();
+            }
+
+            tabla.ajax.reload();
+            limpiar();
+            //  volver a habilitar botón
+            $("#btnGuardar").prop("disabled", false);
+	    }
 	});
-	
 }
 function capturarimg(){
-
 document.addEventListener('DOMContentLoaded', function() {
     const imagenInput = document.getElementById("imagen");
     const imagenMuestra = document.getElementById("imagenmuestra");
@@ -174,23 +169,22 @@ document.addEventListener('DOMContentLoaded', function() {
 }
 function mostrar(id_usuarios)
 {
-	$.post("../ajax/tecnicos.php?op=mostrar",{id_usuarios : id_usuarios}, function(data, status)
+	$.post("../ajax/tecnicos.php?op=mostrar",{id_usuarios : id_usuarios}, function(data)
 	{
 		data = JSON.parse(data);
-        console.log(data);	
-		mostrarform(true);
-        // Poner valores en el form
         $("#id_usuarios").val(data.id_usuarios);
         $("#nombre").val(data.nombre);
         $("#apellido").val(data.apellido);
         $("#correo").val(data.correo);
-        /* $("#password").val(""); */
-        $("#password").val(data.password);
+        $("#password").val(""); // vacío, nunca muestres el hash
         $("#telefono").val(data.telefono);
         $("#estado").val(data.estado);
-        $("#imagenmuestra").show();
         $("#imagenmuestra").attr("src","../files/usuarios/tecnicos/"+data.imagen);
         $("#imagenactual").val(data.imagen);
+
+        $("#modalTitle").text("Editar Técnico");
+        var modal = new bootstrap.Modal(document.getElementById("tecnicoModal"));
+        modal.show();
  	});
 }
 
@@ -321,11 +315,6 @@ function activar(id_usuarios)
     });
 }
 
-//Función cancelarform
-function cancelarform()
-{
-	limpiar();
-	mostrarform(false);
-}
+
 
 init();

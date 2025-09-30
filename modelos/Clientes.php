@@ -8,19 +8,21 @@ class Clientes
     public function __construct() {}
 
     // Insertar cliente
-    public function insertar($cedula, $nombre, $apellido, $telefono, $correo) {
+    public function insertar($cedula, $nombre, $apellido, $telefono, $correo ,$estado) {
         $sql = "INSERT INTO cliente (cedula, nombre, apellido, telefono, correo, estado)
                 VALUES ('$cedula','$nombre','$apellido','$telefono','$correo','1')";
         return ejecutarConsulta($sql);
     }
 
     // Editar usuario
-    public function editar($id_cliente, $nombre, $apellido, $telefono, $correo) {
+    public function editar($id_cliente, $cedula, $nombre, $apellido, $telefono, $correo,$estado) {
         $sql = "UPDATE cliente SET
+                cedula='$cedula',
                 nombre='$nombre',
                 apellido='$apellido',
                 telefono='$telefono',
                 correo='$correo',
+                estado='$estado'
                 WHERE id_cliente='$id_cliente'";
         return ejecutarConsulta($sql);
     }
@@ -48,5 +50,13 @@ class Clientes
         $sql = "SELECT * FROM cliente";
         return ejecutarConsulta($sql);
     }
+    
+/*     public function buscar($texto){
+        $sql="SELECT id_cliente, nombre, apellido
+              FROM cliente 
+              WHERE nombre LIKE '%$texto%' AND estado=1 
+              LIMIT 10";
+        return ejecutarConsulta($sql);
+    } */
 }
 ?>

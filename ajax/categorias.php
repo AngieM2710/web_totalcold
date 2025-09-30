@@ -62,6 +62,14 @@ switch ($_GET["op"]){
             $rspta=$cat->activar($id_servicios);
             echo $rspta ? "Categoría activada" : "Categoría no se puede activar";
     break;
+    
+    case 'selectServicios':
+        $rspta = $cat->listar();
+        while ($reg = $rspta->fetch_object()){
+            echo '<option value="'.$reg->id_servicios.'">'
+            .$reg->descripcion.'</option>';
+        }
+    break;
 
 }
 ob_end_flush();

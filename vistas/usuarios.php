@@ -21,11 +21,41 @@ if (!isset($_SESSION["nombre"])) {
             <h6 class="m-0 font-weight-bold text-primary">
                 Lista de usuarios
             </h6>
+<!-- <div class="row mb-2">
+    <div class="col-md-4.2">
+        <div class="card shadow-sm border-0 text-center cardaux">
+            <div class="card-body">
+                <span class="label bg-blue">Total de Usuarios</span>
+                <span class="label bg-blue" id="totalTecnicos">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3.5">
+        <div class="card shadow-sm border-0 text-center cardaux">
+            <div class="card-body">
+                <span class="label bg-green"><i class="fas fa-user-check me-1"></i> Activos</span>
+                <span class="label bg-green" id="activos">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3.5">
+        <div class="card shadow-sm border-0 text-center cardaux">
+            <div class="card-body">
+                <span class="label bg-red"><i class="fas fa-user-times me-1"></i> Inactivos</span>
+                <span class="label bg-red" id="inactivos">0</span>
+            </div>
+        </div>
+    </div>
+</div> -->
             <div>
                 <!-- Botón agregar -->
-                <a href="#" id="btnagregar" onclick="mostrarform(true)" 
+<!--                 <a href="#" id="btnagregar" onclick="mostrarform(true)" 
                     class="btn btn-sm btn-primary shadow-sm">
                     <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
+                </a> -->
+                <a href="#" onclick="abrirModal1('agregar')" 
+                class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
                 </a>
                 <!-- Botón reporte -->
                 <a href="../reportes/usuarios.php" target="_blank" 
@@ -66,14 +96,13 @@ if (!isset($_SESSION["nombre"])) {
                 </table>
             </div>
 
-            <!-- Formulario (oculto por defecto con JS) -->
-            <div class="panel-body" id="formularioregistros" style="display:none;">
+<!--             <div class="panel-body" id="formularioregistros" style="display:none;">
                 <form name="formulario" id="formulario" method="POST" class="user" enctype="multipart/form-data">
                     
                     <h2 class="form-title">Información del Usuario</h2>
 
                     <div class="form-row">
-                        <!-- Sección de Imagen - Estilo Moderno -->
+
                         <div class="col-lg-4 col-md-12 mb-4">
                             <div class="upload-section">
                                 <div class="avatar-container">
@@ -90,7 +119,6 @@ if (!isset($_SESSION["nombre"])) {
                             </div>
                         </div>
 
-                        <!-- Información Personal -->
                         <div class="col-lg-8 col-md-12">
                             <input type="hidden" name="id_usuarios" id="id_usuarios">
                             <input type="hidden" name="estado" id="estado">
@@ -137,9 +165,90 @@ if (!isset($_SESSION["nombre"])) {
                     </div>
                 </form>
             </div>
-            
+             -->
         </div>
     </div>
+
+<!-- Modal Usuarios -->
+<div class="modal fade" id="modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content shadow-lg">
+
+      <!-- Header -->
+      <div class="modal-header">
+        <h5 class="modal-title font-weight-bold" id="modalTitle">Registro</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body">
+        <!-- Formulario original -->
+            <form name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
+             <input type="hidden" name="id_usuarios" id="id_usuarios">
+             <input type="hidden" name="estado" id="estado" value="1">
+              <input type="hidden" name="imagenactual" id="imagenactual">
+            
+              <div class="form-row">
+
+                  <div class="col-lg-4 text-center mb-">
+                      <div class="upload-section">
+                        <img src="img/default-user.png" id="imagenmuestra" class="rounded-circle shadow" width="140" height="140">
+                        <div class="mt-2 " style="padding-top: 15px;">
+                            <label for="imagen" class="btn btn-outline-primary btn-sm ">
+                            <i class="fas fa-camera"></i> Subir Foto
+                            </label>
+                            <input type="file" name="imagen" id="imagen" class="d-none" accept="image/png,image/jpeg">
+                        </div>
+                        <small id="file-name" class="text-muted"></small>
+                       </div>
+                  </div>
+
+                    <!-- Datos -->
+                    <div class="col-lg-8">
+                    <div class="row g-3">
+                        <div class="col-md-6 form-group input-group-new">
+                        <label class="form-label">Nombre(*)</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" 
+                        placeholder="Nombre(s)" required>
+                        </div>
+                        <div class="col-md-6 form-group input-group-new">
+                        <label class="form-label">Apellido(*)</label>
+                        <input type="text" class="form-control" name="apellido" id="apellido" 
+                        placeholder="Appellido(s)" required>
+                        </div>
+                        <div class="col-md-6">
+                        <label class="form-label">Teléfono(*)</label>
+                        <input type="number" class="form-control" name="telefono" id="telefono" 
+                        placeholder="Teléfono" required>
+                        </div>
+                        <div class="col-md-6 form-group input-group-new">
+                        <label class="form-label">Correo</label>
+                        <input type="email" class="form-control" name="correo" id="correo"
+                        placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="col-12 form-group input-group-new">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" name="password" id="password"
+                        placeholder="Contraseña">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </form>
+              </div>
+
+               <div class="modal-footer ">
+                <button type="submit" form="formulario" id="btnGuardar" class="btn btn-success botonS">
+                <i class="fas fa-save"></i> Guardar
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+    </div>
+  </div>
+</div>
+
 </div>
 <?php
  }

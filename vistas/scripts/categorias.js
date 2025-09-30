@@ -2,7 +2,7 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
-	mostrarform(false);
+	/* mostrarform(false); */
 	listar();
 
 	$("#formulario").on("submit",function(e){
@@ -16,23 +16,15 @@ function limpiar()
 	$("#descripcion").val("");
 }
 
-function mostrarform(flag)
-{
-	if (flag)
-	{
-		$("#listadoregistros").hide();
-		$("#formularioregistros").show();
-		$("#btnGuardar").prop("disabled",false);
-		$("#btnagregar").hide();
-		$("#btnreporte").hide();
-	}
-	else
-	{
-		$("#listadoregistros").show();
-		$("#formularioregistros").hide();
-		$("#btnagregar").show();
-		$("#btnreporte").show();
-	}
+function abrirModal1(tipo) {
+
+  limpiar();
+  if (tipo === "agregar") {
+    $("#modalTitle").text("Registro de Servicio");
+    var modal = new bootstrap.Modal(document.getElementById("modal"));
+    modal.show();
+  }
+
 }
 
 //Función Listar
@@ -154,9 +146,19 @@ function guardaryeditar(e)
                     confirmButton.style.padding = '10px 24px';
                 }
             });         
-	          mostrarform(false);
-	          tabla.ajax.reload();
-	    }
+            //  Cerrar el modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+            if (modal) {
+                modal.hide();
+            }
+
+	        //   mostrarform(false);
+	        tabla.ajax.reload();
+            limpiar();
+
+            $("#btnGuardar").prop("disabled", false);
+            }
+            
 
 	});
 	limpiar();
@@ -167,10 +169,14 @@ function mostrar(id_servicios)
 	$.post("../ajax/categorias.php?op=mostrar",{id_servicios : id_servicios}, function(data, status)
 	{
 		data = JSON.parse(data);		
-		mostrarform(true);
+		/* mostrarform(true); */
         // Poner valores en el form
 		$("#id_servicios").val(data.id_servicios);
 		$("#descripcion").val(data.descripcion);
+        
+        $("#modalTitle").text("Editar Servicio");
+        var modal = new bootstrap.Modal(document.getElementById("modal"));
+        modal.show();
  	});
 }
 
@@ -301,11 +307,29 @@ function activar(id_servicios)
     });
 }
 
+/* function mostrarform(flag)
+{
+	if (flag)
+	{
+		$("#listadoregistros").hide();
+		$("#formularioregistros").show();
+		$("#btnGuardar").prop("disabled",false);
+		$("#btnagregar").hide();
+		$("#btnreporte").hide();
+	}
+	else
+	{
+		$("#listadoregistros").show();
+		$("#formularioregistros").hide();
+		$("#btnagregar").show();
+		$("#btnreporte").show();
+	}
+} */
 //Función cancelarform
-function cancelarform()
+/* function cancelarform()
 {
 	limpiar();
 	mostrarform(false);
-}
+} */
 
 init();
