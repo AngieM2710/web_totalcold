@@ -68,7 +68,7 @@
     border-left: 4px solid var(--jira-blue) !important;
 }
 .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after {
-    color: var(--jira-blue) !important;
+    color: var(--primary-color) !important;
 }
 
 .sidebar-dark .nav-item.active .nav-link i {
@@ -87,10 +87,10 @@
 }
 
 /* Separadores */
-.sidebar-divider {
+/* .sidebar-divider {
     border-top: 1px solid var(--jira-gray-border) !important;
 }
-
+ */
 /* ======================
    TOPBAR - Colores Jira (SOLO MENÚ)
    ====================== */
@@ -165,3 +165,18 @@
     width: 45px;
     height: 30px;
     }
+
+/* .sidebar-divider {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #b2bcc7, transparent);
+    margin: 1rem 0;
+} */
+ .sidebar-divider {
+    border: 0;
+    height: 1px; /* más delgado, más elegante */
+    background: linear-gradient(to right, #2e82dc53, rgba(178,188,199,0)); /* degradado sutil */
+    margin: 1rem 1rem; /* un poco más de margen lateral */
+}
+
+

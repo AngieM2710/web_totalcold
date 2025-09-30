@@ -1,15 +1,22 @@
 var tabla;
-
-//Función que se ejecuta al inicio
 function init(){
-    mostrarform(false);
+    /* mostrarform(false); */
     listar();
     capturarimg();
+    mostrarTotalTecnicos();
     $("#formulario").on("submit", function(e){
         guardaryeditar(e);    
     });
+}
 
-   /*  $("#imagenmuestra").hide(); */
+function mostrarTotalTecnicos(){
+    $.post("../ajax/usuarios.php?op=total", function(data){
+        data = JSON.parse(data);
+        // Actualizas el span en tu vista
+        $("#totalTecnicos").text(data.total);
+        $("#activos").text(data.activos);
+        $("#inactivos").text(data.inactivos);
+    });
 }
 
 // Función limpiar formulario
@@ -21,31 +28,19 @@ function limpiar() {
     $("#password").val("");
     $("#telefono").val("");
     $("#estado").val("1");
-   $("#imagenmuestra").attr("src","img/default-user.png");
+    $("#imagenmuestra").attr("src","img/default-user.png");
     $("#imagen").val("");
     $("#imagenactual").val("");
 }
 
-// Mostrar formulario
-function mostrarform(flag){
-    if(flag){
-        $("#listadoregistros").hide();
-        $("#formularioregistros").show();
-        $("#btnGuardar").prop("disabled",false);
-        $("#btnagregar").hide();
-        $("#btnreporte").hide();
-    } else {
-        $("#listadoregistros").show();
-        $("#formularioregistros").hide();
-        $("#btnagregar").show();
-        $("#btnreporte").show();
-    }
-}
-
-// Cancelar formulario
-function cancelarform(){
-    limpiar();
-    mostrarform(false);
+// Modal 
+function abrirModal1(tipo) {
+  limpiar();
+  if (tipo === "agregar") {
+    $("#modalTitle").text("Registro de Usuario");
+    var modal = new bootstrap.Modal(document.getElementById("modal"));
+    modal.show();
+  }
 }
 
 // Listar usuarios
@@ -168,38 +163,46 @@ function guardaryeditar(e)
                     confirmButton.style.fontSize = '18px'; 
                     confirmButton.style.padding = '10px 24px';
                 }
-            });         
-	          mostrarform(false);
-	          tabla.ajax.reload();
-              	limpiar();
+            });    
+            //  Cerrar el modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+            if (modal) {
+                modal.hide();
+            }
+
+	        //   mostrarform(false);
+	        tabla.ajax.reload();
+            limpiar();
+
+            $("#btnGuardar").prop("disabled", false);
 	    }
 
 	});
 
 }
 
+
 // Mostrar usuario
 function mostrar(id_usuarios){
-/*     $('#imagen').val('');
-    $('#file-name').text('');
-    imagenSeleccionada = null; */
 
     $.post("../ajax/usuarios.php?op=mostrar",{id_usuarios: id_usuarios}, function(data){
-        data = JSON.parse(data);   
-        console.log(data);	     
-        mostrarform(true);
-
+        data = JSON.parse(data); 
+          
         $("#id_usuarios").val(data.id_usuarios);
         $("#nombre").val(data.nombre);
         $("#apellido").val(data.apellido);
         $("#correo").val(data.correo);
-        /* $("#password").val(""); */
-        $("#password").val(data.password);
+        $("#password").val("");
+        /* $("#password").val(data.password); */
         $("#telefono").val(data.telefono);
         $("#estado").val(data.estado);
-        $("#imagenmuestra").show();
+     /*    $("#imagenmuestra").show(); */
         $("#imagenmuestra").attr("src","../files/usuarios/"+data.imagen);
         $("#imagenactual").val(data.imagen);
+        
+        $("#modalTitle").text("Editar Usuario");
+        var modal = new bootstrap.Modal(document.getElementById("modal"));
+        modal.show();
     });
 }
 
@@ -252,4 +255,25 @@ function activar(id_usuarios){
     });
 }
 
+// Mostrar formulario
+/* function mostrarform(flag){
+    if(flag){
+        $("#listadoregistros").hide();
+        $("#formularioregistros").show();
+        $("#btnGuardar").prop("disabled",false);
+        $("#btnagregar").hide();
+        $("#btnreporte").hide();
+    } else {
+        $("#listadoregistros").show();
+        $("#formularioregistros").hide();
+        $("#btnagregar").show();
+        $("#btnreporte").show();
+    }
+} */
+
+// Cancelar formulario
+/* function cancelarform(){
+    limpiar();
+    mostrarform(false);
+} */
 init();

@@ -74,11 +74,11 @@ switch ($_GET["op"]) {
         $password_hash = !empty($password) ? generarHash($password) : null;
         if (empty($id_usuarios)) {
             // Registro
-            $rspta = $tecnicos->insertar($nombre, $apellido, $correo, $password_hash, $telefono, $imagen, $estado);
+            $rspta = $usuarios->insertar($nombre, $apellido, $correo, $password_hash, $telefono, $imagen, $estado);
             echo $rspta ? "Usuario registrado" : "No se pudo registrar el usuario";
         } else {
             // Actualización
-            $rspta = $tecnicos->editar(
+            $rspta = $usuarios->editar(
                 $id_usuarios,
                 $nombre,
                 $apellido,
@@ -146,7 +146,12 @@ switch ($_GET["op"]) {
         session_unset();
         session_destroy();
         header("Location: ../index.php");
-        break;
+    break;
+    
+    case 'total':
+        $rspta = $usuarios->totalTecnicos();
+        echo json_encode($rspta);
+    break;
 }
 
 ob_end_flush();
