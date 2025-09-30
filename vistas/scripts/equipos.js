@@ -1,13 +1,20 @@
 var tabla;
-
 //Función que se ejecuta al inicio
 function init(){
-    mostrarform(false);
+    /* mostrarform(false); */
     listar();
 
     $("#formulario").on("submit", function(e){
         guardaryeditar(e);    
     });
+}
+function abrirModal(tipo) {
+  limpiar();
+  if (tipo === "agregar") {
+    $("#modalTitle").text("Registro de Equipos");
+    var modal = new bootstrap.Modal(document.getElementById("modal"));
+    modal.show();
+  }
 }
 
 // Función limpiar formulario
@@ -19,66 +26,56 @@ function limpiar() {
     $("#capacidad").val("");
 }
 
-// Mostrar formulario
-function mostrarform(flag){
-    if(flag){
-        $("#listadoregistros").hide();
-        $("#formularioregistros").show();
-        $("#btnGuardar").prop("disabled",false);
-        $("#btnagregar").hide();
-        $("#btnreporte").hide();
-    } else {
-        $("#listadoregistros").show();
-        $("#formularioregistros").hide();
-        $("#btnagregar").show();
-        $("#btnreporte").show();
-    }
-}
 
-// Cancelar formulario
-function cancelarform(){
-    limpiar();
-    mostrarform(false);
-}
 
-// Listar equipos
-function listar() {
-    tabla = $('#tbllistado').DataTable({
-        "lengthMenu": [[5, 10, 25, 75, 100], [5, 10, 25, 75, 100]],
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            url: '../ajax/equipos.php?op=listar',
-            type: "GET",
-            dataType: "json",
-            error: function(e){ console.log(e.responseText); }
-        },
-        "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
+//Función Listar
+ function listar()
+{
+	tabla=$('#tbllistado').dataTable(
+	{
+		"lengthMenu": [[ 5, 10, 25, 75, 100],[5, 10, 25, 75, 100]], 
+		"aProcessing": true,
+	    "aServerSide": true,
+        "dom": '<"row"<"col-sm-9"l><"col-sm-3"f>>rtip', 
+		"ajax":
+				{
+					url: '../ajax/equipos.php?op=listar',
+					type : "get",
+					dataType : "json",						
+					error: function(e){	console.log(e.responseText);}
+				},
+		"language": {
+            "lengthMenu": "Mostrar : _MENU_ registros",
             "search": "",
             "searchPlaceholder": "Buscar...",
             "paginate": {
                 "previous": "Anterior",
                 "next": "Siguiente"
-            }
+            },
         },
         "initComplete": function() {
+            // Reemplaza el campo de búsqueda con uno personalizado (icono a la derecha)
             $('.dataTables_filter').html(`
                 <div class="input-group">
                     <input type="search" id="customSearch" class="form-control" placeholder="Buscar...">
-                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <span class="input-group-text">
+                        <i class="fas fa-search"></i>
+                    </span>
                 </div>
             `);
 
+            // Vincula el campo de búsqueda personalizado con DataTables
             $('#customSearch').on('keyup', function() {
-                tabla.search(this.value).draw();
+                tabla.search(this.value).draw(); // Actualiza la búsqueda en DataTables
             });
         },
-        "destroy": true,
-        "iDisplayLength": 10,
-        "order": [[0, "desc"]]
-    });
-}
+		"bDestroy": true,
+		"iDisplayLength": 10,
+	    "order": [[ 0, "desc" ]]
+	}).DataTable();
+} 
+
+
 
 // Guardar y editar
 function guardaryeditar(e){
@@ -103,8 +100,16 @@ function guardaryeditar(e){
                     confirmButton: 'swal2-confirm'
                 }
             });
-            mostrarform(false);
+            // Cerrar el modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+            if (modal) {
+                modal.hide();
+            }
+
             tabla.ajax.reload();
+            limpiar();
+            //  volver a habilitar botón
+            $("#btnGuardar").prop("disabled", false);
         }
     });
 
@@ -116,13 +121,17 @@ function mostrar(id_equipo){
 
     $.post("../ajax/equipos.php?op=mostrar",{id_equipo: id_equipo}, function(data){
         data = JSON.parse(data);        
-        mostrarform(true);
+        /* mostrarform(true); */
 
         $("#id_equipo").val(data.id_equipo);
         $("#codigo_interno").val(data.codigo_interno);
         $("#marca").val(data.marca);
         $("#modelo").val(data.modelo);
         $("#capacidad").val(data.capacidad);
+
+        $("#modalTitle").text("Editar Equipo");
+        var modal = new bootstrap.Modal(document.getElementById("modal"));
+        modal.show();
     });
 }
 
@@ -173,5 +182,27 @@ function activar(id_equipo){
         }
     });
 }
+
+/* // Mostrar formulario
+function mostrarform(flag){
+    if(flag){
+        $("#listadoregistros").hide();
+        $("#formularioregistros").show();
+        $("#btnGuardar").prop("disabled",false);
+        $("#btnagregar").hide();
+        $("#btnreporte").hide();
+    } else {
+        $("#listadoregistros").show();
+        $("#formularioregistros").hide();
+        $("#btnagregar").show();
+        $("#btnreporte").show();
+    }
+}
+
+// Cancelar formulario
+function cancelarform(){
+    limpiar();
+    mostrarform(false);
+} */
 
 init();

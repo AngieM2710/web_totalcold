@@ -19,13 +19,13 @@ switch ($_GET["op"]){
         $data= Array(); 
         while($reg=$rspta->fetch_object()){ 
             $data[]=array(
-                "0"=>($reg->estado)?
-                ' <a href="#" onclick="mostrar('.$reg->id_servicios.')" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></a>'.
-                ' <a href="#" onclick="desactivar('.$reg->id_servicios.')" class="btn btn-danger btn-circle"><i class="fas fa-times"></i></a>':
-                ' <a href="#" onclick="mostrar('.$reg->id_servicios.')" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></a>'.
-                ' <a href="#" onclick="activar('.$reg->id_servicios.')" class="btn btn-success btn-circle"><i class="fas fa-check"></i></a>',
-                "1"=>$reg->descripcion,               
-                "2"=>($reg->estado)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>'
+                "0"=>$reg->descripcion,               
+                "1"=>($reg->estado)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>',
+                "2"=>($reg->estado)?
+                    ' <a href="#" onclick="mostrar('.$reg->id_servicios.')" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></a>'.
+                    ' <a href="#" onclick="desactivar('.$reg->id_servicios.')" class="btn btn-danger btn-circle"><i class="fas fa-times"></i></a>':
+                    ' <a href="#" onclick="mostrar('.$reg->id_servicios.')" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></a>'.
+                    ' <a href="#" onclick="activar('.$reg->id_servicios.')" class="btn btn-success btn-circle"><i class="fas fa-check"></i></a>',
             );
         }
           $results = array(
@@ -61,6 +61,14 @@ switch ($_GET["op"]){
     case 'activar':
             $rspta=$cat->activar($id_servicios);
             echo $rspta ? "Categoría activada" : "Categoría no se puede activar";
+    break;
+    
+    case 'selectServicios':
+        $rspta = $cat->listar();
+        while ($reg = $rspta->fetch_object()){
+            echo '<option value="'.$reg->id_servicios.'">'
+            .$reg->descripcion.'</option>';
+        }
     break;
 
 }

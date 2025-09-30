@@ -182,9 +182,23 @@ body {
 }
 
 @media (max-width: 991px) {
+    body {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)) !important;
+        
+    }
     .left-panel {
         display: none !important;
     }
+    .left-panel {
+        padding: 20px 26px !important;
+    }
+    .logo-image {
+        width: 120px !important;
+        height: auto !important;
+    }
+    .letras-slogan
+    {
+        display: none !important;    }
 }
  .error-message {
     color: rgb(172, 172, 172); /* Aquí defines el color rojo */

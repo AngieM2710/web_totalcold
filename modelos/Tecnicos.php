@@ -1,25 +1,28 @@
-<?php
+<?php 
+//Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 if(strlen(session_id()) < 1)
-    session_start();
+	session_start();
 
-class Usuario
+Class Tecnicos
 {
-    public function __construct() {}
+	//Implementamos nuestro constructor
+	public function __construct()
+	{	}
 
-    	public function listar(){
+	public function listar(){
 		$sql="SELECT u.*, p.*, up.*
 		FROM usuarios u, permisos p, usuarios_permisos up 
-		WHERE up.id_usuario = u.id_usuarios and up.id_permiso = p.id_permiso and p.id_permiso=1";
+		WHERE up.id_usuario = u.id_usuarios and up.id_permiso = p.id_permiso and p.id_permiso=2";
 		return ejecutarConsulta($sql);		
 	}
 
 	public function mostrar($id_usuarios){
-		$sql="SELECT u.*
+		$sql="SELECT u.*, p.*, up.*
 			FROM usuarios u, permisos p, usuarios_permisos up 
 			WHERE up.id_usuario = u.id_usuarios 
 			AND up.id_permiso = p.id_permiso 
-			AND p.id_permiso=1 
+			AND p.id_permiso=2 
 			AND u.id_usuarios='$id_usuarios'";   // OJO, mejor poner el alias
 		return ejecutarConsultaSimpleFila($sql);
 	}
@@ -29,7 +32,7 @@ class Usuario
 				VALUES ('$nombre','$apellido','$correo','$password_hash','$telefono','$imagen','1')";
 		$id_usuario_new=ejecutarConsulta_retornarID($sql);
 
-		$sql_detalle = "INSERT INTO usuarios_permisos(id_usuario, id_permiso) VALUES('$id_usuario_new', '1')";
+		$sql_detalle = "INSERT INTO usuarios_permisos(id_usuario, id_permiso) VALUES('$id_usuario_new', '2')";
 		return ejecutarConsulta($sql_detalle);
 	}
 
@@ -61,36 +64,6 @@ class Usuario
 		return ejecutarConsulta($sql);
 	}
 
-
-    
-	public function verificar($correo)
-    {
-    	$sql="SELECT u.*, p.*, up.*
-		FROM usuarios u, permisos p, usuarios_permisos up 
-		WHERE up.id_usuario = u.id_usuarios and up.id_permiso = p.id_permiso and
-	    u.correo='$correo' and u.estado = '1'"; 
-    	return ejecutarConsulta($sql);  
-    }
-
-    public function listarmarcados($id_usuarios)
-	{
-		$sql="SELECT * FROM usuarios_permisos WHERE id_usuario='$id_usuarios'";
-		return ejecutarConsulta($sql);
-	}
-
-	public function totalTecnicos(){
-    	$sql = "SELECT
-					COUNT(*) AS total,
-					SUM(CASE WHEN estado = 1 THEN 1 ELSE 0 END) AS activos,
-					SUM(CASE WHEN estado = 0 THEN 1 ELSE 0 END) AS inactivos
-				FROM usuarios
-				WHERE id_usuarios IN (
-					SELECT DISTINCT id_usuario
-					FROM usuarios_permisos
-					WHERE id_permiso = 1
-				);
-		";
-    	return ejecutarConsultaSimpleFila($sql);
-	}
 }
+
 ?>

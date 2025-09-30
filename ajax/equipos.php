@@ -45,16 +45,16 @@ switch ($_GET["op"]) {
         $data = [];
         while ($reg = $rspta->fetch_object()) {
             $data[] = [
-                "0" => ($reg->estado_equipo) ?
+                "0" => $reg->codigo_interno,
+                "1" => $reg->marca,
+                "2" => $reg->modelo,
+                "3" => $reg->capacidad,
+                "4" => ($reg->estado_equipo) ? '<span class="label bg-green">Activo</span>' : '<span class="label bg-red">Inactivo</span>',
+                "5" => ($reg->estado_equipo) ?
                     '<a href="#" onclick="mostrar(' . $reg->id_equipo . ')" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></a>' .
                     ' <a href="#" onclick="desactivar(' . $reg->id_equipo . ')" class="btn btn-danger btn-circle"><i class="fas fa-times"></i></a>' :
                     '<a href="#" onclick="mostrar(' . $reg->id_equipo . ')" class="btn btn-info btn-circle"><i class="fas fa-eye"></i></a>' .
                     ' <a href="#" onclick="activar(' . $reg->id_equipo . ')" class="btn btn-success btn-circle"><i class="fas fa-check"></i></a>',
-                "1" => $reg->codigo_interno,
-                "2" => $reg->marca,
-                "3" => $reg->modelo,
-                "4" => $reg->capacidad,
-                "5" => ($reg->estado_equipo) ? '<span class="label bg-green">Activo</span>' : '<span class="label bg-red">Inactivo</span>'
             ];
         }
 

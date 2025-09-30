@@ -2,7 +2,7 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
-	mostrarform(false);
+	/* mostrarform(false); */
 	listar();
 
 	$("#formulario").on("submit",function(e){
@@ -16,27 +16,19 @@ function limpiar()
 	$("#descripcion").val("");
 }
 
-function mostrarform(flag)
-{
-	if (flag)
-	{
-		$("#listadoregistros").hide();
-		$("#formularioregistros").show();
-		$("#btnGuardar").prop("disabled",false);
-		$("#btnagregar").hide();
-		$("#btnreporte").hide();
-	}
-	else
-	{
-		$("#listadoregistros").show();
-		$("#formularioregistros").hide();
-		$("#btnagregar").show();
-		$("#btnreporte").show();
-	}
+function abrirModal1(tipo) {
+
+  limpiar();
+  if (tipo === "agregar") {
+    $("#modalTitle").text("Registro de Servicio");
+    var modal = new bootstrap.Modal(document.getElementById("modal"));
+    modal.show();
+  }
+
 }
 
 //Función Listar
-function listar()
+ function listar()
 {
 	tabla=$('#tbllistado').dataTable(
 	{
@@ -82,7 +74,47 @@ function listar()
 		"iDisplayLength": 10,
 	    "order": [[ 0, "desc" ]]
 	}).DataTable();
-}
+} 
+
+/* function listar() {
+    tabla = $('#tbllistado').DataTable({
+        "lengthMenu": [[5, 10, 25, 75, 100],[5, 10, 25, 75, 100]], 
+        "aProcessing": true,
+        "aServerSide": true,
+        "dom": '<"row mb-3"<"col-sm-12"f>>rtip', // Solo filtro arriba
+        "ajax": {
+            url: '../ajax/categorias.php?op=listar',
+            type: "get",
+            dataType: "json",
+            error: function(e){
+                console.log(e.responseText);    
+            }
+        },
+        "language": {
+            "lengthMenu": "Mostrar : _MENU_ registros",
+            "search": "", 
+            "searchPlaceholder": "Buscar...",
+            "paginate": {
+                "previous": "Anterior",
+                "next": "Siguiente"
+            },
+        },
+        "initComplete": function() {
+            // Agregar clases SB Admin 2 y botón
+            var filter = $('.dataTables_filter input').addClass('form-control bg-light border-0 small');
+            filter.wrap('<div class="input-group"></div>');
+            $('.input-group').append('<button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>');
+
+            // Vincular búsqueda con DataTable
+            $('#tbllistado_filter input').on('keyup', function() {
+                tabla.search(this.value).draw();
+            });
+        },
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [[0, "desc"]]
+    });
+} */
 
 
 function guardaryeditar(e)
@@ -114,9 +146,19 @@ function guardaryeditar(e)
                     confirmButton.style.padding = '10px 24px';
                 }
             });         
-	          mostrarform(false);
-	          tabla.ajax.reload();
-	    }
+            //  Cerrar el modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+            if (modal) {
+                modal.hide();
+            }
+
+	        //   mostrarform(false);
+	        tabla.ajax.reload();
+            limpiar();
+
+            $("#btnGuardar").prop("disabled", false);
+            }
+            
 
 	});
 	limpiar();
@@ -127,10 +169,14 @@ function mostrar(id_servicios)
 	$.post("../ajax/categorias.php?op=mostrar",{id_servicios : id_servicios}, function(data, status)
 	{
 		data = JSON.parse(data);		
-		mostrarform(true);
+		/* mostrarform(true); */
         // Poner valores en el form
 		$("#id_servicios").val(data.id_servicios);
 		$("#descripcion").val(data.descripcion);
+        
+        $("#modalTitle").text("Editar Servicio");
+        var modal = new bootstrap.Modal(document.getElementById("modal"));
+        modal.show();
  	});
 }
 
@@ -261,11 +307,29 @@ function activar(id_servicios)
     });
 }
 
+/* function mostrarform(flag)
+{
+	if (flag)
+	{
+		$("#listadoregistros").hide();
+		$("#formularioregistros").show();
+		$("#btnGuardar").prop("disabled",false);
+		$("#btnagregar").hide();
+		$("#btnreporte").hide();
+	}
+	else
+	{
+		$("#listadoregistros").show();
+		$("#formularioregistros").hide();
+		$("#btnagregar").show();
+		$("#btnreporte").show();
+	}
+} */
 //Función cancelarform
-function cancelarform()
+/* function cancelarform()
 {
 	limpiar();
 	mostrarform(false);
-}
+} */
 
 init();
