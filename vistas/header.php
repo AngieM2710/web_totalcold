@@ -52,7 +52,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             $pagesHorarios = ['agenda.php', 'horas.php', 'Agendar.php'];
             $pagesDashboard = ['dashboard.php'];
             ?>
-            
+
             
             <!-- Nav Item - Personas -->
             <li class="nav-item menu <?= in_array($currentPage, $pagesUsuarios) ? 'active' : '' ?> ">
@@ -61,7 +61,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-fw fa-users-cog"></i>
                     <span>Gestión de Personal</span></a>
 
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                       <!--   <h6 class="collapse-header">Opciones:</h6> -->
                         <a class="collapse-item primera" href="usuario.php"><i class="fa fa-user"></i> Usuarios</a>
@@ -79,7 +79,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-fw fa-boxes"></i>
                     <span>Gestión de Recursos</span></a>
 
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="categorias.php"><i class="fas fa-fw fa-layer-group"></i> Servicios</a>
                         <a class="collapse-item" href="equipos.php"><i class="fas fa-fw fa-wind"></i> Equipos/Aires</a>
@@ -87,7 +87,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     </div>
                 </div>
             </li>
-<hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">
             <!-- Nav Item - Agenda -->
             <li class="nav-item menu <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -95,7 +95,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-fw fa-calendar-alt"></i>
                     <span>Agenda</span></a>
 
-                <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapsePages" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="agenda.php"><i class="fas fa-fw fa-calendar-day"></i> Días Laborales</a>
                         <a class="collapse-item" href="horas.php"><i class="fas fa-fw fa-clock"></i> Horarios</a>
@@ -103,25 +103,25 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     </div>
                 </div>
             </li>
-<hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">
             <!-- Nav Item - Servicios -->
-            <li class="nav-item menu <?= in_array($currentPage, ) ? 'active' : '' ?> ">
+            <li class="nav-item menu <?= in_array($currentPage, $pagesServicios) ? 'active' : '' ?> ">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReservas"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-concierge-bell"></i>
                     <span>Servicios</span></a>
 
-                <div id="collapseReservas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseReservas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="tarifas.php"><i class="fas fa-fw fa-dollar-sign"></i> Tarifas</a>
                         <a class="collapse-item" href="Agendar.php"><i class="fas fa-fw fa-calendar-plus"></i> Nuevo Servicio</a>
                     </div>
                 </div>
             </li>
-<hr class="sidebar-divider d-none d-md-block">
-            <!-- Nav Item - Ventas -->
-            <li class="nav-item menu <?= in_array($currentPage, ) ? 'active' : '' ?> ">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVentas"
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <li class="nav-item menu  <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+                <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapseVentas"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Ventas</span></a>
@@ -141,14 +141,14 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Reportes</span></a>
 
-                <div id="collapseDashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseDashboard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="dashboard.php"><i class="fas fa-fw fa-analytics"></i> Panel General</a>
                     </div>
                 </div>
             </li>
 
-            <?php
+                <?php
             } else if ($_SESSION['tecnico'] == 1) {
                 // Lógica del menú para técnicos
                 ?>
@@ -247,9 +247,13 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </div>
 
                 <script src="../public/vendor/jquery/jquery.min.js"></script>
+
                 <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
                 <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
                 <script src="../public/js/sb-admin-2.min.js"></script>
                 <script src="../public/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -260,13 +264,16 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 document.addEventListener("DOMContentLoaded", function () {
                     let currentUrl = window.location.pathname.split("/").pop();
                     
+                    // Marcar el enlace activo
                     let menuItems = document.querySelectorAll(".nav-link, .collapse-item");
                     menuItems.forEach(item => {
                         if (item.getAttribute("href") === currentUrl) {
                             item.classList.add("active");
+                            // Si es un submenú, expandir el menú padre
                             let parentCollapse = item.closest(".collapse");
                             if (parentCollapse) {
                                 parentCollapse.classList.add("show");
+                                // Marcar el padre con la clase active para el estilo del enlace
                                 let parentLink = document.querySelector(`[data-target="#${parentCollapse.id}"]`);
                                 if (parentLink) {
                                     parentLink.closest('.nav-item').classList.add("active");
@@ -275,8 +282,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                         }
                     });
 
+                    // Si estás en 'escritorio.php', asegúrate de que solo ese enlace esté activo
                     if (currentUrl === 'escritorio.php') {
-                        document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
+                         document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
+                         document.querySelector("a[href='escritorio.php']").closest('.nav-item').classList.add('active');
                     }
                 });
                 </script>
