@@ -76,6 +76,12 @@ switch ($_GET["op"]) {
         $rspta = $equipos->activar($id_equipo);
         echo $rspta ? "Equipo activado" : "No se pudo activar";
         break;
+    case 'selectEquipos':
+        $rspta = $equipos->listar();
+        while ($reg = $rspta->fetch_object()){
+            echo '<option value="'.$reg->id_equipo.'">'.$reg->marca.'_'.$reg->modelo.'      '.$reg->capacidad.'BTU</option>';
+        }  
+    break;
 }
 
 ob_end_flush();

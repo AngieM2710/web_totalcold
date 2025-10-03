@@ -51,6 +51,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             $pagesInformacion = ['servicios.php', 'productos.php'];
             $pagesHorarios = ['agenda.php', 'horas.php', 'Agendar.php'];
             $pagesDashboard = ['dashboard.php'];
+            $pagesServicios = ['tarifas.php', 'z.php'];
             ?>
 
             
@@ -114,25 +115,25 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                     <div id="collapseReservas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="tarifas.php"><i class="fas fa-fw fa-dollar-sign"></i> Tarifas</a>
-                        <a class="collapse-item" href="Agendar.php"><i class="fas fa-fw fa-calendar-plus"></i> Nuevo Servicio</a>
+                        <a class="collapse-item" href="z.php"><i class="fas fa-fw fa-calendar-plus"></i> Nuevo Servicio</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider d-none d-md-block">
 
-            <li class="nav-item menu  <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
+            <!-- <li class="nav-item menu  <?= in_array($currentPage, $pagesHorarios) ? 'active' : '' ?> ">
                 <a class="nav-link  collapsed" href="#"  data-toggle="collapse" data-target="#collapseVentas"
                 aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cash-register"></i>
                     <span>Ventas</span></a>
 
-               <!--  <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseVentas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded divtransparente">
                         <a class="collapse-item" href="ventas.php"><i class="fas fa-fw fa-shopping-cart"></i> Nueva Venta</a>
                         <a class="collapse-item" href="cotizaciones.php"><i class="fas fa-fw fa-file-invoice-dollar"></i> Cotizaciones</a>
                     </div>
-                </div> -->
-            </li>
+                </div>
+            </li> -->
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item menu <?= in_array($currentPage, $pagesDashboard) ? 'active' : '' ?> ">
