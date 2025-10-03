@@ -3,6 +3,7 @@ var tabla;
     cargarTecnicos();
     cargarServicios();
     estadoServicio();
+    cargarEquipos();
 
     //Función que se ejecuta al inicio
     function init(){
@@ -26,6 +27,14 @@ function cargarServicios(){
         let opciones = '<option value="">Tipo de Servicio </option>' + r;
             $("#id_serv").html(opciones);// cargamos las opciones
             $('#id_serv').selectpicker('refresh');// refrescamos bootstrap-select
+    });
+}
+
+function cargarEquipos(){
+    $.post("../ajax/equipos.php?op=selectEquipos", function(r){ 
+        let opciones = '<option value="">Marca  -  Capacidad </option>' + r;
+            $("#id_equipo").html(opciones);// cargamos las opciones
+            $('#id_equipo').selectpicker('refresh');// refrescamos bootstrap-select
     });
 }
 
