@@ -191,7 +191,7 @@ function mostrar(id_usuarios)
 function desactivar(id_usuarios)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de desactivar la categoría?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de desactivar el técnico?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -217,7 +217,7 @@ function desactivar(id_usuarios)
         if (result.isConfirmed) {
             $.post("../ajax/tecnicos.php?op=desactivar", {id_usuarios: id_usuarios}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Categoría desactivada!</span>',
+                    title: '<span style="font-size: 24px;">Técnico desactivado!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -234,7 +234,7 @@ function desactivar(id_usuarios)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Categoría no se desactivó</span>',
+                title: '<span style="font-size: 24px;">Técnico no se desactivó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
@@ -255,7 +255,7 @@ function desactivar(id_usuarios)
 function activar(id_usuarios)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de activar la categoría?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de activar el técnico?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -281,7 +281,7 @@ function activar(id_usuarios)
         if (result.isConfirmed) {
             $.post("../ajax/tecnicos.php?op=activar", {id_usuarios: id_usuarios}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Categoría activada!</span>',
+                    title: '<span style="font-size: 24px;">Técnico activado!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -298,7 +298,7 @@ function activar(id_usuarios)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Categoría no se activó</span>',
+                title: '<span style="font-size: 24px;">Técnico no se activó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
