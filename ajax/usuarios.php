@@ -138,13 +138,28 @@ switch ($_GET["op"]) {
             //Determinamos los accesos del usuario
             in_array(1, $valores)?$_SESSION['administrador']=1:$_SESSION['administrador']=0;
             in_array(2, $valores)?$_SESSION['tecnico']=1:$_SESSION['tecnico']=0;
+          
+            // Al iniciar sesión correctamente
+            $cookie_name = "usuario_login";
+            $cookie_value = $fetch->id_usuarios; // <-- CORRECTO
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 30 días
+            // Luego, puedes devolver el objeto JSON al frontend
+            echo json_encode([
+                'status' => 'ok',
+                'usuario' => $fetch
+            ]);
+
+        }else {
+            echo json_encode(['status' => 'error', 'msg' => 'Credenciales incorrectas']);
         }
-        echo json_encode($fetch);
+      /*   echo json_encode($fetch); */
         break;
 
     case 'salir':
         session_unset();
         session_destroy();
+         // Borrar cookie
+        /* setcookie("usuario_login", "", time() - 3600, "/"); */
         header("Location: ../index.php");
     break;
     

@@ -21,15 +21,16 @@ body {
   /* border: 2px solid #e0e6ed; */
   background: #fff;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+/*    box-shadow: 0 10px 30px var(--shadow-color) !important; */
   transition: transform 0.2s ease-in-out;
   overflow: hidden !important;
     border: none !important;
 }
 
-.contendorprinc:hover {
+/* .contendorprinc:hover {
   transform: translateY(-2px);
 }
-
+ */
 /* ====== BOTONES ====== */
 .btn {
   border-radius: 6px;
@@ -228,3 +229,177 @@ body {
 
 }
 
+/*scroll*/
+.scroll-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    text-align: center;
+    color: #4e73df !important;
+    background: #e7edff !important;
+    line-height: 46px;
+    z-index: 1;
+}
+
+
+/********************* CALENDARIO ***********************/
+ /*    body {
+        background-color: #f8f9fa;
+    } */
+    .sidebar {
+        min-height: 100vh;
+        background: #4b7bec;
+        color: #fff;
+    }
+    .sidebar a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .sidebar a.active,
+    .sidebar a:hover {
+        background-color: #3867d6;
+    }
+    .card-status {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.35rem;
+        font-weight: 500;
+    }
+    .pendiente { background-color: #5dade2; color: #fff; }
+    .encurso { background-color: #f39c12; color: #fff; }
+    .terminado { background-color: #27ae60; color: #fff; }
+    #calendario {
+        height: 300px;
+        background-color: #f1f1f1;
+        border-radius: 0.35rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+
+    
+/* === 1. Diseño Base y Flexibilidad === */
+#doble-calendario-visible {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 10px;
+    flex-wrap: wrap; /* CLAVE para que los calendarios se apilen */
+    overflow: visible !important;
+}
+
+#calendario-inicio-container, 
+#calendario-fin-container {
+    width: auto; /* El 48% para escritorio */
+    height: auto;
+    position: relative; 
+    box-sizing: border-box; 
+    margin-bottom: 10px; 
+}
+
+/* Media Query: FUERZA la responsividad en pantallas pequeñas (Tablet/Mobile) */
+@media (max-width: 991px) {
+    #calendario-inicio-container, 
+    #calendario-fin-container {
+        width: 100% !important; /* FORZAR ANCHO COMPLETO */
+        margin-bottom: 20px;
+    }
+    
+    /* Asegurar que el widget de jQuery UI ocupe el 100% en móvil */
+    #calendario-inicio-container .ui-datepicker, 
+    #calendario-fin-container .ui-datepicker {
+        width: 100% !important;
+        /* Reducir aún más el tamaño de fuente si es necesario para pantallas muy pequeñas */
+        font-size: 0.65em !important; 
+    }
+    
+    /* Ajuste para los encabezados de mes en móvil */
+    .ui-datepicker .ui-datepicker-header {
+        font-size: 1.1em;
+    }
+}
+
+/************************** diseño de calendario interno ***************/
+.ui-datepicker table {
+    width: 100% !important;
+    font-size: .8em !important;
+    border-collapse: collapse !important;
+    margin: -3px 0 -0.6em !important;
+}
+.ui-widget.ui-widget-content {
+   border: 1px solid #ffffff !important;
+}
+  .ui-datepicker .ui-datepicker-header {
+  background:#f8f9fc;
+  color: #4e73df;
+  }
+
+/*   .card shadow {
+    background-color: var(--card-background-color) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 10px 30px var(--shadow-color) !important;
+    overflow: hidden !important;
+    border: none !important;
+} */
+  
+/* === 2. Estilo de jQuery UI (Temática TOTAL COLD) === */
+.ui-datepicker {
+    /* Base de escritorio: más pequeño para caber */
+    font-size: 0.75em !important; 
+    width: 100% !important; /* Asegurar que ocupe el 100% de su 48% contenedor */
+    
+    /* Estilos estéticos de tu tema */
+    /* border: 1px solid #d1d3e2;  */
+    border: none;
+    border-radius: 0.35rem; 
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+.ui-datepicker-header {
+    background-color: #f8f9fc;
+    color: #4e73df;
+    border: none;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    color: #4e73df;
+    background-color: transparent;
+    border: none;
+    top: 6px;
+}
+
+.ui-datepicker th {
+    color: #6c757d;
+    font-weight: 500;
+    padding: 0.3em;
+}
+
+.ui-datepicker td span, 
+.ui-datepicker td a {
+    padding: 0.2em;
+    text-align: center;
+    border-radius: 0.25rem;
+}
+
+.ui-datepicker .ui-state-active {
+    background: #4e73df !important;
+    color: white !important;
+    font-weight: bold;
+    border: none;
+}
+
+/* Ajuste para los títulos de las tarjetas */
+.card-body h6.text-primary {
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-align: center;
+}

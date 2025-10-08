@@ -36,7 +36,7 @@ session_start();
           <div class="card-body">
               <!-- Listado -->
               <div class="table-responsive" id="listadoregistros">
-                  <table id="tbllistado" class="table table-bordered" width="100%" cellspacing="0">
+                  <table id="tbllistado" class="table table-bordered"  cellspacing="0">
                       <thead class="thead-light">
                           <tr>
                             <th>Foto</th>
@@ -110,7 +110,7 @@ session_start();
                         <div class="col-md-6 form-group input-group-new">
                         <label class="form-label">Apellido(*)</label>
                         <input type="text" class="form-control" name="apellido" id="apellido" 
-                        placeholder="Appellido(s)" required>
+                        placeholder="Apellido(s)" required>
                         </div>
                         <div class="col-md-6">
                         <label class="form-label">Teléfono(*)</label>
