@@ -6,14 +6,14 @@ if (!isset($_SESSION["nombre"])) {
   header("Location: login.php");
 } else {
   require 'header.php';
-  if ($_SESSION['administrador'] == 1) {
+  if ($_SESSION['administrador'] == 1 || $_SESSION['tecnico'] == 1)  {
     ?>
 
 <div class="container-fluid py-4">
 
 
 
-    <div class="contenedorboton">
+<!--     <div class="contenedorboton">
 
         <div class="m-0 font-weight-bold text-primary">
             <a href="#" id="btnagregar" onclick="mostrarform(true)" 
@@ -26,7 +26,7 @@ if (!isset($_SESSION["nombre"])) {
             </a>
         </div>
     </div>
-
+ -->
   <div class="row">
     <!-- Formulario Agregar Servicio -->
     <div class="col-lg-7 mb-4">
@@ -179,8 +179,8 @@ if (!isset($_SESSION["nombre"])) {
                     <div class="col-md-6">
                     <input type="text" class="form-control mb-2" placeholder="Modelo: ABCD123">
                     </div>
-
                     <div class="col-md-6">
+                     
                     <input type="text" class="form-control mb-2" placeholder="SN: 567891134">
                     </div>
                 </div>
@@ -189,7 +189,7 @@ if (!isset($_SESSION["nombre"])) {
           </div>
 
           <div class="mb-3">
-            <!-- <label class="form-label">Compresor</label> -->
+            <label class="form-label">Compresor</label>
             <div class="row align-items-center">
                     <div class="col-md-6">
                     <input type="text" class="form-control mb-2" placeholder="Modelo: WXYZ678">

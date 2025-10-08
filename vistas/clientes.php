@@ -6,7 +6,7 @@ if (!isset($_SESSION["nombre"])) {
     header("Location: login.php");
 } else {  
     require 'header.php';
-    if ($_SESSION['administrador'] == 1) {  
+    if ($_SESSION['administrador'] == 1 || $_SESSION['tecnico'] == 1) {  
 ?>
 <div class="container-fluid">
 

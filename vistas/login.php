@@ -58,6 +58,14 @@
                         </button>
                     </form>
 
+<!--                     <div class="form-group">
+                       <div class="form-check">
+                           <input type="checkbox" class="form-check-input" id="recordar-sesion">
+                           <label class="form-check-label" for="recordar-sesion">
+                               Mantener sesión iniciada
+                           </label>
+                       </div>
+                   </div> -->
                     <hr>
 <!--                     <div class="text-center">
                         <a class="small letrasA" href="registro.php">Crea tu cuenta</a>
@@ -65,6 +73,7 @@
                     <div class="text-center">
                         <a class="small letrasA" href="contraseña.php">¿Olvidaste la contraseña?</a>
                     </div>
+
                 </div>
             </div>
         </div>

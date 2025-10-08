@@ -36,19 +36,41 @@ $(document).ready(function() {
 
         $.post("../ajax/usuarios.php?op=verificar", { 
             "correo": $("#emailusuario").val(), 
-            "password": $("#clavea").val() 
+            "password": $("#clavea").val() ,
+            "recordar": true // Forzamos a true para probar
+
         }, function(data) {
             const elapsed = Date.now() - startTime;
             const remaining = Math.max(minDuration - elapsed, 0);
 
             setTimeout(function() {
                 $("#loading-spinner").fadeOut(200);
-                if (data != "null") {
+/*                 if (data != "null") {
                     console.log("✅ Login correcto:", data);
                     window.location.href = "usuarios.php";
                 } else {
                     console.log("❌ Credenciales incorrectas");
-                }
+                } */
+                    try {
+                        // Intentar parsear como JSON
+                        let response;
+                        if (typeof data === 'string') {
+                            response = JSON.parse(data);
+                        } else {
+                            response = data;
+                        }
+                        
+                        if (response.status === 'ok') {
+                            console.log("✅ Login correcto, redirigiendo...");
+                            window.location.href = "usuarios.php";
+                        } else {
+                            console.log("❌ Error:", response.msg);
+                            alert("Error: " + (response.msg || 'Credenciales incorrectas'));
+                        }
+                    } catch (e) {
+                        console.log("❌ Error parseando respuesta:", e, "Data:", data);
+                        alert("Error en la respuesta del servidor");
+                    }
             }, remaining);
             
         }).fail(function() {

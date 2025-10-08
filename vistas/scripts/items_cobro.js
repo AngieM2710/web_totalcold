@@ -2,9 +2,9 @@ var tabla;
 
 //Función que se ejecuta al inicio
 function init(){
-	mostrarform(false);
+	/* mostrarform(false); */
 	listar();
-    capturarimg();
+
 	$("#formulario").on("submit",function(e){
 		guardaryeditar(e);	
 	})
@@ -12,35 +12,19 @@ function init(){
 
 function limpiar()
 {
-    $("#id_usuarios").val("");
-    $("#nombre").val("");
-    $("#apellido").val("");
-    $("#correo").val("");
-    $("#password").val("");
-    $("#telefono").val("");
-    $("#estado").val("1");
-   $("#imagenmuestra").attr("src","img/default-user.png");
-    $("#imagen").val("");
-    $("#imagenactual").val("");
+    $("#id_servicios").val("");
+	$("#nombre").val("");
 }
 
-function mostrarform(flag)
-{
-	if (flag)
-	{
-		$("#listadoregistros").hide();
-		$("#formularioregistros").show();
-		$("#btnGuardar").prop("disabled",false);
-		$("#btnagregar").hide();
-		$("#btnreporte").hide();
-	}
-	else
-	{
-		$("#listadoregistros").show();
-		$("#formularioregistros").hide();
-		$("#btnagregar").show();
-		$("#btnreporte").show();
-	}
+function abrirModal1(tipo) {
+
+  limpiar();
+  if (tipo === "agregar") {
+    $("#modalTitle").text("Registro de Servicio");
+    var modal = new bootstrap.Modal(document.getElementById("modal"));
+    modal.show();
+  }
+
 }
 
 //Función Listar
@@ -54,10 +38,12 @@ function mostrarform(flag)
         "dom": '<"row"<"col-sm-9"l><"col-sm-3"f>>rtip', 
 		"ajax":
 				{
-					url: '../ajax/tecnicos.php?op=listar',
+					url: '../ajax/items_cobro.php?op=listar',
 					type : "get",
 					dataType : "json",						
-					error: function(e){	console.log(e.responseText);}
+					error: function(e){
+						console.log(e.responseText);	
+					}
 				},
 		"language": {
             "lengthMenu": "Mostrar : _MENU_ registros",
@@ -92,6 +78,7 @@ function mostrarform(flag)
 
 
 
+
 function guardaryeditar(e)
 {
 	e.preventDefault(); 
@@ -99,7 +86,7 @@ function guardaryeditar(e)
 	var formData = new FormData($("#formulario")[0]);
 
 	$.ajax({
-		url: "../ajax/tecnicos.php?op=guardaryeditar",
+		url: "../ajax/items_cobro.php?op=guardaryeditar",
 	    type: "POST",
 	    data: formData,
 	    contentType: false,
@@ -121,83 +108,44 @@ function guardaryeditar(e)
                     confirmButton.style.padding = '10px 24px';
                 }
             });         
-	          mostrarform(false);
-	          tabla.ajax.reload();
-              limpiar();
-	    }
+            //  Cerrar el modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+            if (modal) {
+                modal.hide();
+            }
+
+	        //   mostrarform(false);
+	        tabla.ajax.reload();
+            limpiar();
+
+            $("#btnGuardar").prop("disabled", false);
+            }
+            
 
 	});
-	
+	limpiar();
 }
-function capturarimg(){
 
-document.addEventListener('DOMContentLoaded', function() {
-    const imagenInput = document.getElementById("imagen");
-    const imagenMuestra = document.getElementById("imagenmuestra");
-    const fileName = document.getElementById("file-name");
-    
-    if (imagenInput && imagenMuestra) {
-        imagenInput.addEventListener("change", function(e) {
-            const file = e.target.files[0];
-            
-            if (file) {
-                // Validar tipo de archivo
-                const validTypes = ['image/jpeg', 'image/jpg', 'image/png'];
-                if (!validTypes.includes(file.type)) {
-                    Swal.fire('Error', 'Solo se permiten imágenes JPG, JPEG o PNG', 'error');
-                    this.value = '';
-                    return;
-                }
-                
-                // Validar tamaño (max 2MB)
-                if (file.size > 2 * 1024 * 1024) {
-                    Swal.fire('Error', 'La imagen no debe superar los 2MB', 'error');
-                    this.value = '';
-                    return;
-                }
-                
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    imagenMuestra.src = event.target.result;
-                    fileName.textContent = file.name;
-                    fileName.style.color = '#28a745';
-                };
-                reader.readAsDataURL(file);
-            } else {
-                imagenMuestra.src = "img/default-user.png";
-                fileName.textContent = 'Ningún archivo seleccionado';
-                fileName.style.color = '#666';
-            }
-        });
-    }
-});
-}
-function mostrar(id_usuarios)
+function mostrar(id_servicios)
 {
-	$.post("../ajax/tecnicos.php?op=mostrar",{id_usuarios : id_usuarios}, function(data, status)
+	$.post("../ajax/items_cobro.php?op=mostrar",{id_servicios : id_servicios}, function(data, status)
 	{
-		data = JSON.parse(data);
-        console.log(data);	
-		mostrarform(true);
+		data = JSON.parse(data);		
+		/* mostrarform(true); */
         // Poner valores en el form
-        $("#id_usuarios").val(data.id_usuarios);
-        $("#nombre").val(data.nombre);
-        $("#apellido").val(data.apellido);
-        $("#correo").val(data.correo);
-        /* $("#password").val(""); */
-        $("#password").val(data.password);
-        $("#telefono").val(data.telefono);
-        $("#estado").val(data.estado);
-        $("#imagenmuestra").show();
-        $("#imagenmuestra").attr("src","../files/usuarios/tecnicos/"+data.imagen);
-        $("#imagenactual").val(data.imagen);
+		$("#id_servicios").val(data.id_servicios);
+		$("#nombre").val(data.nombre);
+        
+        $("#modalTitle").text("Editar Servicio");
+        var modal = new bootstrap.Modal(document.getElementById("modal"));
+        modal.show();
  	});
 }
 
-function desactivar(id_usuarios)
+function desactivar(id_servicios)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de desactivar el técnico?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de desactivar la categoría?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -221,9 +169,9 @@ function desactivar(id_usuarios)
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            $.post("../ajax/tecnicos.php?op=desactivar", {id_usuarios: id_usuarios}, function(e) {
+            $.post("../ajax/items_cobro.php?op=desactivar", {id_servicios: id_servicios}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Técnico desactivado!</span>',
+                    title: '<span style="font-size: 24px;">Categoría desactivada!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -240,7 +188,7 @@ function desactivar(id_usuarios)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Técnico no se desactivó</span>',
+                title: '<span style="font-size: 24px;">Categoría no se desactivó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
@@ -258,10 +206,10 @@ function desactivar(id_usuarios)
 }
 
 //Función para activar registros
-function activar(id_usuarios)
+function activar(id_servicios)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de activar el técnico?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de activar la categoría?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -285,9 +233,9 @@ function activar(id_usuarios)
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            $.post("../ajax/tecnicos.php?op=activar", {id_usuarios: id_usuarios}, function(e) {
+            $.post("../ajax/items_cobro.php?op=activar", {id_servicios: id_servicios}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Técnico activado!</span>',
+                    title: '<span style="font-size: 24px;">Categoría activada!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -304,7 +252,7 @@ function activar(id_usuarios)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Técnico no se activó</span>',
+                title: '<span style="font-size: 24px;">Categoría no se activó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
@@ -321,11 +269,29 @@ function activar(id_usuarios)
     });
 }
 
+/* function mostrarform(flag)
+{
+	if (flag)
+	{
+		$("#listadoregistros").hide();
+		$("#formularioregistros").show();
+		$("#btnGuardar").prop("disabled",false);
+		$("#btnagregar").hide();
+		$("#btnreporte").hide();
+	}
+	else
+	{
+		$("#listadoregistros").show();
+		$("#formularioregistros").hide();
+		$("#btnagregar").show();
+		$("#btnreporte").show();
+	}
+} */
 //Función cancelarform
-function cancelarform()
+/* function cancelarform()
 {
 	limpiar();
 	mostrarform(false);
-}
+} */
 
 init();

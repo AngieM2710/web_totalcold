@@ -7,7 +7,6 @@ require_once "../modelos/Categorias.php";
 $cat= new Categorias();
 
 $id_servicios  = isset($_POST["id_servicios"])? limpiarCadena($_POST["id_servicios"]):"";
-$id_categoria = isset($_POST["id_categoria"])? limpiarCadena($_POST["id_categoria"]):"";
 $descripcion = isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]):"";
 $estado = isset($_POST["estado"])? limpiarCadena($_POST["estado"]):"";
 
