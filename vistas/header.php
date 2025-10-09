@@ -31,16 +31,16 @@ include 'menu_items.php';
 
 </head>
 
-    <body id="page-top">
-    <div id="wrapper">
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<body id="page-top">
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="usuarios.php">
-                <div class="sidebar-brand-icon">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="usuarios.php">
+            <div class="sidebar-brand-icon">
                 <img src="../public/img/imagenes/lg.png" class="tamimg" alt="">
-                </div>
-                <div class="sidebar-brand-text mx-3"> TOTAL COLD<sup></sup></div>
-            </a>
+            </div>
+            <div class="sidebar-brand-text mx-3"> TOTAL COLD<sup></sup></div>
+        </a>
 
             
             <?php if (!empty($menuItems)): ?>
@@ -66,45 +66,42 @@ include 'menu_items.php';
                 <?php endforeach; ?>
             <?php endif; ?>
 
-            
-           <!--  <hr class="sidebar-divider d-none d-md-block"> -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
-        </ul>
+    </ul>
 
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <ul class="navbar-nav ml-auto">
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <li class="nav-item dropdown no-arrow menu">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre'] . " " . $_SESSION['apellido'];?></span>
-                                <img class="img-profile rounded-circle" src="<?php echo $ruta. $_SESSION['imagen']; ?>">
-                                
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <ul class="navbar-nav ml-auto">
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="nav-item dropdown no-arrow menu">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre'] . " " . $_SESSION['apellido'];?></span>
+                            <img class="img-profile rounded-circle" src="<?php echo $ruta. $_SESSION['imagen']; ?>">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="editarperfil.php">
+                                <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="editarperfil.php">
-                                    <i class="fas fa-user-cog fa-sm fa-fw mr-2 text-gray-400"></i> Perfil
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../ajax/usuario.php?op=salir" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesión
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../ajax/usuario.php?op=salir" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i> Cerrar sesión
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
 
-                <!-- Resto del código permanece igual -->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
+            <!-- Resto del código permanece igual -->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
                 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog " role="document">
@@ -125,25 +122,22 @@ include 'menu_items.php';
                 </div>
 
 
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+            <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.0/i18n/datepicker-es.min.js"></script>
 
+            <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-                <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.0/i18n/datepicker-es.min.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
+            <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="../public/js/sb-admin-2.min.js"></script>
 
-                <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-
-                <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
-                <script src="../public/js/sb-admin-2.min.js"></script>
-
-                <script src="../public/vendor/datatables/jquery.dataTables.min.js"></script>
-                <script src="../public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-                <script src="../public/js/demo/datatables-demo.js"></script>
+            <script src="../public/vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="../public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <script src="../public/js/demo/datatables-demo.js"></script>
 
 <!--                 <script src="../public/vendor/jquery/jquery.min.js"></script>
                 <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -186,8 +180,8 @@ include 'menu_items.php';
                     if (currentUrl === 'escritorio.php') {
                     document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
                     }
-                    });
-                </script>
+                });
+            </script>
 
-    </body>
+</body>
 </html>
