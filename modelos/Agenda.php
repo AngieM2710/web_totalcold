@@ -31,7 +31,7 @@ Class Agenda
             equipo_orden eo,
             equipos e,
             equipo_servicio es,
-            items i
+            servicios i
 
         WHERE 
             o.id_cliente = c.id_cliente -- 1. Orden y Cliente

@@ -1,10 +1,10 @@
 <?php
 ob_start();
-if (strlen(session_id()) < 1){
-    session_start();//Validamos si existe o no la sesión
+if (strlen(session_id()) < 1) {
+    session_start(); //Validamos si existe o no la sesión
 }
 require_once "../modelos/Agenda.php";
-$agenda= new Agenda();
+$agenda = new Agenda();
 
 /* $id_orden = isset($_POST["od_orden"])? limpiarCadena($_POST["id_ps"]):"";
 $id_cat = isset($_POST["id_cat"])? limpiarCadena($_POST["id_cat"]):"";
@@ -12,38 +12,39 @@ $descripcion = isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]
 $precio_venta = isset($_POST["precio_venta"])? limpiarCadena($_POST["precio_venta"]):"";
 $imagenprod = isset($_POST["imagenprod"])? limpiarCadena($_POST["imagenprod"]):"";
  */
-switch ($_GET["op"]){
+switch ($_GET["op"]) {
 
-        case 'listarcard':
-            $rspta = $agenda->listar(); // usa tu función listar() del modelo
-            $data = array();
+    case 'listarcard':
+        $rspta = $agenda->listar();
+        $data = array();
 
-            while ($reg = $rspta->fetch_object()) {
-                // Determinar la etiqueta de estado
-                $estado_label = '';
-                switch (strtolower($reg->estado_orden)) {
-                    case 'pendiente':
-                        $estado_label = '<span class="card-status pendiente">Pendiente</span>';
-                        break;
-                    case 'en_curso':
-                        $estado_label = '<span class="card-status encurso">En Curso</span>';
-                        break;
-                    case 'terminado':
-                        $estado_label = '<span class="card-status terminado">Terminado</span>';
-                        break;
-                    default:
-                        $estado_label = '<span class="card-status desconocido">Desconocido</span>';
-                }
-                $data[] = array(
-                    "hora" => date("h:i A", strtotime($reg->fecha)), // asegúrate que tu campo de hora exista
-                    "cliente" => $reg->nombre_cliente,
-                    "servicio" => $reg->servicio,
-                    "estado" => $estado_label
-                );
+        while ($reg = $rspta->fetch_object()) {
+            // Determinar la etiqueta de estado según valor 0 o 1
+            $estado_label = '';
+            if ($reg->estado_orden == 0) {
+                $estado_label = '<span class="card-status pendiente">Pendiente</span>';
+            } elseif ($reg->estado_orden == 1) {
+                $estado_label = '<span class="card-status terminado">Terminado</span>';
+            } else {
+                $estado_label = '<span class="card-status desconocido">Desconocido</span>';
             }
-            echo json_encode(["aaData" => $data]);
+
+            // Si tienes un campo fecha/hora separado, ajusta aquí
+            $hora = isset($reg->fecha) ? date("h:i A", strtotime($reg->fecha)) : '';
+            $fecha = isset($reg->fecha) ? date("d/m/Y", strtotime($reg->fecha)) : '';
+
+            $data[] = array(
+                "fecha" => $fecha,
+                "hora" => $hora,
+                "cliente" => $reg->nombre_cliente,
+                "servicio" => $reg->servicio,
+                "estado" => $estado_label
+            );
+        }
+
+        echo json_encode(["aaData" => $data]);
         break;
-/*         case 'listarcard':
+        /*         case 'listarcard':
             $rspta = $agenda->lista();
             $data = array(); 
         
@@ -71,7 +72,5 @@ switch ($_GET["op"]){
         
             echo json_encode($results);
             break; */
-
 }
 ob_end_flush();
-?>
