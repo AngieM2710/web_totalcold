@@ -14,7 +14,7 @@ if (!isset($_SESSION["nombre"])) {
                 <div class="col-lg-7 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <h4 class="mb-4">Agregar Nuevo Servicio</h4>
+                            <h4 class="mb-4">Cambios Agregar Nuevo Servicio</h4>
                             <form>
                                 <div class="mb-3">
                                     <div class="row align-items-center">
