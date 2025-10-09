@@ -6,7 +6,7 @@ if (!isset($_SESSION["nombre"])) {
     header("Location: login.php");
 } else {
     require 'header.php';
-    if ($_SESSION['administrador'] == 1 || $_SESSION['tecnico'] == 1)  {
+    if ($_SESSION['administrador'] == 1) {
         ?>
         <div class="container-fluid py-4">
             <div class="row">
@@ -27,42 +27,42 @@ if (!isset($_SESSION["nombre"])) {
                                     </div>
                                 </div>
 
-                            <div class="mb-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-3">
-                                        <label class="form-label mb-0">Técnico(s) Asignado:</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <select id="id_tec" name="id_tec" class="form-control selectpicker" data-live-search="true" style="width: 100%;" required></select>
+                                <div class="mb-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <label class="form-label mb-0">Técnico(s) Asignado:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select id="id_tec" name="id_tec" class="form-control selectpicker" data-live-search="true" style="width: 100%;" required></select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-3">
-                                        <label class="form-label">Fecha y Hora</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <input type="datetime-local" class="form-control">
+                                <div class="mb-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <label class="form-label">Fecha y Hora</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="datetime-local" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="mb-3">
-                                <div class="row align-items-center">
-                                    <div class="col-md-3">
-                                        <label class="form-label mb-0">Estado del Servicio Técnico :</label>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <select class="form-control selectpicker" id="estadoServicio">
-                                            <option value="">Seleccione...</option>
-                                            <option value="Pendiente">Pendiente</option>
-                                            <option value="Terminado">Terminado</option>
-                                        </select>
+                                <div class="mb-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <label class="form-label mb-0">Estado del Servicio Técnico :</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control selectpicker" id="estadoServicio">
+                                                <option value="">Seleccione...</option>
+                                                <option value="Pendiente">Pendiente</option>
+                                                <option value="Terminado">Terminado</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
                                 
