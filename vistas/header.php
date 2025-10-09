@@ -42,27 +42,29 @@ include 'menu_items.php';
             <div class="sidebar-brand-text mx-3"> TOTAL COLD<sup></sup></div>
         </a>
 
-        <?php if (!empty($menuItems)): ?>
-            <?php foreach ($menuItems as $index => $menu): ?>
-                <li class="nav-item menu <?= in_array($currentPage, $menu['pages']) ? 'active' : '' ?>">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" 
-                       data-target="#collapse<?= $index ?>" aria-expanded="true">
-                        <i class="fas fa-fw <?= $menu['icon'] ?>"></i>
-                        <span><?= $menu['title'] ?></span>
-                    </a>
+            
+            <?php if (!empty($menuItems)): ?>
+                <?php foreach ($menuItems as $index => $menu): ?>
+                    <li class="nav-item menu <?= in_array($currentPage, $menu['pages']) ? 'active' : '' ?>">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" 
+                        data-target="#collapse<?= $index ?>" aria-expanded="true">
+                            <i class="fas fa-fw <?= $menu['icon'] ?>"></i>
+                            <span><?= $menu['title'] ?></span>
+                        </a>
 
-                    <div id="collapse<?= $index ?>" class="collapse" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded divtransparente">
-                            <?php foreach ($menu['submenu'] as $item): ?>
-                                <a class="collapse-item <?= ($currentPage == $item['href']) ? 'active' : '' ?>" href="<?= $item['href'] ?>">
-                                    <i class="fas fa-fw <?= $item['icon'] ?>"></i> <?= $item['text'] ?>
-                                </a>
-                            <?php endforeach; ?>
+                        <div id="collapse<?= $index ?>" class="collapse" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded divtransparente">
+                                <?php foreach ($menu['submenu'] as $item): ?>
+                                    <a class="collapse-item <?= ($currentPage == $item['href']) ? 'active' : '' ?>" href="<?= $item['href'] ?>">
+                                        <i class="fas fa-fw <?= $item['icon'] ?>"></i> <?= $item['text'] ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            <?php endforeach; ?>
-        <?php endif; ?>
+                    </li>
+                    <hr class="sidebar-divider d-none d-md-block">
+                <?php endforeach; ?>
+            <?php endif; ?>
 
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -101,23 +103,24 @@ include 'menu_items.php';
                 <i class="fas fa-angle-up"></i>
             </a>
 
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog " role="document">
-                    <div class="modal-content stilemodal">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Listo para irte?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body modal-body2">Confirma para cerrar la sesión</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary botonR" type="button" data-dismiss="modal">Cancelar</button>
-                            <a class="btn btn-primary botonS" href="../ajax/usuarios.php?op=salir">Cerrar sesión</a>
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content stilemodal">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">¿Listo para irte?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body modal-body2">Confirma para cerrar la sesión</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary botonR" type="button" data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-primary botonS" href="../ajax/usuarios.php?op=salir">Cerrar sesión</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
@@ -136,27 +139,46 @@ include 'menu_items.php';
             <script src="../public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
             <script src="../public/js/demo/datatables-demo.js"></script>
 
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
+<!--                 <script src="../public/vendor/jquery/jquery.min.js"></script>
+                <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+                <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <script src="../public/js/sb-admin-2.min.js"></script>
+                <script src="../public/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="../public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+                <script src="../public/js/demo/datatables-demo.js"></script>
+ -->
+<!--                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+                <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.0/i18n/datepicker-es.min.js"></script> -->
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
                     let currentUrl = window.location.pathname.split("/").pop();
 
                     let menuItems = document.querySelectorAll(".nav-link, .collapse-item");
                     menuItems.forEach(item => {
-                        if (item.getAttribute("href") === currentUrl) {
-                            item.classList.add("active");
-                            let parentCollapse = item.closest(".collapse");
-                            if (parentCollapse) {
-                                parentCollapse.classList.add("show");
-                                let parentLink = document.querySelector(`[data-target="#${parentCollapse.id}"]`);
-                                if (parentLink) {
-                                    parentLink.closest('.nav-item').classList.add("active");
-                                }
-                            }
-                        }
+                    if (item.getAttribute("href") === currentUrl) {
+                    item.classList.add("active");
+                    let parentCollapse = item.closest(".collapse");
+                    if (parentCollapse) {
+                    parentCollapse.classList.add("show");
+                    let parentLink = document.querySelector(`[data-target="#${parentCollapse.id}"]`);
+                    if (parentLink) {
+                    parentLink.closest('.nav-item').classList.add("active");
+                    }
+                    }
+                    }
                     });
 
+                    // Si estás en 'escritorio.php', asegúrate de que solo ese enlace esté activo
                     if (currentUrl === 'escritorio.php') {
-                        document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
+                    document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
                     }
                 });
             </script>
