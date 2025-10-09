@@ -147,8 +147,11 @@ include 'menu_items.php';
 
 <!--                 <script src="../public/vendor/jquery/jquery.min.js"></script>
                 <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
                 <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
                 <script src="../public/js/sb-admin-2.min.js"></script>
                 <script src="../public/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -179,6 +182,7 @@ include 'menu_items.php';
                     }
                     });
 
+                    // Si estás en 'escritorio.php', asegúrate de que solo ese enlace esté activo
                     if (currentUrl === 'escritorio.php') {
                     document.querySelectorAll(".nav-item").forEach(item => item.classList.remove("active"));
                     }
