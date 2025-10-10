@@ -82,7 +82,7 @@ function abrirModal1(tipo) {
         },
 		"bDestroy": true,
 		"iDisplayLength": 10,
-	    "order": [[ 0, "desc" ]]
+	    "order": [[ 0, "asc" ]]
 	}).DataTable();
 } 
 

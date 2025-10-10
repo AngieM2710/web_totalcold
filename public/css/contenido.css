@@ -8,11 +8,11 @@ body {
 /* ====== TITULOS ====== */
 .letrastitulo {
   font-weight: 600;
-  color: #2c3e50;
+  color: #4e73e0  !important;
   margin-bottom: 1.5rem;
-  border-left: 4px solid #4a90e2; /* Azul corporativo */
+  border-left: 4px solid #4e73e0; /* Azul corporativo */
   padding-left: 10px;
-  margin-bottom: 21px !important;
+  margin-bottom: 12px !important;
 }
 
 /* ====== CARDS ====== */
@@ -20,8 +20,9 @@ body {
   border-radius: 15px;
   /* border: 2px solid #e0e6ed; */
   background: #fff;
+  /* box-shadow: 0 1px 4px var(--shadow-color) !important; */
   box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
-/*    box-shadow: 0 10px 30px var(--shadow-color) !important; */
+  /*  box-shadow: 0 10px 30px var(--shadow-color) !important; */
   transition: transform 0.2s ease-in-out;
   overflow: hidden !important;
     border: none !important;
@@ -404,6 +405,12 @@ body {
     color: white !important;
     font-weight: bold;
     border: none;
+}
+
+.ui-state-highlight{
+    border: 1px solid #4e73df !important;
+    background: #0dbced29 !important;
+    color: #0b4071 !important;
 }
 
 /* Ajuste para los títulos de las tarjetas */

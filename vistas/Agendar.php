@@ -96,16 +96,21 @@ if (!isset($_SESSION["nombre"])) {
  
                 <!-- Panel lateral derecho -->
                 <div class="col-lg-5">
-                    <!-- Agenda del día -->
-                    <div class="card shadow-sm mb-4 contendorprinc">
-                        <div class="card-body">
-                            <h6 class="mb-3">Agenda del Día</h6>
-                            <input type="date" class="form-control mb-3">
-                            <ul class="list-group">
-                                <li class="list-group-item">9:00 AM - Juan Ortega - Pendiente</li>
-                            </ul>
-                        </div>
-                    </div>
+<!-- Agenda del día -->
+<div class="card shadow-sm mb-4 contendorprinc">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h6 class="mb-0">Agenda del Día</h6>
+      <i class="fas fa-calendar-day text-primary"></i>
+    </div>
+
+    <input type="date" id="fechaAgenda" class="form-control mb-3">
+
+    <div id="listaAgenda" class="list-group small">
+      <div class="text-center text-muted py-2">Selecciona una fecha...</div>
+    </div>
+  </div>
+</div>
 
                     <!-- Detalle Equipos -->
                     <div class="card shadow-sm mb-4 contendorprinc">
@@ -266,7 +271,7 @@ if (!isset($_SESSION["nombre"])) {
 <script type="text/javascript" src="scripts/Agendar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
+<!-- <script>
 // --- Manejo de equipos ---
 const equiposContainer = document.getElementById('equiposContainer');
 const saveEquipoBtn = document.getElementById('saveEquipo');
@@ -372,7 +377,7 @@ addServicioOrdenBtn.addEventListener('click', () => {
     }
 });
 </script>
-
+ -->
 <?php
 }
 ob_end_flush();
