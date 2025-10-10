@@ -11,7 +11,7 @@ Class Items
 	{	}
 
 	public function listar(){
-		$sql="SELECT * FROM items_cobro ";
+		$sql="SELECT * FROM items_cobro Order by id_servicios";
 		return ejecutarConsulta($sql);		
 	}
 
@@ -27,8 +27,8 @@ Class Items
 		return ejecutarConsulta($sql);
 	}
 
-	public function editar($id_item_cobro,$nombre)	{
-		$sql="UPDATE items_cobro SET nombre ='$descripcion'
+	public function editar($id_item_cobro,$id_servicios,$nombre)	{
+		$sql="UPDATE items_cobro SET nombre ='$nombre',id_servicios='$id_servicios'
 		WHERE id_item_cobro='$id_item_cobro'";
 		return ejecutarConsulta($sql);
 	}

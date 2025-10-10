@@ -1,10 +1,20 @@
 var tabla;
 
+function cargarServicios(){
+    
+    $.post("../ajax/categorias.php?op=selectServicios", function(r){ 
+        let opciones = '<option value="">Servicios</option>' + r;
+            $("#id_servicios").html(opciones);// cargamos las opciones
+            $('#id_servicios').selectpicker('refresh');// refrescamos bootstrap-select
+            console.log("opciones cargadas:", opciones); // Verificar las opciones cargadas
+    });
+}
+
 //Función que se ejecuta al inicio
 function init(){
 	/* mostrarform(false); */
 	listar();
-
+    cargarServicios();
 	$("#formulario").on("submit",function(e){
 		guardaryeditar(e);	
 	})
@@ -126,23 +136,27 @@ function guardaryeditar(e)
 	limpiar();
 }
 
-function mostrar(id_servicios)
+function mostrar(id_item_cobro)
 {
-	$.post("../ajax/items_cobro.php?op=mostrar",{id_servicios : id_servicios}, function(data, status)
+	$.post("../ajax/items_cobro.php?op=mostrar",{id_item_cobro : id_item_cobro}, function(data, status)
 	{
 		data = JSON.parse(data);		
 		/* mostrarform(true); */
         // Poner valores en el form
 		$("#id_servicios").val(data.id_servicios);
+        $("#id_item_cobro").val(data.id_item_cobro);
 		$("#nombre").val(data.nombre);
+
+        $("#id_servicios").selectpicker('refresh');// refrescamos bootstrap-select
         
         $("#modalTitle").text("Editar Servicio");
         var modal = new bootstrap.Modal(document.getElementById("modal"));
+        console.log("Datos mostrados para id_item_cobro:", id_item_cobro);
         modal.show();
  	});
 }
 
-function desactivar(id_servicios)
+function desactivar(id_item_cobro)
 {
 	Swal.fire({
         title: '<span style="font-size: 24px;">¿Está seguro de desactivar la categoría?</span>',
@@ -169,7 +183,7 @@ function desactivar(id_servicios)
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            $.post("../ajax/items_cobro.php?op=desactivar", {id_servicios: id_servicios}, function(e) {
+            $.post("../ajax/items_cobro.php?op=desactivar", {id_item_cobro: id_item_cobro}, function(e) {
                 Swal.fire({
                     title: '<span style="font-size: 24px;">Categoría desactivada!</span>',
                     text: "",
@@ -206,7 +220,7 @@ function desactivar(id_servicios)
 }
 
 //Función para activar registros
-function activar(id_servicios)
+function activar(id_item_cobro)
 {
 	Swal.fire({
         title: '<span style="font-size: 24px;">¿Está seguro de activar la categoría?</span>',
@@ -233,7 +247,7 @@ function activar(id_servicios)
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            $.post("../ajax/items_cobro.php?op=activar", {id_servicios: id_servicios}, function(e) {
+            $.post("../ajax/items_cobro.php?op=activar", {id_item_cobro: id_item_cobro}, function(e) {
                 Swal.fire({
                     title: '<span style="font-size: 24px;">Categoría activada!</span>',
                     text: "",

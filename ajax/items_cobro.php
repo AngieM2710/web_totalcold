@@ -38,28 +38,28 @@ switch ($_GET["op"]){
     break;
 
     case 'guardaryeditar':
-        if(empty($id_servicios)){
-            $rspta= $items->insertar($nombre);
+        if(empty($id_item_cobro)){
+            $rspta= $items->insertar($id_servicios,$nombre);
             echo $rspta ? "items registrada" : "No se pudo registrar la items";
         }
         else{
-            $rspta= $items->editar($id_servicios,$nombre);
+            $rspta= $items->editar($id_item_cobro,$id_servicios,$nombre);
             echo $rspta ? "items actualizada" : "No se pudo actualizar la items";
         }   
     break;
 
     case 'mostrar':
-		$rspta=$items->mostrar($id_servicios);
+		$rspta=$items->mostrar($id_item_cobro);
 		echo json_encode($rspta);
     break;
 
     case 'desactivar':
-            $rspta=$items->desactivar($id_servicios);
+            $rspta=$items->desactivar($id_item_cobro);
             echo $rspta ? "items desactivada" : "items no se puede desactivar";
     break;
 
     case 'activar':
-            $rspta=$items->activar($id_servicios);
+            $rspta=$items->activar($id_item_cobro);
             echo $rspta ? "items activada" : "items no se puede activar";
     break;
     
