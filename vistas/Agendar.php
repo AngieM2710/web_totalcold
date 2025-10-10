@@ -64,11 +64,19 @@ if (!isset($_SESSION["nombre"])) {
                                     </div>
                                 </div>
 
-
-                                
                                 <div class="mb-3">
-                                    <label class="form-label">Estado</label>
-                                    <input type="text" class="form-control" placeholder="Utilidad soporte">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <label class="form-label mb-0">Tipo de pago :</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control selectpicker" id="estadoServicio">
+                                                <option value="">Seleccione...</option>
+                                                <option value="Pendiente">Trasferencia</option>
+                                                <option value="Terminado">Efectivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
@@ -173,10 +181,41 @@ if (!isset($_SESSION["nombre"])) {
                     <div class="modal-body">
                         <p><strong>Equipo:</strong> <span id="detalleEquipo"></span></p>
                         <p><strong>Servicios:</strong> <span id="detalleServicios"></span></p>
+                        <div observaciones class="mb-3">
+                            <label class="form-label">Observaciones</label>
+                            <textarea class="form-control" rows="3"></textarea>    
+                        </div>
+
                         <!-- Aquí puedes agregar más detalles si es necesario -->
                         <div class="card-body">
-                            <h6 class="mb-3">Fotos de Instalación</h6>
-                            <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button>
+                            <!-- <h6 class="mb-3">Fotos de Instalación</h6>
+                            <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button> -->
+                            
+
+                    <div class="mb-3">
+                        
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <label class="form-label mb-0">Evaporador</label> <br>
+                                    <button class="btn btn-sm btn-outline-primary">Subir Foto</button>        
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label mb-0">Compresor</label> <br>
+                                    <button class="btn btn-sm btn-outline-primary">Subir Foto</button>
+                                </div>
+                            </div> <br><br>
+
+                            <div>
+                                <h6 class="mb-3">Fotos adicionales</h6>
+                                <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button>
+                            </div>
+                            
+                    </div>
+
+
+
+
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -200,15 +239,14 @@ if (!isset($_SESSION["nombre"])) {
                                 <tr>
                                     <th>Servicio</th>
                                     <th>Precio</th>
-                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
-                        <div class="input-group mt-2">
+                        <!-- <div class="input-group mt-2">
                             <input type="text" id="nuevoServicioOrden" class="form-control" placeholder="Agregar nuevo servicio">
                             <button class="btn btn-primary" id="addServicioOrden">Agregar</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -218,7 +256,8 @@ if (!isset($_SESSION["nombre"])) {
         </div>
 
         <?php
-    } else {
+    } 
+    else {
         require 'noacceso.php';
     }
     require 'footer.php';
@@ -295,12 +334,7 @@ function refrescarTablaServicios() {
         tr.innerHTML = `
             <td>${servicio.nombre}</td>
             <td><input type="number" class="form-control precioServicio" value="${servicio.precio}" min="0"></td>
-            <td><button class="btn btn-danger btn-sm removeServicio">Eliminar</button></td>
         `;
-        tr.querySelector('.removeServicio').addEventListener('click', () => {
-            serviciosOrden = serviciosOrden.filter(s => s.nombre !== servicio.nombre);
-            refrescarTablaServicios();
-        });
         tr.querySelector('.precioServicio').addEventListener('input', (e) => {
             servicio.precio = parseFloat(e.target.value) || 0;
         });

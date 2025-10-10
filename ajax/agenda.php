@@ -1,10 +1,10 @@
 <?php
 ob_start();
-if (strlen(session_id()) < 1){
-    session_start();//Validamos si existe o no la sesión
+if (strlen(session_id()) < 1) {
+    session_start(); //Validamos si existe o no la sesión
 }
 require_once "../modelos/Agenda.php";
-$agenda= new Agenda();
+$agenda = new Agenda();
 
 /* $id_orden = isset($_POST["od_orden"])? limpiarCadena($_POST["id_ps"]):"";
 $id_cat = isset($_POST["id_cat"])? limpiarCadena($_POST["id_cat"]):"";
@@ -12,7 +12,7 @@ $descripcion = isset($_POST["descripcion"])? limpiarCadena($_POST["descripcion"]
 $precio_venta = isset($_POST["precio_venta"])? limpiarCadena($_POST["precio_venta"]):"";
 $imagenprod = isset($_POST["imagenprod"])? limpiarCadena($_POST["imagenprod"]):"";
  */
-switch ($_GET["op"]){
+switch ($_GET["op"]) {
 
 case 'listarcard':
     $rspta = $agenda->listar(); 
@@ -78,4 +78,3 @@ case 'listarcard':
 
 }
 ob_end_flush();
-?>

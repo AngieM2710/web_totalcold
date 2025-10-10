@@ -70,21 +70,32 @@ if (!isset($_SESSION["nombre"])) {
             <div class="modal-body">
                 <!-- Formulario original -->
                     <form name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="id_servicios" id="id_servicios">
+                        <input type="hidden" name="id_item_cobro" id="id_item_cobro">
                     
                     <div class="form-row">
 
+                        <div class="col-lg-12">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <label class="form-label mb-0">Categoria :</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <select class="form-control selectpicker" id="id_servicios" name="id_servicios" class="form-control selectpicker" data-live-search="true" required></select>
+                                </div>
+                            </div>
+                        </div> <br>
+            
                     <!-- Datos -->
                     <div class="col-lg-12">
                         <div class="row g-3">
                             <div class="col-md-12 form-group input-group-new">
-                            <label class="form-label"> Descripción del servicio (*)</label>
+                            <label class="form-label"> Descripción (*)</label>
                                 <input type="text" 
                                         class="form-control shadow-sm" 
-                                        name="descripcion" 
-                                        id="descripcion" 
+                                        name="nombre" 
+                                        id="nombre" 
                                         maxlength="100" 
-                                        placeholder="Categoría" 
+                                        placeholder="Item de cobro" 
                                         required>
                             </div>
                         </div>
