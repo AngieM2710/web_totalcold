@@ -22,7 +22,8 @@ Class Agenda
             i.descripcion AS servicio,
             CONCAT(t.nombre, ' ', t.apellido) AS nombre_tecnico,
             CONCAT(c.nombre, ' ', c.apellido) AS nombre_cliente,
-            o.estado AS estado_orden
+            o.estado AS estado_orden,
+            GROUP_CONCAT(DISTINCT i.descripcion SEPARATOR ', ') AS servicios
             -- Puedes agregar más campos de otras tablas si los necesitas individualmente
         FROM 
             orden o, 
@@ -45,7 +46,10 @@ Class Agenda
             eo.id_equipo_orden = es.id_equipo_orden -- 5. Orden/Equipo y Equipo_Servicio (Servicios dados a ese equipo en esa orden)
             AND
             -- 6. Equipo_Servicio y Items (Detalles del servicio)
-            es.id_servicios = i.id_servicios"; 
+            es.id_servicios = i.id_servicios
+            ORDER BY 
+            o.fecha ASC, o.id_orden ASC;";
+             
 		return ejecutarConsulta($sql);		
 	}
 
