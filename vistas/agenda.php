@@ -39,20 +39,6 @@ if (!isset($_SESSION["nombre"])) {
                     <div class="tab-content" id="tabCitasContent">
                       
                         <div class="tab-pane fade show active" id="lista" role="tabpanel">
-<!--                             <div class="list-group">
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                    09:00 AM - Cliente: Juan Pérez - Mantenimiento
-                                    <span class="card-status pendiente">Pendiente</span>
-                                </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                    11:30 AM - Cliente: Laura Rodríguez - Instalación
-                                    <span class="card-status encurso">En Curso</span>
-                                </div>
-                                <div class="list-group-item d-flex justify-content-between align-items-center">
-                                    02:00 PM - Cliente: Carlos Serviguz - Instalación
-                                    <span class="card-status terminado">Terminado</span>
-                                </div>
-                            </div> -->
                             <div class="list-group" id="listadoregistros">
                                   <!-- Aquí se insertarán dinámicamente las citas -->
                             </div>
@@ -65,7 +51,10 @@ if (!isset($_SESSION["nombre"])) {
                                 <table id="tbllistado" class="table table-bordered table-hover" width="100%" cellspacing="0">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>Descripción</th>
+                                        <th>Fecha-Hora</th>
+                                        <th>Cliente</th>
+                                        <th>Tecnico</th>
+                                        <th>Servicios</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                     </tr>
@@ -74,7 +63,10 @@ if (!isset($_SESSION["nombre"])) {
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Descripción</th>
+                                       <th>Fecha-Hora</th>
+                                        <th>Cliente</th>
+                                        <th>Tecnico</th>
+                                        <th>Servicios</th>
                                         <th>Estado</th>
                                         <th>Opciones</th>
                                     </tr>

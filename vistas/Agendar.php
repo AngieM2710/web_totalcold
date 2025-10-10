@@ -12,9 +12,9 @@ if (!isset($_SESSION["nombre"])) {
             <div class="row">
                 <!-- Formulario Agregar Servicio -->
                 <div class="col-lg-7 mb-4">
-                    <div class="card shadow-sm">
+                    <div class="card shadow-sm contendorprinc">
                         <div class="card-body">
-                            <h4 class="mb-4">Cambios Agregar Nuevo Servicio</h4>
+                            <h4 class="mb-4 letrastitulo"> Agregar Nuevo Servicio</h4>
                             <form>
                                 <div class="mb-3">
                                     <div class="row align-items-center">
@@ -89,7 +89,7 @@ if (!isset($_SESSION["nombre"])) {
                 <!-- Panel lateral derecho -->
                 <div class="col-lg-5">
                     <!-- Agenda del día -->
-                    <div class="card shadow-sm mb-4">
+                    <div class="card shadow-sm mb-4 contendorprinc">
                         <div class="card-body">
                             <h6 class="mb-3">Agenda del Día</h6>
                             <input type="date" class="form-control mb-3">
@@ -100,7 +100,7 @@ if (!isset($_SESSION["nombre"])) {
                     </div>
 
                     <!-- Detalle Equipos -->
-                    <div class="card shadow-sm mb-4">
+                    <div class="card shadow-sm mb-4 contendorprinc">
                         <div class="card-body">
                             <h6 class="mb-3">Detalle Equipos - Servicios</h6>
                             <div id="equiposContainer"></div>
