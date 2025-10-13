@@ -419,3 +419,94 @@ body {
     font-size: 14px;
     text-align: center;
 }
+
+/******** ITEMS DE COBROS ****************/
+#resumenServicios {
+  background: #f8f9fbee;
+  border: 1px solid #e2e6ea;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+#resumenServicios .servicio-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px dashed #d9dce2;
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+
+#resumenServicios .servicio-item:last-child {
+  border-bottom: none;
+}
+
+#resumenServicios .servicio-nombre {
+  font-weight: 500;
+}
+
+#resumenServicios .servicio-precio {
+  color: #4e73e1;
+  font-weight: 600;
+}
+
+#resumenServicios strong {
+  display: block;
+  margin-top: 10px;
+  padding-top: 6px;
+  /* border-top: 2px solid #e0e3e8; */
+  text-align: right;
+  font-size: 1rem;
+  color: #0d6efd;
+  font-weight: 700;
+}
+
+/****************** DETALLES DE EQUIPOS - SERVICIOS ****************/
+.equipo-item {
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  /* background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.25s, box-shadow 0.25s; */
+  border: 2px solid #82a2ff30;
+}
+
+/* .equipo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+ */
+.equipo-item h6 {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #4e73e1;   
+}
+
+.badge-servicio {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background-color: #f1c57640 !important;
+  padding: 6px;
+  color: #98722e !important;
+
+}
+
+.B {
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #82a2ff30;
+  color: #4e73e1;
+}
+

@@ -1,23 +1,22 @@
 var tabla;
     $(document).ready(function() {
-        init();
-    });
-    
-    function init(){
         if ($.datepicker.regional['es']) {
-            $.datepicker.setDefaults($.datepicker.regional['es']);
+        $.datepicker.setDefaults($.datepicker.regional['es']);
         }
         // Cuando cambian los calendarios sin presionar boton 
         $("#fechaInicioLogica, #fechaFinLogica").on("change", aplicarFiltro);
         // Cuando cambia técnico, cliente o estado
         $("#id_tec, #id_cli, #estadoFiltro").on("change", aplicarFiltro);
 
+        init();
+    });
+    
+    function init(){
         cargarClientes();
         cargarTecnicos();
         calendarios();
         listar();
         listartabla();
-        aplicarFiltro();
     }
 
     function cargarClientes(){
