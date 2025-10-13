@@ -11,7 +11,7 @@ Class Items
 	{	}
 
 	public function listar(){
-		$sql="SELECT * FROM items_cobro Order by id_servicios";
+		$sql="SELECT * FROM items_cobro Order by id_servicios ASC";
 		return ejecutarConsulta($sql);		
 	}
 
