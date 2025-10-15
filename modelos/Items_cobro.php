@@ -10,9 +10,24 @@ Class Items
 	public function __construct()
 	{	}
 
-	public function listar(){
+	/* public function listar(){
 		$sql="SELECT * FROM items_cobro Order by id_servicios";
 		return ejecutarConsulta($sql);		
+	} */
+	public function listar()
+	{
+		$sql="SELECT
+			ic.id_item_cobro,
+			ic.id_servicios,
+			ic.nombre,
+			ic.estado,
+			s.descripcion AS nombre_servicio  
+			FROM
+			items_cobro ic 
+			INNER JOIN
+			servicios s ON ic.id_servicios = s.id_servicios;";
+			
+		return ejecutarConsulta($sql); // O el método que uses para ejecutar consultas
 	}
 
 	public function mostrar($id_item_cobro){
