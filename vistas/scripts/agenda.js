@@ -147,9 +147,17 @@ function listar(filtros = {}) {
             if (response && response.aaData && response.aaData.length > 0) {
                 response.aaData.forEach(function(item) {
                     var card = `
-                        <div class="list-group-item d-flex justify-content-between align-items-center">
-                          ${item.fecha} - Hora: ${item.hora} - Cliente: ${item.cliente} - ${item.servicio} ${item.estado}
+                    <div class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="flex-grow-1">
+                        <span class="text-muted">${item.fecha} - Hora: ${item.hora}</span> -
+                        <strong>Cliente:</strong> ${item.cliente} -
+                        <strong>Servicio:</strong> ${item.servicio}
                         </div>
+                        <div class="d-flex align-items-center gap-2">
+                        ${item.estado} &nbsp;
+                        ${item.acciones}
+                        </div>
+                    </div>
                     `;
                     $('#listadoregistros').append(card);
                 });
@@ -169,10 +177,7 @@ function listar(filtros = {}) {
 {
 	tabla=$('#tbllistado').dataTable(
 	{
-		/* "lengthMenu": [[ 5, 10, 25, 75, 100],[5, 10, 25, 75, 100]],  */
-/* 		"aProcessing": true,
-	    "aServerSide": true,
-        "dom": '<"row"<"col-sm-9"l><"col-sm-3"f>>rtip',  */
+
 		"ajax":
 				{
 					url: '../ajax/agenda.php?op=listartab',
@@ -191,24 +196,13 @@ function listar(filtros = {}) {
                 "next": "Siguiente"
             },
         },
-        /* "initComplete": function() {
-            // Reemplaza el campo de búsqueda con uno personalizado (icono a la derecha)
-            $('.dataTables_filter').html(`
-                <div class="input-group">
-                    <input type="search" id="customSearch" class="form-control" placeholder="Buscar...">
-                    <span class="input-group-text">
-                        <i class="fas fa-search"></i>
-                    </span>
-                </div>
-            `);
 
-            // Vincula el campo de búsqueda personalizado con DataTables
-            $('#customSearch').on('keyup', function() {
-                tabla.search(this.value).draw(); // Actualiza la búsqueda en DataTables
-            });
-        }, */
 		"bDestroy": true,
 		"iDisplayLength": 10,
 	    "order": [[ 0, "desc" ]]
 	}).DataTable();
 } 
+
+function verDetalle(id) {
+    window.location.href = 'ordenes.php?id=' + id;
+}

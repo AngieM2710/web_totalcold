@@ -26,11 +26,11 @@ if (!isset($_SESSION["nombre"])) {
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="lista-tab" data-bs-toggle="tab" data-bs-target="#lista" type="button" role="tab">Lista de Citas</button>
                         </li>
-                        <li class="nav-item" role="presentation">
+<!--                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="tabla-tab" data-bs-toggle="tab" data-bs-target="#tabla" type="button" role="tab">Vista de Tabla</button>
-                        </li>
+                        </li> -->
                     </ul>
-                    <a href="Agendar.php"class="btn btn-sm btn-primary shadow-sm">
+                    <a href="ordenes.php"class="btn btn-sm btn-primary shadow-sm">
                         <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
                     </a>
                 </div>
@@ -46,7 +46,7 @@ if (!isset($_SESSION["nombre"])) {
 
 
                         <!-- Vista de Tabla -->
-                        <div class="tab-pane fade" id="tabla" role="tabpanel">
+                        <!-- <div class="tab-pane fade" id="tabla" role="tabpanel">
                             <div class="table-responsive" id="listadoregistros">
                                 <table id="tbllistado" class="table table-bordered table-hover" width="100%" cellspacing="0">
                                 <thead class="thead-light">
@@ -73,7 +73,7 @@ if (!isset($_SESSION["nombre"])) {
                                 </tfoot>
                             </table>
                             </div>
-                        </div>
+                        </div> -->
                     </div> <!-- /.tab-content -->
                 </div> <!-- /.card-body -->
             </div> <!-- /.card -->

@@ -46,12 +46,47 @@ switch ($_GET["op"]) {
                 "hora" => $hora,
                 "cliente" => $reg->nombre_cliente,
                 "servicio" => $reg->servicios,
-                "estado" => $estado_label
+                "estado" => $estado_label,
+                "acciones" => '
+                    <button  class="B"  onclick="verDetalle(' . $reg->id_orden . ')">
+                    <i class="fas fa-list"></i>
+                    </button >           '
+
             );
         }
 
         echo json_encode(["aaData" => $data]);
         //echo json_encode($data);
+        break;
+       
+        case 'obtenerDetalleOrden':
+            $id_orden = isset($_GET["id_orden"]) ? $_GET["id_orden"] : '';
+            $rspta = $agenda->obtenerDetalleOrden($id_orden);
+
+            $data = [];
+            while ($reg = $rspta->fetch_object()) {
+            $data[] = [
+                "id_orden" => $reg->id_orden,
+                "fecha" => $reg->fecha,
+                "id_cliente" => $reg->id_cliente,
+                "id_usuarios" => $reg->id_usuarios,
+                "direccion" => $reg->direccion,
+                "observaciones" => $reg->observaciones,
+                "costos" => $reg->costos,
+                "tipo_pago" => $reg->tipo_pago,
+                "estado_orden" => $reg->estado_orden,
+                "id_equipo" => $reg->id_equipo,
+                "marca" => $reg->marca,
+                "modelo" => $reg->modelo,
+                "capacidad" => $reg->capacidad,
+                "id_servicio" => $reg->id_servicios,
+                "servicio" => $reg->servicio,
+                "valor" => $reg->valor,
+                "id_detalle_orden"=>$reg->id_equipo_servicio
+            ];
+            }
+
+            echo json_encode(["detalle" => $data]);
         break;
 
         case 'listartab':
@@ -89,6 +124,8 @@ switch ($_GET["op"]) {
         
             echo json_encode($results);
     break;
+
+
             
 
 
