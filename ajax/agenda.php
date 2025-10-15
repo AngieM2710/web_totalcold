@@ -14,39 +14,55 @@ $imagenprod = isset($_POST["imagenprod"])? limpiarCadena($_POST["imagenprod"]):"
  */
 switch ($_GET["op"]) {
 
-case 'listarcard':
-    $rspta = $agenda->listar(); 
-    $data = array();
+    case 'listarcard':
+        $fecha_inicio = isset($_REQUEST["fechaInicio"]) ? $_REQUEST["fechaInicio"] : '';
+        $fecha_fin = isset($_REQUEST["fechaFin"]) ? $_REQUEST["fechaFin"] : '';
+        $id_tec = isset($_REQUEST["id_tec"]) ? $_REQUEST["id_tec"] : '';
+        $id_cli = isset($_REQUEST["id_cli"]) ? $_REQUEST["id_cli"] : '';
+        $estado = isset($_REQUEST["estado"]) ? $_REQUEST["estado"] : '';
 
-    while ($reg = $rspta->fetch_object()) {
-        // Determinar la etiqueta de estado según valor 0 o 1
-        $estado_label = '';
-        if ($reg->estado_orden == 0) {
-            $estado_label = '<span class="card-status pendiente">Pendiente</span>';
-        } elseif ($reg->estado_orden == 1) {
-            $estado_label = '<span class="card-status terminado">Terminado</span>';
-        } else {
-            $estado_label = '<span class="card-status desconocido">Desconocido</span>';
+
+        $rspta = $agenda->listar($fecha_inicio, $fecha_fin, $id_tec, $id_cli, $estado); 
+        $data = array();
+
+        while ($reg = $rspta->fetch_object()) {
+            // Determinar la etiqueta de estado según valor 0 o 1
+            $estado_label = '';
+            if ($reg->estado_orden == 0) {
+                $estado_label = '<span class="card-status label bg-red">Pendiente</span>';
+            } elseif ($reg->estado_orden == 1) {
+                $estado_label = '<span class="card-status bg-green">Terminado</span>';
+            } else {
+                $estado_label = '<span class="card-status desconocido">Desconocido</span>';
+            }
+
+            // Si tienes un campo fecha/hora separado, ajusta aquí
+            $hora = isset($reg->fecha) ? date("h:i A", strtotime($reg->fecha)) : '';
+            $fecha = isset($reg->fecha) ? date("d/m/Y", strtotime($reg->fecha)) : '';
+            
+            $data[] = array(
+                "id" => $reg->id_orden,
+                "fecha" => $fecha,
+                "hora" => $hora,
+                "cliente" => $reg->nombre_cliente,
+                "servicio" => $reg->servicios,
+                "estado" => $estado_label
+            );
         }
 
-        // Si tienes un campo fecha/hora separado, ajusta aquí
-        $hora = isset($reg->fecha) ? date("h:i A", strtotime($reg->fecha)) : '';
-        $fecha = isset($reg->fecha) ? date("d/m/Y", strtotime($reg->fecha)) : '';
-        
-        $data[] = array(
-            "fecha" => $fecha,
-            "hora" => $hora,
-            "cliente" => $reg->nombre_cliente,
-            "servicio" => $reg->servicios,
-            "estado" => $estado_label
-        );
-    }
+        echo json_encode(["aaData" => $data]);
+        //echo json_encode($data);
+        break;
 
-    echo json_encode(["aaData" => $data]);
-
-    break;
         case 'listartab':
-            $rspta = $agenda->listar();
+            $fecha_inicio = isset($_REQUEST["fecha_inicio"]) ? $_REQUEST["fecha_inicio"] : '';
+            $fecha_fin = isset($_REQUEST["fecha_fin"]) ? $_REQUEST["fecha_fin"] : '';
+            $id_tec = isset($_REQUEST["id_tec"]) ? $_REQUEST["id_tec"] : '';
+            $id_cli = isset($_REQUEST["id_cli"]) ? $_REQUEST["id_cli"] : '';
+            $estado = isset($_REQUEST["estado"]) ? $_REQUEST["estado"] : '';
+
+
+            $rspta = $agenda->listar($fecha_inicio, $fecha_fin, $id_tec, $id_cli, $estado); 
             $data = array(); 
         
             while ($reg = $rspta->fetch_object()) { 

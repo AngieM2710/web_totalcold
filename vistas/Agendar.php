@@ -15,7 +15,9 @@ if (!isset($_SESSION["nombre"])) {
                     <div class="card shadow-sm contendorprinc">
                         <div class="card-body">
                             <h4 class="mb-4 letrastitulo"> Agregar Nuevo Servicio</h4>
-                            <form>
+                            <form name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
+                                 <input type="hidden" id="id_orden" name="id_orden">
+
                                 <div class="mb-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-3">
@@ -44,7 +46,7 @@ if (!isset($_SESSION["nombre"])) {
                                             <label class="form-label">Fecha y Hora</label>
                                         </div>
                                         <div class="col-md-9">
-                                            <input type="datetime-local" class="form-control">
+                                            <input name="fecha" id="fecha" type="datetime-local" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +57,7 @@ if (!isset($_SESSION["nombre"])) {
                                             <label class="form-label mb-0">Estado del Servicio Técnico :</label>
                                         </div>
                                         <div class="col-md-9">
-                                            <select class="form-control selectpicker" id="estadoServicio">
+                                            <select class="form-control selectpicker" name="estadoServicio" id="estadoServicio">
                                                 <option value="">Seleccione...</option>
                                                 <option value="Pendiente">Pendiente</option>
                                                 <option value="Terminado">Terminado</option>
@@ -70,24 +72,35 @@ if (!isset($_SESSION["nombre"])) {
                                             <label class="form-label mb-0">Tipo de pago :</label>
                                         </div>
                                         <div class="col-md-9">
-                                            <select class="form-control selectpicker" id="estadoServicio">
+                                            <select class="form-control selectpicker" name="tipo_pago" id="tipo_pago">
                                                 <option value="">Seleccione...</option>
-                                                <option value="Pendiente">Trasferencia</option>
-                                                <option value="Terminado">Efectivo</option>
+                                                <option value="Trasferencia">Trasferencia</option>
+                                                <option value="Efectivo">Efectivo</option>
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 
+                                <div class="mb-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-3">
+                                            <label class="form-label mb-0">Dirección : </label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <textarea name="direccion" id="direccion" class="form-control" rows="2"required></textarea>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label">Observaciones</label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea  name="observaciones" id="observaciones" class="form-control" rows="3"></textarea>
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <button class="btn btn-sm btn-warning" id="btnServiciosOrden">Items de Cobro</button> &nbsp;
+                                    <!-- <button type="button" class="btn btn-sm btn-warning" id="btnServiciosOrden">Items de Cobro</button>&nbsp; -->
                                     <button type="button" class="btn btn-outline-secondary me-2">Cancelar</button>&nbsp;
-                                    <button type="submit" class="btn btn-primary">Guardar Servicio</button>
+                                    <button type="submit" form="formulario" id="btnGuardar" class="btn btn-success botonS">Guardar </button>
                                 </div>
                             </form>
                         </div>
@@ -97,20 +110,40 @@ if (!isset($_SESSION["nombre"])) {
                 <!-- Panel lateral derecho -->
                 <div class="col-lg-5">
                     <!-- Agenda del día -->
+<!--                     <div class="card shadow-sm mb-4 contendorprinc">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="mb-0">Agenda del Día</h6>
+                                <i class="fas fa-calendar-day text-primary"></i>
+                            </div>
+
+                            <input type="date" id="fechaAgenda" class="form-control mb-3">
+
+                            <div id="listaAgenda" class="list-group small">
+                                <div class="text-center text-muted py-2">Selecciona una fecha...</div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+
+
                     <div class="card shadow-sm mb-4 contendorprinc">
                         <div class="card-body">
-                            <h6 class="mb-3">Agenda del Día</h6>
-                            <input type="date" class="form-control mb-3">
-                            <ul class="list-group">
-                                <li class="list-group-item">9:00 AM - Juan Ortega - Pendiente</li>
-                            </ul>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="mb-0 letrastitulo">Items de Cobros </h6>
+                                <i class="fas fa-calendar-day text-primary"></i>
+                            </div>
+                            <div id="resumenServicios"></div>
+                            <div class="mt-2 d-flex gap-2 ">
+                               <button type="button" class="btn btn-sm btn-warning" id="btnServiciosOrden">Determinar Cobro</button>&nbsp;
+                            </div>
                         </div>
                     </div>
 
                     <!-- Detalle Equipos -->
                     <div class="card shadow-sm mb-4 contendorprinc">
                         <div class="card-body">
-                            <h6 class="mb-3">Detalle Equipos - Servicios</h6>
+                            <h6 class="mb-3 letrastitulo">Detalle Equipos - Servicios</h6>
                             <div id="equiposContainer"></div>
                             <div class="mt-2 d-flex gap-2">
                                 <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddEquipo">+ Agregar Equipo</button>
@@ -187,34 +220,27 @@ if (!isset($_SESSION["nombre"])) {
                         </div>
 
                         <!-- Aquí puedes agregar más detalles si es necesario -->
-                        <div class="card-body">
-                            <!-- <h6 class="mb-3">Fotos de Instalación</h6>
-                            <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button> -->
-                            
+                        <div class="card-body">                          
 
-                    <div class="mb-3">
-                        
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <label class="form-label mb-0">Evaporador</label> <br>
-                                    <button class="btn btn-sm btn-outline-primary">Subir Foto</button>        
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label mb-0">Compresor</label> <br>
-                                    <button class="btn btn-sm btn-outline-primary">Subir Foto</button>
-                                </div>
-                            </div> <br><br>
+                            <div class="mb-3">
+                                
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <label class="form-label mb-0">Evaporador</label> <br>
+                                            <button class="btn btn-sm btn-outline-primary">Subir Foto</button>        
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label mb-0">Compresor</label> <br>
+                                            <button class="btn btn-sm btn-outline-primary">Subir Foto</button>
+                                        </div>
+                                    </div> <br><br>
 
-                            <div>
-                                <h6 class="mb-3">Fotos adicionales</h6>
-                                <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button>
+                                    <div>
+                                        <h6 class="mb-3">Fotos adicionales</h6>
+                                        <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button>
+                                    </div>
+                                    
                             </div>
-                            
-                    </div>
-
-
-
-
 
                         </div>
                     </div>
@@ -238,17 +264,21 @@ if (!isset($_SESSION["nombre"])) {
                             <thead>
                                 <tr>
                                     <th>Servicio</th>
-                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Total</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>  </tbody>
                         </table>
+                        <h5 class="text-end mt-3  ">Total:  $ <span id="totalOrden">0.00</span></h5>
+                  
                         <!-- <div class="input-group mt-2">
                             <input type="text" id="nuevoServicioOrden" class="form-control" placeholder="Agregar nuevo servicio">
                             <button class="btn btn-primary" id="addServicioOrden">Agregar</button>
                         </div> -->
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btnGuardarServicios" data-bs-dismiss="modal">Capturar</button>
                         <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -265,114 +295,6 @@ if (!isset($_SESSION["nombre"])) {
 
 <script type="text/javascript" src="scripts/Agendar.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script>
-// --- Manejo de equipos ---
-const equiposContainer = document.getElementById('equiposContainer');
-const saveEquipoBtn = document.getElementById('saveEquipo');
-
-function createEquipo(equipoNombre, serviciosArray) {
-    const div = document.createElement('div');
-    div.classList.add('equipo-item', 'border', 'rounded', 'p-3', 'mb-3');
-
-    const serviciosTexto = serviciosArray.join(', ');
-    div.innerHTML = `
-        <div class="mb-2">
-            <strong>Equipo:</strong> ${equipoNombre} <br>
-            <strong>Servicios:</strong> ${serviciosTexto}
-        </div>
-        <a href="#" class="btn btn-info btn-circle btn-sm verDetalles"><i class="fas fa-eye"></i></a>
-        <a href="#" class="btn btn-danger btn-circle btn-sm removeEquipo"><i class="fas fa-trash"></i></a>
-    `;
-
-    div.querySelector('.removeEquipo').addEventListener('click', (e) => {
-        e.preventDefault();
-        div.remove();
-        actualizarServiciosOrden(); // Actualiza la tabla cuando se elimina equipo
-    });
-
-    div.querySelector('.verDetalles').addEventListener('click', (e) => {
-        e.preventDefault();
-        document.getElementById('detalleEquipo').textContent = equipoNombre;
-        document.getElementById('detalleServicios').textContent = serviciosTexto;
-        new bootstrap.Modal(document.getElementById('modalDetallesEquipo')).show();
-    });
-
-    equiposContainer.appendChild(div);
-    actualizarServiciosOrden(); // Actualiza la tabla automáticamente al agregar equipo
-}
-
-saveEquipoBtn.addEventListener('click', () => {
-    const equipoSelect = document.getElementById('id_equipo');
-    const serviciosSelect = document.getElementById('id_serv');
-
-    const equipoNombre = equipoSelect.options[equipoSelect.selectedIndex]?.text || "";
-    const serviciosArray = Array.from(serviciosSelect.selectedOptions).map(opt => opt.text);
-
-    if (equipoNombre && serviciosArray.length > 0) {
-        createEquipo(equipoNombre, serviciosArray);
-        document.getElementById('formAddEquipo').reset();
-        $('.selectpicker').selectpicker('refresh');
-        bootstrap.Modal.getInstance(document.getElementById('modalAddEquipo')).hide();
-    } else {
-        alert("Por favor seleccione un equipo y al menos un servicio.");
-    }
-});
-
-// --- Manejo de servicios de la orden ---
-const btnServiciosOrden = document.getElementById('btnServiciosOrden');
-const tablaServiciosOrden = document.getElementById('tablaServiciosOrden').querySelector('tbody');
-const addServicioOrdenBtn = document.getElementById('addServicioOrden');
-const nuevoServicioInput = document.getElementById('nuevoServicioOrden');
-
-let serviciosOrden = [];
-
-function refrescarTablaServicios() {
-    tablaServiciosOrden.innerHTML = '';
-    serviciosOrden.forEach(servicio => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${servicio.nombre}</td>
-            <td><input type="number" class="form-control precioServicio" value="${servicio.precio}" min="0"></td>
-        `;
-        tr.querySelector('.precioServicio').addEventListener('input', (e) => {
-            servicio.precio = parseFloat(e.target.value) || 0;
-        });
-        tablaServiciosOrden.appendChild(tr);
-    });
-}
-
-// Consolida servicios de todos los equipos
-function actualizarServiciosOrden() {
-    serviciosOrden = [];
-    document.querySelectorAll('.equipo-item').forEach(equipo => {
-        const serviciosText = equipo.querySelector('div').textContent.match(/Servicios:\s*(.*)/)?.[1]?.split(',').map(s => s.trim());
-        if (serviciosText) {
-            serviciosText.forEach(s => {
-                if (!serviciosOrden.find(x => x.nombre === s)) {
-                    serviciosOrden.push({ nombre: s, precio: 0 });
-                }
-            });
-        }
-    });
-    refrescarTablaServicios();
-}
-
-btnServiciosOrden.addEventListener('click', () => {
-    actualizarServiciosOrden();
-    new bootstrap.Modal(document.getElementById('modalServiciosOrden')).show();
-});
-
-addServicioOrdenBtn.addEventListener('click', () => {
-    const nuevoServicio = nuevoServicioInput.value.trim();
-    if (nuevoServicio && !serviciosOrden.find(s => s.nombre === nuevoServicio)) {
-        serviciosOrden.push({ nombre: nuevoServicio, precio: 0 });
-        refrescarTablaServicios();
-        nuevoServicioInput.value = '';
-    }
-});
-</script>
-
 <?php
 }
 ob_end_flush();
