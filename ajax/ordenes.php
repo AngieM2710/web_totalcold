@@ -29,7 +29,7 @@ switch ($_GET["op"]) {
             echo $rspta ? "Orden actualizada correctamente" : "No se pudo actualizar la orden";
         }
         break;
-
+/* 
     case 'mostrar':
         $rspta = $orden->mostrar($id_orden);
         echo json_encode($rspta);
@@ -58,6 +58,10 @@ switch ($_GET["op"]) {
         );
 
         echo json_encode($results);
-        break;
-}
+        break; */
+
+        
+    }
+
+
 ?>

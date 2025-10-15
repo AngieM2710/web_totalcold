@@ -508,5 +508,8 @@ body {
   justify-content: center;
   border: 1px solid #82a2ff30;
   color: #4e73e1;
+  .i{
+      color: #4e73e1;
+  }
 }
 

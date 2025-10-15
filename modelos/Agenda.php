@@ -49,6 +49,45 @@ public function listar($fecha_inicio = '', $fecha_fin = '', $id_tec = '', $id_cl
 
     return ejecutarConsulta($sql);        
 }
+
+public function obtenerDetalleOrden($id_orden)
+{
+    $sql = "SELECT 
+                -- o.id_orden, o.fecha,  o.id_cliente,o.id_usuarios,o.direccion,o.observaciones,o.costos,o.tipo_pago,
+                -- o.estado AS estado_orden,
+                -- e.id_equipo, e.marca,e.modelo,e.capacidad,
+                -- i.id_servicios,
+                -- i.descripcion AS servicio,
+                -- es.valor
+                o.id_orden,  
+                o.fecha,  
+                o.id_cliente,
+                o.id_usuarios,
+                o.direccion,
+                o.observaciones,
+                o.costos,
+                o.tipo_pago,
+                o.estado AS estado_orden,
+
+                e.id_equipo, 
+                e.marca,
+                e.modelo,
+                e.capacidad,
+
+                i.id_servicios,
+                i.descripcion AS servicio,
+                es.valor,
+                es.id_equipo_servicio AS id_detalle_orden
+            FROM orden o
+            INNER JOIN equipo_orden eo ON o.id_orden = eo.id_orden
+            INNER JOIN equipos e ON eo.id_equipo = e.id_equipo
+            INNER JOIN equipo_servicio es ON eo.id_equipo_orden = es.id_equipo_orden
+            INNER JOIN servicios i ON es.id_servicios = i.id_servicios
+            WHERE o.id_orden = '$id_orden'
+            ORDER BY e.id_equipo, i.id_servicios";
+
+    return ejecutarConsulta($sql);
+}
 /* 
 	public function listar()
 	{
@@ -88,6 +127,7 @@ public function listar($fecha_inicio = '', $fecha_fin = '', $id_tec = '', $id_cl
              
 		return ejecutarConsulta($sql);		
 	} */
+
 
 }
 
