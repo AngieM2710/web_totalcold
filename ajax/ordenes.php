@@ -25,7 +25,7 @@ switch ($_GET["op"]) {
             echo $rspta ? "Orden registrada correctamente" : "No se pudo registrar la orden";
         } else {
             // EDITAR ORDEN
-            $rspta = $orden->editar($id_orden, $id_cliente, $id_usuarios, $fecha, $direccion, $tipo_pago, $observaciones, $equipos_json, $serviciosOrden );
+            $rspta = $orden->editar($id_orden, $id_cliente, $id_usuarios, $fecha, $direccion, $tipo_pago, $observaciones, $equipos_json);
             echo $rspta ? "Orden actualizada correctamente" : "No se pudo actualizar la orden";
         }
         break;

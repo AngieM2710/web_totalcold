@@ -1,0 +1,115 @@
+/* Aplicar estilos solo a este modal */
+.custom-modal .modal-dialog {
+    max-width: 90%; /* Ajusta el ancho del modal */
+    margin: 30px auto; /* Centrar el modal */
+  }
+  
+  .custom-modal .modal-body {
+    padding: 20px;
+  }
+  
+  .custom-modal .table-responsive {
+    max-height: 400px; /* Controla la altura de la tabla */
+    overflow-y: auto; /* Agrega un scroll si hay muchas filas */
+  }
+  
+  .custom-modal .table {
+    width: 100% !important; /* Asegura que la tabla use todo el espacio disponible */
+    table-layout: fixed; /* Fija el tamaño de las columnas */
+  }
+ /*  .custom-modal .table.table-bordered.dataTable  {
+    width: 100% !important;
+  } */
+  
+  .custom-modal .table thead {
+    background-color: #f8f9fa; /* Fondo para diferenciar el encabezado */
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+  
+  .custom-modal .table thead th {
+    text-align: center;
+    padding: 10px;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  }
+  
+  .custom-modal .table tbody td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+  }
+  
+  /* Asegurar que el modal se vea bien en móviles */
+  @media (max-width: 768px) {
+    .custom-modal .modal-dialog {
+      max-width: 95%;
+    }
+  }
+  
+    .custom-modal .modal-header {
+    /*  background: linear-gradient(130deg, #2c3e50ef 10%, #4ca2aff5 100%) !important; */
+      background: #e7f0ff6e;
+      position: relative; /* Necesario para posicionar el botón */
+      text-align: center; /* Centra el h4 */
+  }
+  .custom-modal .modal-header h4{
+    display: inline-block; 
+    margin: 0 auto;
+    text-align: center;
+   /*  font-family: "Bebas Neue", serif !important; */
+   font-family: "Cairo", serif !important;
+    font-size: 20px;
+  /*   color: #1f385fe0 !important; */
+    color: #3b50a5 !important;
+  }
+  .custom-modal .modal-header button{
+    align-items: center;
+    display: contents;
+    /* color: #1f385fe0 !important; */
+    color: #3b50a5 !important;
+  }
+
+/* .custom-modal .modal-header h4 {
+    display: inline-block; 
+    margin: 0 auto;
+    font-family: "Bebas Neue", serif !important;
+    font-size: 20px;
+    color: #1f385fe0 !important;
+}
+
+.custom-modal .modal-header .close {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+} */
+.btn-default{
+  font-family: "K2D", serif !important;
+  font-size: 15px !important;
+  background: #4ca1af31 !important; 
+  color: #214071dd !important;
+  border: none !important;
+  text-transform: uppercase; 
+}
+
+.btn-default:hover {
+  background: linear-gradient(130deg, #2c3e50ef 10%, #4ca2aff5 100%) !important;
+  color: white !important;
+
+}
+/* .btnper{
+  background: linear-gradient(130deg, #2c3e50ef 10%, #4ca2aff5 100%) !important;
+  color: white !important;
+  border: none;
+}
+ */
+/******* cotizaciones Tabla ivas *******/
+.h4cotizacion{
+  font-size: 1rem;
+  background-color: #ffffff00 !important;
+  font-family: "K2D", serif !important;
+  color: #1f385fe0 !important;
+  text-align: center !important;
+ 
+}

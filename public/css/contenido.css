@@ -513,6 +513,7 @@ body {
   }
 }
 
+<<<<<<< HEAD
 
 
 /* --- Estilo del total en el modal --- */
@@ -533,3 +534,5 @@ body {
     max-height: 100px; /* Altura máxima del menú */
     overflow-y: auto; /* Habilita el scroll vertical */
 }
+=======
+>>>>>>> parent of 3cfc510 (c)

@@ -14,7 +14,8 @@ if (!isset($_SESSION["nombre"])) {
         $id_orden = isset($_GET['id']) ? $_GET['id'] : '';
         ?>
         
-        
+        <input type="hidden" id="id_orden" name="id_orden" value="<?php echo $id_orden; ?>">
+
         <div class="container-fluid py-4">
             <div class="row">
                 <!-- Formulario Agregar Servicio -->
@@ -25,8 +26,8 @@ if (!isset($_SESSION["nombre"])) {
                                 <?php echo $id_orden ? "Editar Servicio" : "Agregar Nuevo Servicio"; ?>
                             </h4>
                             <form name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" id="id_orden" name="id_orden" value="<?php echo $id_orden; ?>">
-                                
+                                 <input type="hidden" id="id_orden" name="id_orden">
+
                                 <div class="mb-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-3">
@@ -60,7 +61,7 @@ if (!isset($_SESSION["nombre"])) {
                                     </div>
                                 </div>
 
-<!--                                 <div class="mb-3">
+                                <div class="mb-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-3">
                                             <label class="form-label mb-0">Estado del Servicio Técnico :</label>
@@ -73,7 +74,7 @@ if (!isset($_SESSION["nombre"])) {
                                             </select>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <div class="mb-3">
                                     <div class="row align-items-center">
@@ -83,7 +84,7 @@ if (!isset($_SESSION["nombre"])) {
                                         <div class="col-md-9">
                                             <select class="form-control selectpicker" name="tipo_pago" id="tipo_pago">
                                                 <option value="">Seleccione...</option>
-                                                <option value="Trasferencia">Transferencia</option>
+                                                <option value="Trasferencia">Trasferencia</option>
                                                 <option value="Efectivo">Efectivo</option>
                                             </select>
                                         </div>
@@ -253,13 +254,7 @@ if (!isset($_SESSION["nombre"])) {
                             </thead>
                             <tbody>  </tbody>
                         </table>
-                            <div class="servicio-total-container mt-3 text-end">
-                            <span class="label-total">Total General : </span>
-                            <span class="valor-total">
-                                $ <strong id="totalOrden">0.00</strong>
-                            </span>
-                            </div>
-                       <!--  <h5 class="servicio-item">Total:  $ <strong id="totalOrden">0.00</strong></h5> -->
+                        <h5 class="text-end mt-3  ">Total:  $ <span id="totalOrden">0.00</span></h5>
                   
                     </div>
                     <div class="modal-footer">
