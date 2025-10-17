@@ -40,11 +40,11 @@ switch ($_GET["op"]){
     case 'guardaryeditar':
         if(empty($id_item_cobro)){
             $rspta= $items->insertar($id_servicios,$nombre);
-            echo $rspta ? "items registrada" : "No se pudo registrar la items";
+            echo $rspta ? "Ítem de cobro registrado" : "No se pudo registrar el ítem de cobro";
         }
         else{
             $rspta= $items->editar($id_item_cobro,$id_servicios,$nombre);
-            echo $rspta ? "items actualizada" : "No se pudo actualizar la items";
+            echo $rspta ? "Ítem de cobro actualizado" : "No se pudo actualizar el ítem de cobro";
         }   
     break;
 
@@ -55,12 +55,12 @@ switch ($_GET["op"]){
 
     case 'desactivar':
             $rspta=$items->desactivar($id_item_cobro);
-            echo $rspta ? "items desactivada" : "items no se puede desactivar";
+            echo $rspta ? "Ítem de cobro desactivado" : "Ítem de cobro no se puede desactivar";
     break;
 
     case 'activar':
             $rspta=$items->activar($id_item_cobro);
-            echo $rspta ? "items activada" : "items no se puede activar";
+            echo $rspta ? "Ítem de cobro activado" : "Ítem de cobro no se puede activar";
     break;
     
     case 'selectServicios':

@@ -11,7 +11,7 @@ if (!isset($_SESSION["nombre"])) {
   <div class="container-fluid">
 
       <!-- Título -->
-      <h1 class="h3 mb-2 text-gray-800 letrastitulo">Gestión  de categorías</h1>
+      <h1 class="h3 mb-2 text-gray-800 letrastitulo">Gestión  de ítems de cobro</h1>
 
       <!-- Card principal -->
       <div class="card shadow mb-4 contendorprinc">
@@ -77,7 +77,7 @@ if (!isset($_SESSION["nombre"])) {
                         <div class="col-lg-12">
                             <div class="row align-items-center">
                                 <div class="col-md-3">
-                                    <label class="form-label mb-0">Categoria :</label>
+                                    <label class="form-label mb-0">Ítem de cobro :</label>
                                 </div>
                                 <div class="col-md-9">
                                     <select class="form-control selectpicker" id="id_servicios" name="id_servicios" class="form-control selectpicker" data-live-search="true" required></select>

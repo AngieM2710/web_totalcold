@@ -159,7 +159,7 @@ function mostrar(id_item_cobro)
 function desactivar(id_item_cobro)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de desactivar la categoría?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de desactivar el ítem de cobro?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -185,7 +185,7 @@ function desactivar(id_item_cobro)
         if (result.isConfirmed) {
             $.post("../ajax/items_cobro.php?op=desactivar", {id_item_cobro: id_item_cobro}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Categoría desactivada!</span>',
+                    title: '<span style="font-size: 24px;">Ítem de cobro desactivado!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -202,7 +202,7 @@ function desactivar(id_item_cobro)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Categoría no se desactivó</span>',
+                title: '<span style="font-size: 24px;">Ítem de cobro no se desactivó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
@@ -223,7 +223,7 @@ function desactivar(id_item_cobro)
 function activar(id_item_cobro)
 {
 	Swal.fire({
-        title: '<span style="font-size: 24px;">¿Está seguro de activar la categoría?</span>',
+        title: '<span style="font-size: 24px;">¿Está seguro de activar el ítem de cobro?</span>',
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: '<span style="font-size: 18px;">Sí</span>',
@@ -249,7 +249,7 @@ function activar(id_item_cobro)
         if (result.isConfirmed) {
             $.post("../ajax/items_cobro.php?op=activar", {id_item_cobro: id_item_cobro}, function(e) {
                 Swal.fire({
-                    title: '<span style="font-size: 24px;">Categoría activada!</span>',
+                    title: '<span style="font-size: 24px;">Ítem de cobro activado!</span>',
                     text: "",
                     icon: "success",
                     width: '600px', 
@@ -266,7 +266,7 @@ function activar(id_item_cobro)
             });
         } else if (result.isDenied) {
             Swal.fire({
-                title: '<span style="font-size: 24px;">Categoría no se activó</span>',
+                title: '<span style="font-size: 24px;">Ítem de cobro no se activó</span>',
                 text: "",
                 icon: "info",
                 width: '600px',
