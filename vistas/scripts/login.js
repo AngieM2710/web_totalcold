@@ -65,7 +65,7 @@ $(document).ready(function() {
                             if(response.usuario.id_permiso==1){
                                 window.location.href = "usuarios.php";
                             }else{
-                                window.location.href = "agenda.php";
+                                window.location.href = "agenda_tecnico.php";
                             }
                             //console.log("Usuario:", response.usuario.id_permiso);
                         } else {

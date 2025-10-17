@@ -510,3 +510,9 @@ body {
   color: #4e73e1;
 }
 
+.bootstrap-select.clientes-scrollable .dropdown-menu {
+    background-color: #f8f9fa; /* Fondo del menú (gris claro) */
+    border: 1px solid #000000; /* Borde del menú */
+    max-height: 100px; /* Altura máxima del menú */
+    overflow-y: auto; /* Habilita el scroll vertical */
+}

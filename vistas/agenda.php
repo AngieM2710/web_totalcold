@@ -30,9 +30,16 @@ if (!isset($_SESSION["nombre"])) {
                             <button class="nav-link" id="tabla-tab" data-bs-toggle="tab" data-bs-target="#tabla" type="button" role="tab">Vista de Tabla</button>
                         </li>
                     </ul>
-                    <a href="Agendar.php"class="btn btn-sm btn-primary shadow-sm">
-                        <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
-                    </a>
+                    <?php 
+                        // Verifica si el usuario es administrador (asumiendo que '1' significa verdadero/administrador)
+                        if (isset($_SESSION['administrador']) && $_SESSION['administrador'] == 1) { 
+                        ?>
+                            <a href="Agendar.php" class="btn btn-sm btn-primary shadow-sm">
+                                <i class="fas fa-plus fa-sm text-white-50"></i> Agregar
+                            </a>
+                        <?php 
+                        }
+                        ?>
                 </div>
 
                 <div class="card-body">

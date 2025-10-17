@@ -59,5 +59,23 @@ switch ($_GET["op"]) {
 
         echo json_encode($results);
         break;
+
+        case 'obtener_orden_completa':
+        $id_orden = isset($_POST["id_orden"]) ? limpiarCadena($_POST["id_orden"]) : "";
+        $data = $orden->obtenerOrdenCompleta($id_orden);
+        if ($data) {
+            echo json_encode(['success' => true, 'data' => $data]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'No se encontró la orden.']);
+        }
+        break;
+
+        case 'actualizar_estado_servicio':
+        $id_equipo_servicio = isset($_POST["id_equipo_servicio"]) ? limpiarCadena($_POST["id_equipo_servicio"]) : "";
+        $estado = isset($_POST["estado"]) ? limpiarCadena($_POST["estado"]) : "";
+
+        $rspta = $orden->actualizarEstadoServicio($id_equipo_servicio, $estado); 
+        echo $rspta ? json_encode(['success' => true]) : json_encode(['success' => false, 'message' => 'Fallo la BD']);
+        break;
 }
 ?>
