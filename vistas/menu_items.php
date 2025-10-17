@@ -17,7 +17,7 @@ if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
         [
             'title' => 'Gestión de Recursos',
             'icon' => 'fa-boxes',
-            'pages' => ['items_cobro.php','categorias.php', 'equipos.php'],
+            'pages' => ['items_cobro.php', 'categorias.php', 'equipos.php'],
             'submenu' => [
                 ['href' => 'items_cobro.php', 'icon' => 'fa-wind', 'text' => 'Item de cobros'],
                 ['href' => 'categorias.php', 'icon' => 'fa-layer-group', 'text' => 'Servicios'],
@@ -30,7 +30,7 @@ if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
             'pages' => ['agenda.php', 'ordenes.php'],
             'submenu' => [
                 ['href' => 'agenda.php', 'icon' => 'fa-calendar-day', 'text' => 'Planificación'],
-                ['href' => 'ordenes.php', 'icon' => 'fa-user-clock', 'text' => 'Asignaciones'],
+                ['href' => 'Agendar.php', 'icon' => 'fa-user-clock', 'text' => 'Ordenes de Servicio'],
             ],
         ],
         [
@@ -42,26 +42,23 @@ if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
             ],
         ],
     ];
-}
-
-elseif (!empty($_SESSION['tecnico']) && $_SESSION['tecnico'] == 1) {
+} elseif (!empty($_SESSION['tecnico']) && $_SESSION['tecnico'] == 1) {
     $ruta = "../files/usuarios/tecnicos/";
     $menuItems = [
         [
             'title' => 'Inicio',
             'icon' => 'fa-home',
+            'href' => 'usuarios.php',
             'pages' => ['usuarios.php'],
-            'submenu' => [
-                ['href' => 'usuarios.php', 'icon' => 'fa-home', 'text' => 'Home'],
-            ],
+            'submenu' => [],
         ],
         [
             'title' => 'Mis Agendas',
             'icon' => 'fa-calendar-check',
-            'pages' => ['agenda.php', 'historial_servicios.php'],
+            'pages' => ['agenda_tecnico.php', 'historial_ordenes.php','ver_orden.php'],
             'submenu' => [
-                ['href' => 'agenda.php', 'icon' => 'fa-calendar-day', 'text' => 'Agenda del Día'],
-                ['href' => 'Agendar.php', 'icon' => 'fa-list-check', 'text' => 'Historial de Servicios'],
+                ['href' => 'agenda_tecnico.php', 'icon' => 'fa-calendar-day', 'text' => 'Agenda del Día'],
+                ['href' => 'historial_ordenes.php', 'icon' => 'fa-list-check', 'text' => 'Historial de Órdenes'],
             ],
         ],
         [
@@ -74,6 +71,3 @@ elseif (!empty($_SESSION['tecnico']) && $_SESSION['tecnico'] == 1) {
         ],
     ];
 }
-
-?>
-
