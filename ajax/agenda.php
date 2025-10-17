@@ -82,12 +82,37 @@ switch ($_GET["op"]) {
                 "id_servicio" => $reg->id_servicios,
                 "servicio" => $reg->servicio,
                 "valor" => $reg->valor,
-                "id_detalle_orden"=>$reg->id_equipo_servicio
+                "id_detalle_orden"=>$reg->id_detalle_servivio_orden,
+
+                "id_equipo_orden" => $reg->id_equipo_orden,
             ];
             }
-
             echo json_encode(["detalle" => $data]);
         break;
+
+
+                    //             while ($reg = $rspta->fetch_object()) {
+            //     $data[] = [
+            //         "id_orden" => $reg->id_orden,
+            //         "fecha" => $reg->fecha,
+            //         "id_cliente" => $reg->id_cliente,
+            //         "id_usuarios" => $reg->id_usuarios,
+            //         "direccion" => $reg->direccion,
+            //         "observaciones" => $reg->observaciones,
+            //         "costos" => $reg->costos,
+            //         "tipo_pago" => $reg->tipo_pago,
+            //         "estado_orden" => $reg->estado_orden,
+            //         "id_equipo_orden" => $reg->id_equipo_orden, // ✅ Agregado
+            //         "id_equipo" => $reg->id_equipo,
+            //         "marca" => $reg->marca,
+            //         "modelo" => $reg->modelo,
+            //         "capacidad" => $reg->capacidad,
+            //         "id_servicio" => $reg->id_servicios,
+            //         "servicio" => $reg->servicio,
+            //         "valor" => $reg->valor,
+            //         "id_detalle_orden" => $reg->id_detalle_orden
+            //     ];
+            // }
 
         case 'listartab':
             $fecha_inicio = isset($_REQUEST["fecha_inicio"]) ? $_REQUEST["fecha_inicio"] : '';

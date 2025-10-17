@@ -513,3 +513,35 @@ body {
   }
 }
 
+
+
+/* --- Estilo del total en el modal --- */
+.servicio-total-container {
+ /*  background: #f8f9fa;   */         
+ /*  border-top: 2px solid #dee2e6; */
+ /*  padding: 12px 20px; */
+/*   border-radius: 0 0 8px 8px;
+  font-family: "Poppins", sans-serif; */
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.label-total {
+/*   font-family: "Poppins", sans-serif; */
+  font-weight: 600;
+  color: #333333;
+  font-size: 1.05rem;
+  margin-right: 8px;
+}
+
+.valor-total {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #224abe;               
+  background: #e7f1ff;       
+  padding: 5px 10px;
+  border-radius: 6px;
+  /* box-shadow: inset 0 0 4px rgba(13, 110, 253, 0.15); */
+/*   transition: transform 0.2s ease, box-shadow 0.2s ease; */
+}
