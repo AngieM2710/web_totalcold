@@ -18,17 +18,17 @@ if (!isset($_SESSION["nombre"])) {
 
         <!-- Parte Izquierda: Lista y Tabla -->
         <div class="col-lg-8 p-4">
-            <h3 class="mb-4 text-gray-800 letrastitulo">Órdenes Programadas</h3>
             
             <div class="card shadow mb-4 contendorprinc">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h3 class="mb-4 text-gray-800 letrastitulo">Órdenes Programadas</h3>
                     <ul class="nav nav-tabs mb-0" id="tabCitas" role="tablist">
-                        <li class="nav-item" role="presentation">
+<!--                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="lista-tab" data-bs-toggle="tab" data-bs-target="#lista" type="button" role="tab">Lista de Citas</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
+                        </li> -->
+<!--                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="tabla-tab" data-bs-toggle="tab" data-bs-target="#tabla" type="button" role="tab">Vista de Tabla</button>
-                        </li>
+                        </li> -->
                     </ul>
                     <?php 
                         // Verifica si el usuario es administrador (asumiendo que '1' significa verdadero/administrador)
@@ -51,36 +51,6 @@ if (!isset($_SESSION["nombre"])) {
                             </div>
                         </div>
 
-
-                        <!-- Vista de Tabla -->
-                        <div class="tab-pane fade" id="tabla" role="tabpanel">
-                            <div class="table-responsive" id="listadoregistros">
-                                <table id="tbllistado" class="table table-bordered table-hover" width="100%" cellspacing="0">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Fecha-Hora</th>
-                                        <th>Cliente</th>
-                                        <th>Tecnico</th>
-                                        <th>Servicios</th>
-                                        <th>Estado</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="Contentbody">
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                       <th>Fecha-Hora</th>
-                                        <th>Cliente</th>
-                                        <th>Tecnico</th>
-                                        <th>Servicios</th>
-                                        <th>Estado</th>
-                                        <th>Opciones</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            </div>
-                        </div>
                     </div> <!-- /.tab-content -->
                 </div> <!-- /.card-body -->
             </div> <!-- /.card -->

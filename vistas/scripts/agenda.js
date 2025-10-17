@@ -152,6 +152,11 @@ function listar(filtros = {}) {
                         <div class="list-group-item d-flex justify-content-between align-items-center">
                           ${item.fecha} - Hora: ${item.hora} - Cliente: ${item.cliente} - ${item.servicio} ${item.estado} 
                         </div>
+                        <div class="d-flex align-items-center gap-2">
+                        ${item.estado} &nbsp;
+                        ${item.acciones}
+                        </div>
+                    </div>
                     `;
                     $('#listadoregistros').append(card);
                 });

@@ -6,18 +6,27 @@ if (!isset($_SESSION["nombre"])) {
     header("Location: login.php");
 } else {
     require 'header.php';
+
     if ($_SESSION['administrador'] == 1) {
+
+/*         if (isset($_GET['id'])) {
+        $id_orden = $_GET['id']; */
+        $id_orden = isset($_GET['id']) ? $_GET['id'] : '';
         ?>
+        
+        
         <div class="container-fluid py-4">
             <div class="row">
                 <!-- Formulario Agregar Servicio -->
                 <div class="col-lg-7 mb-4">
                     <div class="card shadow-sm contendorprinc">
                         <div class="card-body">
-                            <h4 class="mb-4 letrastitulo"> Agregar Nuevo Servicio</h4>
+                            <h4 class="mb-4 letrastitulo">
+                                <?php echo $id_orden ? "Editar Servicio" : "Agregar Nuevo Servicio"; ?>
+                            </h4>
                             <form name="formulario" id="formulario" method="POST" enctype="multipart/form-data">
-                                 <input type="hidden" id="id_orden" name="id_orden">
-
+                                <input type="hidden" id="id_orden" name="id_orden" value="<?php echo $id_orden; ?>">
+                                
                                 <div class="mb-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-3">
@@ -51,7 +60,7 @@ if (!isset($_SESSION["nombre"])) {
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
+<!--                                 <div class="mb-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-3">
                                             <label class="form-label mb-0">Estado del Servicio Técnico :</label>
@@ -59,12 +68,12 @@ if (!isset($_SESSION["nombre"])) {
                                         <div class="col-md-9">
                                             <select class="form-control selectpicker" name="estadoServicio" id="estadoServicio">
                                                 <option value="">Seleccione...</option>
-                                                <option value="Pendiente">Pendiente</option>
-                                                <option value="Terminado">Terminado</option>
+                                                <option value="0">Pendiente</option>
+                                                <option value="1">Terminado</option>
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="mb-3">
                                     <div class="row align-items-center">
@@ -74,7 +83,7 @@ if (!isset($_SESSION["nombre"])) {
                                         <div class="col-md-9">
                                             <select class="form-control selectpicker" name="tipo_pago" id="tipo_pago">
                                                 <option value="">Seleccione...</option>
-                                                <option value="Trasferencia">Trasferencia</option>
+                                                <option value="Trasferencia">Transferencia</option>
                                                 <option value="Efectivo">Efectivo</option>
                                             </select>
                                         </div>
@@ -98,7 +107,6 @@ if (!isset($_SESSION["nombre"])) {
                                 </div>
 
                                 <div class="d-flex justify-content-end">
-                                    <!-- <button type="button" class="btn btn-sm btn-warning" id="btnServiciosOrden">Items de Cobro</button>&nbsp; -->
                                     <button type="button" class="btn btn-outline-secondary me-2">Cancelar</button>&nbsp;
                                     <button type="submit" form="formulario" id="btnGuardar" class="btn btn-success botonS">Guardar </button>
                                 </div>
@@ -108,25 +116,7 @@ if (!isset($_SESSION["nombre"])) {
                 </div>
  
                 <!-- Panel lateral derecho -->
-                <div class="col-lg-5">
-                    <!-- Agenda del día -->
-<!--                     <div class="card shadow-sm mb-4 contendorprinc">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h6 class="mb-0">Agenda del Día</h6>
-                                <i class="fas fa-calendar-day text-primary"></i>
-                            </div>
-
-                            <input type="date" id="fechaAgenda" class="form-control mb-3">
-
-                            <div id="listaAgenda" class="list-group small">
-                                <div class="text-center text-muted py-2">Selecciona una fecha...</div>
-                            </div>
-                        </div>
-                    </div> -->
-                    
-
-
+                <div class="col-lg-5">                  
                     <div class="card shadow-sm mb-4 contendorprinc">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-3">
@@ -151,13 +141,6 @@ if (!isset($_SESSION["nombre"])) {
                         </div>
                     </div>
 
-                    <!-- Fotos de instalación -->
-                    <!-- <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h6 class="mb-3">Fotos de Instalación</h6>
-                            <button class="btn btn-sm btn-outline-secondary">+ Subir Fotos</button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -270,12 +253,14 @@ if (!isset($_SESSION["nombre"])) {
                             </thead>
                             <tbody>  </tbody>
                         </table>
-                        <h5 class="text-end mt-3  ">Total:  $ <span id="totalOrden">0.00</span></h5>
+                            <div class="servicio-total-container mt-3 text-end">
+                            <span class="label-total">Total General : </span>
+                            <span class="valor-total">
+                                $ <strong id="totalOrden">0.00</strong>
+                            </span>
+                            </div>
+                       <!--  <h5 class="servicio-item">Total:  $ <strong id="totalOrden">0.00</strong></h5> -->
                   
-                        <!-- <div class="input-group mt-2">
-                            <input type="text" id="nuevoServicioOrden" class="form-control" placeholder="Agregar nuevo servicio">
-                            <button class="btn btn-primary" id="addServicioOrden">Agregar</button>
-                        </div> -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btnGuardarServicios" data-bs-dismiss="modal">Capturar</button>
@@ -286,6 +271,8 @@ if (!isset($_SESSION["nombre"])) {
         </div>
 
         <?php
+
+        /* }  */
     } 
     else {
         require 'noacceso.php';
@@ -293,8 +280,17 @@ if (!isset($_SESSION["nombre"])) {
     require 'footer.php';
 ?>
 
-<script type="text/javascript" src="scripts/Agendar.js"></script>
+<script type="text/javascript" src="scripts/ordenes.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  $(document).ready(function() {
+      const idOrden = "<?php echo $id_orden; ?>";
+      if (idOrden) {
+          cargarDetalleOrden(idOrden);
+      }
+  });
+</script>
+
 <?php
 }
 ob_end_flush();

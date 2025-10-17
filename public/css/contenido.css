@@ -508,6 +508,23 @@ body {
   justify-content: center;
   border: 1px solid #82a2ff30;
   color: #4e73e1;
+  .i{
+      color: #4e73e1;
+  }
+}
+
+
+
+/* --- Estilo del total en el modal --- */
+.servicio-total-container {
+ /*  background: #f8f9fa;   */         
+ /*  border-top: 2px solid #dee2e6; */
+ /*  padding: 12px 20px; */
+/*   border-radius: 0 0 8px 8px;
+  font-family: "Poppins", sans-serif; */
+    display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 .bootstrap-select.clientes-scrollable .dropdown-menu {

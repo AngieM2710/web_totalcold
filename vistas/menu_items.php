@@ -27,7 +27,7 @@ if (!empty($_SESSION['administrador']) && $_SESSION['administrador'] == 1) {
         [
             'title' => 'Gestión Operativa',
             'icon' => 'fa-calendar-alt',
-            'pages' => ['agenda.php', 'Agendar.php'],
+            'pages' => ['agenda.php', 'ordenes.php'],
             'submenu' => [
                 ['href' => 'agenda.php', 'icon' => 'fa-calendar-day', 'text' => 'Planificación'],
                 ['href' => 'Agendar.php', 'icon' => 'fa-user-clock', 'text' => 'Ordenes de Servicio'],
