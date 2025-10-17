@@ -15,6 +15,7 @@ Class Items
 		return ejecutarConsulta($sql);		
 	}
 
+
 	public function mostrar($id_item_cobro){
 		$sql="SELECT * FROM items_cobro where 
 		id_item_cobro  = '$id_item_cobro'";

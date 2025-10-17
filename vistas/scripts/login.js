@@ -62,7 +62,12 @@ $(document).ready(function() {
                         
                         if (response.status === 'ok') {
                             console.log("✅ Login correcto, redirigiendo...");
-                            window.location.href = "usuarios.php";
+                            if(response.usuario.id_permiso==1){
+                                window.location.href = "usuarios.php";
+                            }else{
+                                window.location.href = "agenda_tecnico.php";
+                            }
+                            //console.log("Usuario:", response.usuario.id_permiso);
                         } else {
                             console.log("❌ Error:", response.msg);
                             alert("Error: " + (response.msg || 'Credenciales incorrectas'));

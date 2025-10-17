@@ -130,76 +130,87 @@ class Ordenes {
         }
     }
 
-// // esta edita orden si existe un ca,bio , luego elimina los qeuipos y servico para regenerarlos e insertarlode vuelta solo cambia de posicion pero la logia se mantiene
-//     public function editar($id_orden, $id_cliente, $id_usuarios, $fecha, $direccion, $tipo_pago, $observaciones, $equipos_json, $serviciosOrden_json)
-//     {
-//         try {
-//             // 1. Actualizamos la orden
-//             $sql = "UPDATE orden 
-//                     SET id_cliente='$id_cliente', 
-//                         id_usuarios='$id_usuarios', 
-//                         fecha='$fecha', 
-//                         direccion='$direccion', 
-//                         tipo_pago='$tipo_pago', 
-//                         observaciones='$observaciones'
-//                     WHERE id_orden='$id_orden'";
-//             ejecutarConsulta($sql);
+    public function listar() {
+        $sql = "SELECT o.id_orden, c.nombre AS cliente, t.nombre AS tecnico, o.fecha, o.descripcion 
+                FROM orden o 
+                INNER JOIN cliente c ON o.id_cli = c.id_cli
+                INNER JOIN tecnico t ON o.id_tec = t.id_tec
+                ORDER BY o.id_orden DESC";
+        return ejecutarConsulta($sql);
+    }
 
-//             // 2. Eliminamos relaciones previas
-//             ejecutarConsulta("DELETE FROM equipo_servicio WHERE id_equipo_orden IN (SELECT id_equipo_orden FROM equipo_orden WHERE id_orden='$id_orden')");
-//             ejecutarConsulta("DELETE FROM equipo_orden WHERE id_orden='$id_orden'");
 
-//             // 3. Decodificamos JSON
-//             $equipos = json_decode($equipos_json, true);
-//             $serviciosOrden = json_decode($serviciosOrden_json, true);
+    // ============================================================
+    // NUEVO MÉTODO: Obtener Orden Completa con Equipos y Servicios
+    // ============================================================
+    public function obtenerOrdenCompleta($id_orden) {
+        $sqlOrden = "SELECT o.id_orden, o.id_cliente, o.id_usuarios, o.fecha, 
+                            o.direccion, o.tipo_pago, o.observaciones, o.costos, o.estado,
+                            CONCAT(c.nombre, ' ', c.apellido) AS cliente
+                     FROM orden o
+                     INNER JOIN cliente c ON o.id_cliente = c.id_cliente
+                     WHERE o.id_orden = '$id_orden'";
+        $orden = ejecutarConsultaSimpleFila($sqlOrden);
+        if (!$orden) return false;
 
-//             // Validaciones básicas
-//             if (empty($equipos) || empty($serviciosOrden)) {
-//                 return ['success' => false, 'message' => 'No hay datos de equipos o servicios'];
-//             }
+        // 🔹 Obtener equipos asociados
+        $sqlEquipos = "SELECT eo.id_equipo_orden, e.id_equipo, e.modelo, e.marca, e.capacidad
+                       FROM equipo_orden eo
+                       INNER JOIN equipos e ON eo.id_equipo = e.id_equipo
+                       WHERE eo.id_orden = '$id_orden'";
+        $equipos = ejecutarConsulta($sqlEquipos);
 
-//             // 4. Calculamos cantidades
-//             $cantidades = [];
-//             foreach ($serviciosOrden as $s) {
-//                 $cantidades[$s['id']] = $s['cantidad'];
-//             }
+        $equipos_array = [];
+        while ($eq = $equipos->fetch_object()) {
+            // 🔹 Para cada equipo, obtener sus servicios
+            $sqlServicios = "SELECT es.id_equipo_servicio, s.descripcion, es.valor, es.estado_es
+                             FROM equipo_servicio es
+                             INNER JOIN servicios s ON es.id_servicios = s.id_servicios
+                             WHERE es.id_equipo_orden = '$eq->id_equipo_orden'";
+            $servicios = ejecutarConsulta($sqlServicios);
 
-//             $total_orden = 0;
+            $servicios_array = [];
+            while ($sv = $servicios->fetch_object()) {
+                $servicios_array[] = [
+                    "id_equipo_servicio" => $sv->id_equipo_servicio,
+                    "nombre_servicio"    => $sv->descripcion,
+                    "valor"              => $sv->valor,
+                    "estado"             => $sv->estado_es
+                ];
+            }
 
-//             // 5. Insertamos nuevamente
-//             foreach ($equipos as $eq) {
-//                 $id_equipo = $eq['id_equipo'];
-//                 $sql2 = "INSERT INTO equipo_orden (id_orden, id_equipo) VALUES ('$id_orden', '$id_equipo')";
-//                 $id_equipo_orden_new = ejecutarConsulta_retornarID($sql2);
+            $equipos_array[] = [
+                "id_equipo_orden" => $eq->id_equipo_orden,
+                "id_equipo"       => $eq->id_equipo,
+                "modelo"          => $eq->modelo,
+                "marca"           => $eq->marca,
+                "capacidad"       => $eq->capacidad,
+                "servicios"       => $servicios_array
+            ];
+        }
 
-//                 foreach ($eq['servicios'] as $id_serv) {
-//                     $precio_serv = 0;
-//                     foreach ($serviciosOrden as $s) {
-//                         if ($s['id'] == $id_serv) {
-//                             $precio_serv = $s['precio'];
-//                             break;
-//                         }
-//                     }
+        return [
+            "orden"   => $orden,
+            "equipos" => $equipos_array
+        ];
+    }
 
-//                     $cantidad_equipos = $cantidades[$id_serv] ?? 1;
-//                     $valor_unitario = $precio_serv / $cantidad_equipos;
+    public function actualizarEstadoOrden($id_orden, $estado) {
+    $sql = "UPDATE orden SET estado = '$estado' WHERE id_orden = '$id_orden'";
+    return ejecutarConsulta($sql);
+    }
 
-//                     $sql3 = "INSERT INTO equipo_servicio (id_equipo_orden, id_servicios, valor)
-//                             VALUES ('$id_equipo_orden_new', '$id_serv', '$valor_unitario')";
-//                     ejecutarConsulta($sql3);
+    public function actualizarEstadoServicio($id_equipo_servicio, $estado) {
+        // Asumiendo que el campo de estado del servicio se llama 'estado_es'
+        $sql = "UPDATE equipo_servicio SET estado_es = '$estado' WHERE id_equipo_servicio = '$id_equipo_servicio'";
+        return ejecutarConsulta($sql);
+    }
 
-//                     $total_orden += $valor_unitario;
-//                 }
-//             }
 
-//             // 6. Actualizamos total
-//             ejecutarConsulta("UPDATE orden SET costos = '$total_orden' WHERE id_orden = '$id_orden'");
-
-//             return ['success' => true, 'message' => 'Orden actualizada correctamente', 'id_orden' => $id_orden];
-//         } catch (Exception $e) {
-//             return ['success' => false, 'message' => 'Error al editar: ' . $e->getMessage()];
-//         }
-//     }
 
 }
+
+
+
+
 ?>

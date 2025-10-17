@@ -527,21 +527,9 @@ body {
     align-items: center;
 }
 
-.label-total {
-/*   font-family: "Poppins", sans-serif; */
-  font-weight: 600;
-  color: #333333;
-  font-size: 1.05rem;
-  margin-right: 8px;
-}
-
-.valor-total {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #224abe;               
-  background: #e7f1ff;       
-  padding: 5px 10px;
-  border-radius: 6px;
-  /* box-shadow: inset 0 0 4px rgba(13, 110, 253, 0.15); */
-/*   transition: transform 0.2s ease, box-shadow 0.2s ease; */
+.bootstrap-select.clientes-scrollable .dropdown-menu {
+    background-color: #f8f9fa; /* Fondo del menú (gris claro) */
+    border: 1px solid #000000; /* Borde del menú */
+    max-height: 100px; /* Altura máxima del menú */
+    overflow-y: auto; /* Habilita el scroll vertical */
 }
